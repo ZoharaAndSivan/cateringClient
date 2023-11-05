@@ -1,0 +1,10 @@
+.row{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.container{
+    width: 30%;
+    border: 2px solid black;
+    margin: 12px;
+}
