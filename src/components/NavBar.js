@@ -4,7 +4,7 @@ export default function NavBar() {
     return <>
     <div className="div-nav">
 
-        <nav>
+        <nav className="">
             <ul>
                 <li ><Link to="home">ראשי</Link></li>
 

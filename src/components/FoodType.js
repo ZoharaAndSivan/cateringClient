@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import { getAllFoodByMenuId } from "../store/action/event";
+import { Button } from "@mui/material";
 
-export default function FoodType() {
-  const { id, menuId } = useParams();
+export default function FoodType({menuId, foodTypeId, addFood, deleteFood}) {
   const [food, setFood] = useState([]);
   useEffect(() => {
     getAllFoodByMenuId(menuId)
@@ -13,7 +12,24 @@ export default function FoodType() {
       })
       .catch((err) => console.log(err));
   }, []);
-  return <>
-  
-  </>;
+  return (
+    <div className="row">
+      {food.map((item) => {
+        if (item.FoodType == foodTypeId)
+          return (
+            <div key={item.Id} className="containers">
+              <h5>{item.Name}</h5>
+              <div>
+                <Button onClick={()=>addFood(item)}>
+                  +
+                </Button>
+                <Button onClick={()=>deleteFood(item)}>
+                  -
+                </Button>
+              </div>
+            </div>
+          );
+      })}
+    </div>
+  );
 }

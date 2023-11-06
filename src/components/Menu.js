@@ -6,11 +6,13 @@ import "./Menu.scss";
 import SubMenu from "./SubMenu";
 import Order from "./Order";
 import SideNavBar from "./SideNavBar";
+import FoodType from "./FoodType";
 
 export default function MenuEvent() {
   //מקבלת אי די לפי שורת יו אר אל
   const { id } = useParams();
   const [event, setEvent] = useState(null);
+  const [foodTypeId, setFoodTypeId] = useState(1);
   const [menuEvent, setMenuEvent] = useState([]);
   const [menu, setMenu] = useState([]);
   const [price, setPrice] = useState(0);
@@ -21,9 +23,12 @@ export default function MenuEvent() {
       menuTypes: state.catering.menuTypes,
     };
   }, shallowEqual);
+
   useEffect(() => {
     setEvent(eventsType.find((x) => x.id == id)); //מחזיר אובייקט
-    setMenuEvent(menuTypes.filter((x) => x.MenuId == id)); //מחזיר מערך
+    let arr = menuTypes.filter((x) => x.MenuId == id);
+    arr = arr.map((obj) => ({ ...obj, AmountChosen: 0 }));
+    setMenuEvent(arr); //מחזיר מערך
     setPrice(event?.Price);
   }, [event]);
 
@@ -33,26 +38,70 @@ export default function MenuEvent() {
     if (e.target.checked) {
       obj = [...obj, item];
     } else {
-      obj = obj.filter((x) => x.id != item.id);
+      obj = obj.filter((x) => x.Id != item.Id);
     }
     setMenu(obj);
     console.log(obj, "llllllllllllllllllllllllll");
   };
+  const changeChosenAmount = (value, id) => {
+    let arr = [...menuEvent];
+    const index = menuEvent.findIndex((x) => x.FoodTypeId.Id === id);
+    console.log(menuEvent, index);
+    if (index != -1) {
+      arr[index].AmountChosen = arr[index].AmountChosen + value;
+    }
+    setMenuEvent(arr);
+  };
+  const addFood = (item) => {
+    if (!menu.find((x) => x.Id == item.Id)) {
+      let arr = [...menu];
+      arr = [...arr, item];
+      setMenu(arr);
+      changeChosenAmount(1, item.FoodType);
+    }
+  };
 
-  console.log(menuTypes);
-  console.log(menuEvent);
+  const deleteFood = (item) => {
+    if (menu.find((x) => x.Id == item.Id)) {
+      let arr = [...menu];
+      arr = arr.filter((x) => x.Id != item.Id);
+      setMenu(arr);
+      changeChosenAmount(-1, item.FoodType);
+    }
+  };
+
+  // console.log(menuTypes);
+  // console.log(menuEvent);
 
   return (
     <>
       <div className="row">
-        <div className="container" style={{ width: "20%" }}>
+        <div className="containers" style={{ width: "20%" }}>
           <h5> מסלול קיטרניג מחיר לסועד </h5>
-          {menuEvent.map(item => <div> {item.FoodTypeId.Name} (x) </div>)}
+          {menuEvent.map((item) => (
+            <div>
+              <ul>
+                {item.FoodTypeId.Name} ({item.AmountChosen}/{item.Amount})
+                {menu.length > 0 &&
+                  menu.map((itemMenu) => {
+                    if (itemMenu.FoodType == item.FoodTypeId.Id)
+                      return <li key={itemMenu.Id}>{itemMenu.Name}</li>;
+                  })}
+              </ul>
+            </div>
+          ))}
         </div>
-        <div className="container" style={{ width: "10%" }}>
-          <SideNavBar menuEvent={menuEvent}/>
+        <div className="containers" style={{ width: "10%" }}>
+          <SideNavBar menuEvent={menuEvent} setFoodTypeId={setFoodTypeId} />
         </div>
-        <div className="container" style={{ width: "60%" }}></div>
+        <div className="containers" style={{ width: "60%" }}>
+          <FoodType
+            menuId={id}
+            foodTypeId={foodTypeId}
+            addFood={addFood}
+            deleteFood={deleteFood}
+          />
+        </div>
       </div>
 
       <div>

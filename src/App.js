@@ -32,7 +32,7 @@ function App() {
         {/* ניתוב לכל קומפוננטה */}
         <Route path="/" element={<Home />} />
         <Route path="home/" element={<Home />} />
-        <Route path="foodType/:id/:menuId" element={<FoodType />} />
+        <Route path="foodType/:menuId/:foodTypeId" element={<FoodType />} />
         <Route path="menu/:id" element={<Menu />} />
         <Route path="menuType/:id" element={<MenuType />} />
         <Route path="home/eventsCatering" element={<Menu />} />

@@ -15,7 +15,7 @@ export default function SubMenu({ typeMenu, change }) {
       {food.map((item, index) => {
         if (item.IsActive && item.FoodTypeId == typeMenu.FoodTypeId.id)
           return (
-            <div key={item.id}>
+            <div key={item.Id}>
               <label> {item.Name} </label>
               <input type="checkbox" onChange={(e) => change(e, item)} />
             </div>

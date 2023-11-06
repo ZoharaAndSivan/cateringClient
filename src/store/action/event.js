@@ -18,5 +18,5 @@ export const deleteTask = (id)=>{
 }
 
 export const getAllFoodByMenuId = (menuId)=>{
-    return axios.get(`http://localhost:8080/foodRouter//getAllFoodByMenuId/${menuId}`)
+    return axios.get(`http://localhost:8080/productToMenuRouter/getAllFoodByMenuId/${menuId}`)
 }

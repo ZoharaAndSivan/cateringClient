@@ -1,6 +1,4 @@
-import { Link } from "react-router-dom";
-
-export default function SideNavBar({ menuEvent }) {
+export default function SideNavBar({ menuEvent, setFoodTypeId }) {
   return (
     <>
       <div className="">
@@ -8,11 +6,12 @@ export default function SideNavBar({ menuEvent }) {
           <ul>
             {menuEvent.map((item) => (
               <li>
-                <Link
-                  to={"/foodType/" + item.FoodTypeId.id + "/" + item.MenuId}
+                <div
+                onClick={()=> setFoodTypeId(item.FoodTypeId.Id)}
+                  // to={"/foodType/" + item.MenuId + "/"+item.FoodTypeId.Id}
                 >
                   {item.FoodTypeId.Name}
-                </Link>
+                </div>
               </li>
             ))}
           </ul>

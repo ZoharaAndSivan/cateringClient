@@ -4,36 +4,36 @@ import * as types from "../actionTypes";
 const initialState = {
   //משתמשים
   eventsTypes: [
-    { id: 1, Name: "קייטרינג" },
-    { id: 2, Name: "בר מצווה" },
-    { id: 3, Name: "בת מצווה" },
+    { Id: 1, Name: "קייטרינג" },
+    { Id: 2, Name: "בר מצווה" },
+    { Id: 3, Name: "בת מצווה" },
   ],
   menusEvents: [
-    { id: 1, EventId: 1, Name: "בסיסי", Minimum: 30, Price: 59 },
-    { id: 2, EventId: 2, Name: "בסיסי", Minimum: 30, Price: 59 },
-    { id: 3, EventId: 3, Name: "בסיסי", Minimum: 30, Price: 59 },
+    { Id: 1, EventId: 1, Name: "בסיסי", Minimum: 30, Price: 59 },
+    { Id: 2, EventId: 2, Name: "בסיסי", Minimum: 30, Price: 59 },
+    { Id: 3, EventId: 3, Name: "בסיסי", Minimum: 30, Price: 59 },
   ],
   menuTypes: [
     {
-      id: 1,
+      Id: 1,
       MenuId: 1,
-      FoodTypeId: { id: 1, Name: "סלטים" },
+      FoodTypeId: { Id: 1, Name: "סלטים" },
       Amount: 30,
       ExtraPrice: 40, //???
       ExtraType: 20,
     },
     {
-      id: 2,
+      Id: 2,
       MenuId: 1,
-      FoodTypeId: { id: 3, Name: "מנה אחרונה" },
+      FoodTypeId: { Id: 3, Name: "מנה אחרונה" },
       Amount: 30,
       ExtraPrice: 40,
       ExtraType: 20,
     },
     {
-      id: 3,
+      Id: 3,
       MenuId: 1,
-      FoodTypeId: { id: 2, Name: "מנה ראשונה" },
+      FoodTypeId: { Id: 2, Name: "מנה ראשונה" },
       Amount: 30,
       ExtraPrice: 40,
       ExtraType: 20,
@@ -41,18 +41,18 @@ const initialState = {
   ],
 
   foodTypes: [
-    { id: 1, Name: "סלטים" },
-    { id: 2, Name: "מנה ראשונה" },
-    { id: 3, Name: "דגים" },
-    { id: 4, Name: "בשרי" },
+    { Id: 1, Name: "סלטים" },
+    { Id: 2, Name: "מנה ראשונה" },
+    { Id: 3, Name: "דגים" },
+    { Id: 4, Name: "בשרי" },
   ],
   food: [
-    { id: 1, Name: "סלמון", Price: 5, IsActive: true, FoodTypeId: 3 },
-    { id: 2, Name: "דג", Price: 0, IsActive: true, FoodTypeId: 3 },
-    { id: 3, Name: "לחם", Price: 0, IsActive: true, FoodTypeId: 2 },
-    { id: 4, Name: "כרוב", Price: 0, IsActive: true, FoodTypeId: 1 },
+    { Id: 1, Name: "סלמון", Price: 5, IsActive: true, FoodTypeId: 3 },
+    { Id: 2, Name: "דג", Price: 0, IsActive: true, FoodTypeId: 3 },
+    { Id: 3, Name: "לחם", Price: 0, IsActive: true, FoodTypeId: 2 },
+    { Id: 4, Name: "כרוב", Price: 0, IsActive: true, FoodTypeId: 1 },
   ],
-  events: [{ id: 1, eventTypesId: 3 }],
+  events: [{ Id: 1, eventTypesId: 3 }],
   //אירוע נבחר
   currentEvent: null,
 };

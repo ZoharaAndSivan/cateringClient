@@ -6,7 +6,7 @@ export default function EventType({eventType}) {
     return <div
       className="box"
     //   onClick={() => { navigate("/menu/"+eventType.id+"/"+eventType.Name)
-      onClick={() => { navigate("/menuType/"+eventType.id)
+      onClick={() => { navigate("/menuType/"+eventType.Id)
       }}
     >
     {eventType.Name}

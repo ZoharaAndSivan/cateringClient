@@ -11,7 +11,7 @@ export default function MenuTypeSingle({ menu }) {
       <h4> {menu.Price} </h4>
       <div>
         {menuTypes.map((item) => {
-          if (item.MenuId == menu.id)
+          if (item.MenuId == menu.Id)
             return (
               <div>
                 {item.Amount == 0 ? (
@@ -25,9 +25,8 @@ export default function MenuTypeSingle({ menu }) {
             );
         })}
       </div>
-      <Button variant="contained" onClick={() => navigate("/menu/" + menu.id)}>
-        {" "}
-        הזמן{" "}
+      <Button variant="contained" onClick={() => navigate("/menu/" + menu.Id)}>
+        הזמן
       </Button>
     </>
   );
