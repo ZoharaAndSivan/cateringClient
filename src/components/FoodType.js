@@ -2,7 +2,13 @@ import { useEffect, useState } from "react";
 import { getAllFoodByMenuId } from "../store/action/event";
 import { Button } from "@mui/material";
 
-export default function FoodType({menuId, foodTypeId, addFood, deleteFood}) {
+export default function FoodType({
+  menuId,
+  foodTypeId,
+  addFood,
+  deleteFood,
+  menu,
+}) {
   const [food, setFood] = useState([]);
   useEffect(() => {
     getAllFoodByMenuId(menuId)
@@ -18,14 +24,14 @@ export default function FoodType({menuId, foodTypeId, addFood, deleteFood}) {
         if (item.FoodType == foodTypeId)
           return (
             <div key={item.Id} className="containers">
-              <h5>{item.Name}</h5>
+              <h5>{item.Price != 0 && <span>*</span>}{item.Name}</h5>
+              {item.Price != 0 && <p> בתוספת {item.Price} ש"ח</p>}
               <div>
-                <Button onClick={()=>addFood(item)}>
-                  +
-                </Button>
-                <Button onClick={()=>deleteFood(item)}>
-                  -
-                </Button>
+                {menu.find((x) => x.Id == item.Id) ? (
+                  <Button onClick={() => deleteFood(item)}>-</Button>
+                ) : (
+                  <Button onClick={() => addFood(item)}>+</Button>
+                )}
               </div>
             </div>
           );

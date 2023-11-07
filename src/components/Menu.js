@@ -7,6 +7,7 @@ import SubMenu from "./SubMenu";
 import Order from "./Order";
 import SideNavBar from "./SideNavBar";
 import FoodType from "./FoodType";
+import CategoryList from "./CategoryList";
 
 export default function MenuEvent() {
   //מקבלת אי די לפי שורת יו אר אל
@@ -79,15 +80,8 @@ export default function MenuEvent() {
         <div className="containers" style={{ width: "20%" }}>
           <h5> מסלול קיטרניג מחיר לסועד </h5>
           {menuEvent.map((item) => (
-            <div>
-              <ul>
-                {item.FoodTypeId.Name} ({item.AmountChosen}/{item.Amount})
-                {menu.length > 0 &&
-                  menu.map((itemMenu) => {
-                    if (itemMenu.FoodType == item.FoodTypeId.Id)
-                      return <li key={itemMenu.Id}>{itemMenu.Name}</li>;
-                  })}
-              </ul>
+            <div key={item.Id}>
+             <CategoryList category={item} menu={menu} deleteFood={deleteFood}/>
             </div>
           ))}
         </div>
@@ -98,32 +92,13 @@ export default function MenuEvent() {
           <FoodType
             menuId={id}
             foodTypeId={foodTypeId}
+            menu={menu}
             addFood={addFood}
             deleteFood={deleteFood}
           />
         </div>
       </div>
 
-      <div>
-        <h1>תפריט</h1>
-      </div>
-
-      <div> {event?.Name}</div>
-
-      <form>
-        <div>
-          {menuEvent.length > 0 &&
-            menuEvent.map((item, index) => {
-              return (
-                <div key={item.id}>
-                  <SubMenu typeMenu={item} change={change} />
-                </div>
-              );
-            })}
-        </div>
-      </form>
-      <hr />
-      {/* {event && <Order event={event} />} */}
     </>
   );
 }
