@@ -18,6 +18,7 @@ const CategoryList = ({ category, menu, deleteFood }) => {
           if (itemMenu.FoodType == category.FoodTypeId.Id)
             return <div key={itemMenu.Id}>{itemMenu.Name}  <span onClick={()=>deleteFood(itemMenu)}><RemoveCircleOutlineRoundedIcon/></span></div>;
         })}
+
     </>
   );
 };

@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { shallowEqual, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import "./Menu.scss";
@@ -8,10 +8,12 @@ import Order from "./Order";
 import SideNavBar from "./SideNavBar";
 import FoodType from "./FoodType";
 import CategoryList from "./CategoryList";
+import { Button } from "@mui/material";
 
 export default function MenuEvent() {
   //מקבלת אי די לפי שורת יו אר אל
-  const { id } = useParams();
+  const { id, date, amount } = useParams();
+  const navigate = useNavigate();
   const [event, setEvent] = useState(null);
   const [foodTypeId, setFoodTypeId] = useState(1);
   const [menuEvent, setMenuEvent] = useState([]);
@@ -71,6 +73,29 @@ export default function MenuEvent() {
     }
   };
 
+  const sendOrder = () => {
+    console.log(menu);
+    const groupedMenu = Object.entries(
+      // What you have done
+      menu.reduce((acc, { Id, FoodType, Active, Name, Price }) => {
+        // Group initialization
+        if (!acc[FoodType]) {
+          acc[FoodType] = [];
+        }
+        
+        // Grouping
+        // FIX: only pushing the object that contains id and value
+        acc[FoodType].push({ Id, Active, Name, Price });
+    
+        return acc;
+      }, {})
+    ).map(([type, options]) => ({ type, options }));
+    menu.sort((a, b) => a.FoodType - b.FoodType);
+
+    console.log(groupedMenu);
+    navigate("/summaryOrder", { state: { groupedMenu, menu } });
+
+  };
   // console.log(menuTypes);
   // console.log(menuEvent);
 
@@ -81,12 +106,22 @@ export default function MenuEvent() {
           <h5> מסלול קיטרניג מחיר לסועד </h5>
           {menuEvent.map((item) => (
             <div key={item.Id}>
-             <CategoryList category={item} menu={menu} deleteFood={deleteFood}/>
+              <CategoryList
+                category={item}
+                menu={menu}
+                sendOrder={sendOrder}
+                deleteFood={deleteFood}
+              />
             </div>
           ))}
+      <Button onClick={sendOrder} variant="contained"> סיים הזמנה </Button>
         </div>
         <div className="containers" style={{ width: "10%" }}>
-          <SideNavBar menuEvent={menuEvent} setFoodTypeId={setFoodTypeId} />
+          <SideNavBar
+            menuEvent={menuEvent}
+            setFoodTypeId={setFoodTypeId}
+            sendOrder={sendOrder}
+          />
         </div>
         <div className="containers" style={{ width: "60%" }}>
           <FoodType
@@ -98,7 +133,6 @@ export default function MenuEvent() {
           />
         </div>
       </div>
-
     </>
   );
 }

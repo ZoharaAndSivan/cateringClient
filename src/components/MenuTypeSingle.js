@@ -25,7 +25,7 @@ export default function MenuTypeSingle({ menu }) {
             );
         })}
       </div>
-      <Button variant="contained" onClick={() => navigate("/menu/" + menu.Id)}>
+      <Button variant="contained" onClick={() => navigate("/orderDateAndAmount/" + menu.Id)}>
         הזמן
       </Button>
     </>

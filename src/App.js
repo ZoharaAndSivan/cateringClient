@@ -12,13 +12,13 @@ import About from "./components/About";
 import Recommendation from "./components/Recommendation";
 //ייבוא קומפוננטת דף יצירת קשר
 import ContactUs from "./components/ContactUs";
-
 import Register from "./components/Register";
 import Login from "./components/Login";
-
 import Menu from "./components/Menu";
 import MenuType from "./components/MenuType";
 import FoodType from "./components/FoodType";
+import SummaryOrder from "./components/SummaryOrder";
+import OrderDateAndAmount from "./components/OrderDateAndAmount";
 function App() {
   return (
     <div className="App">
@@ -32,8 +32,10 @@ function App() {
         {/* ניתוב לכל קומפוננטה */}
         <Route path="/" element={<Home />} />
         <Route path="home/" element={<Home />} />
+        <Route path="/summaryOrder" element={<SummaryOrder/>} />
         <Route path="foodType/:menuId/:foodTypeId" element={<FoodType />} />
-        <Route path="menu/:id" element={<Menu />} />
+        <Route path="menu/:id/:date/:amount" element={<Menu />} />
+        <Route path="orderDateAndAmount/:id" element={<OrderDateAndAmount />} />
         <Route path="menuType/:id" element={<MenuType />} />
         <Route path="home/eventsCatering" element={<Menu />} />
         <Route path="about" element={<About />} />
