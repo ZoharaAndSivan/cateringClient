@@ -5,7 +5,7 @@ import { Button, TextField } from "@mui/material";
 import { useState } from "react";
 import Swal from "sweetalert2";
 const OrderDateAndAmount = () => {
-  const { id } = useParams();
+  const { id, min } = useParams();
   const navigate = useNavigate();
   const [date, setDate] = useState(null);
   const [amount, setAmount] = useState(null);
@@ -18,7 +18,7 @@ const OrderDateAndAmount = () => {
   const submit = () => {
     console.log(TDate())
     console.log(date, amount,new Date(date).toLocaleDateString(),(new Date(date).toLocaleDateString() > new Date().toLocaleDateString() && amount > 0))
-    if (!(TDate() && amount > 0)) {
+    if (!(TDate() && amount >= min)) {
       Swal.fire({
         title: "אופס...",
         text: "יש להזין תאריך וכמות תקינים",
@@ -32,8 +32,7 @@ const OrderDateAndAmount = () => {
     <div className="p-5">
       <div className="shadow text-center" style={{ width:"40vw", margin: "0 auto", padding: "64px 12px", borderRadius:"25px" }}>
         <h3>
-          {" "}
-          תאריך <CalendarMonthIcon />{" "}
+          תאריך <CalendarMonthIcon />
         </h3>
         <TextField
           id="outlined-basic"
@@ -52,6 +51,7 @@ const OrderDateAndAmount = () => {
           type="number"
           onChange={(e) => setAmount(e.target.value)}
         />
+        <p>* מינימום משתתפים {min}</p>
         <br/> <br/>
         <Button onClick={submit} variant="contained"> המשך </Button>
       </div>

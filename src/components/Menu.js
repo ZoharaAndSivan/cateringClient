@@ -2,9 +2,9 @@ import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { shallowEqual, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import PeopleIcon from "@mui/icons-material/People";
 import "./Menu.scss";
-import SubMenu from "./SubMenu";
-import Order from "./Order";
 import SideNavBar from "./SideNavBar";
 import FoodType from "./FoodType";
 import CategoryList from "./CategoryList";
@@ -20,15 +20,16 @@ export default function MenuEvent() {
   const [menu, setMenu] = useState([]);
   const [price, setPrice] = useState(0);
   //שליפה
-  const { eventsType, menuTypes } = useSelector((state) => {
+  const { eventsType, menuTypes, menusEvents } = useSelector((state) => {
     return {
       eventsType: state.catering.eventsTypes,
       menuTypes: state.catering.menuTypes,
+      menusEvents: state.catering.menusEvents
     };
   }, shallowEqual);
 
   useEffect(() => {
-    setEvent(eventsType.find((x) => x.id == id)); //מחזיר אובייקט
+    setEvent(menusEvents.find((x) => x.Id == id)); //מחזיר אובייקט
     let arr = menuTypes.filter((x) => x.MenuId == id);
     arr = arr.map((obj) => ({ ...obj, AmountChosen: 0 }));
     setMenuEvent(arr); //מחזיר מערך
@@ -93,7 +94,8 @@ export default function MenuEvent() {
     menu.sort((a, b) => a.FoodType - b.FoodType);
 
     console.log(groupedMenu);
-    navigate("/summaryOrder", { state: { groupedMenu, menu } });
+    console.log(event,"eventttt")
+    navigate("/summaryOrder", { state: { groupedMenu, menu, date, amount, event } });
 
   };
   // console.log(menuTypes);
@@ -103,6 +105,14 @@ export default function MenuEvent() {
     <>
       <div className="row">
         <div className="containers" style={{ width: "20%" }}>
+          <div>
+        <p>
+        <PeopleIcon /> {amount} אורחים 
+        </p>
+        <p>
+        <CalendarMonthIcon /> {new Date(date).toLocaleDateString()} 
+        </p>
+        </div>
           <h5> מסלול קיטרניג מחיר לסועד </h5>
           {menuEvent.map((item) => (
             <div key={item.Id}>

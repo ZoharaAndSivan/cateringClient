@@ -19,6 +19,7 @@ import MenuType from "./components/MenuType";
 import FoodType from "./components/FoodType";
 import SummaryOrder from "./components/SummaryOrder";
 import OrderDateAndAmount from "./components/OrderDateAndAmount";
+import OrderDetails from "./components/OrderDetails";
 function App() {
   return (
     <div className="App">
@@ -35,9 +36,10 @@ function App() {
         <Route path="/summaryOrder" element={<SummaryOrder/>} />
         <Route path="foodType/:menuId/:foodTypeId" element={<FoodType />} />
         <Route path="menu/:id/:date/:amount" element={<Menu />} />
-        <Route path="orderDateAndAmount/:id" element={<OrderDateAndAmount />} />
+        <Route path="orderDateAndAmount/:id/:min" element={<OrderDateAndAmount />} />
         <Route path="menuType/:id" element={<MenuType />} />
         <Route path="home/eventsCatering" element={<Menu />} />
+        <Route path="orderDetails" element={<OrderDetails />} />
         <Route path="about" element={<About />} />
         <Route path="recommendation" element={<Recommendation />} />
         <Route path="contactUs" element={<ContactUs />} />
