@@ -38,12 +38,18 @@ function createData(id, name, price, amount, total) {
 export default function SummaryOrder() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { groupedMenu, menu, amount, date, event, time } = location.state || {};
+  const { groupedMenu, menu, amount, date, event, time, menuEvent } =
+    location.state || {};
+  const [grouped, setGroued] = React.useState([...groupedMenu]);
   const [rows, setRows] = React.useState([]);
   const [price, setPrice] = React.useState(0);
   const [menuProducts, setMenuProducts] = React.useState([...menu]);
 
   React.useEffect(() => {
+    orderRows(groupedMenu);
+  }, []);
+
+  const orderRows = (arrToOrder) => {
     let globalSum = 0;
     const obj = createData(
       event.Id,
@@ -54,37 +60,62 @@ export default function SummaryOrder() {
     );
 
     globalSum += event.Price * amount;
-    let arr = [obj, ...menu];
-    for (let i = 1; i < arr.length; i++) {
-      const price = arr[i].Price == 0 ? "" : arr[i].Price;
-      const amount2 = arr[i].Price == 0 ? 1 : amount;
-      const sum = arr[i].Price == 0 ? "" : price * amount2;
-      arr[i] = createData(arr[i].Id, arr[i].Name, price, amount2, sum);
-      globalSum += sum == "" ? 0 : sum;
+    let arr = [obj];
+    for (let i = 0; i < arrToOrder.length; i++) {
+      const element = arrToOrder[i];
+      const productInMenu = menuEvent.find(
+        (x) => x.FoodTypeId.Id.toLocaleString() == element.type.toLocaleString()
+      );
+      let priceToAdd = productInMenu.ExtraType;
+      const arrProducts = element.options;
+
+      for (let i = 0; i < arrProducts.length; i++) {
+        let price = arrProducts[i].Price == 0 ? "" : arrProducts[i].Price;
+
+        if (i + 1 > productInMenu.Amount) {
+          price = priceToAdd;
+        }
+        const amount2 = arrProducts[i].Price == 0 ? 1 : amount;
+        const sum = price == 0 ? "" : price * amount2;
+        arr.push(
+          createData(
+            arrProducts[i].Id,
+            arrProducts[i].Name,
+            price,
+            amount2,
+            sum
+          )
+        );
+        globalSum += sum == "" ? 0 : sum;
+      }
     }
+
     setPrice(globalSum);
     setRows(arr);
-
-    for (let i = 0; i < groupedMenu.length; i++) {
-      const element = groupedMenu[i];
-      // if(element.options.length > )
-      
-    }
-  }, []);
+  };
 
   const delProduct = (item) => {
     const arr = rows.filter((x) => x.id != item.id);
-    console.log(groupedMenu[0]);
     const arrMenu = menuProducts.filter((x) => x.Id != item.id);
+    const x=[];
+    for (let i = 0; i < grouped.length; i++) {
+      const element = grouped[i].options;
+      x[i] = { type: grouped[i].type, options: [] };
+      for (let j = 0; j < element.length; j++) {
+        if (element[j].Id != item.id) {
+          x[i].options.push(element[j]);
+        }
+      }
+    }
+    setGroued(x);
     setRows(arr);
     setMenuProducts(arrMenu);
     if (item.price != "") {
       setPrice(price - item.total);
     }
-    console.log("pppppp", arrMenu);
+    orderRows(x);
   };
 
-  console.log(groupedMenu);
   return (
     <div style={{ margin: "24px auto", width: "70vw" }}>
       <TableContainer component={Paper}>
@@ -110,11 +141,13 @@ export default function SummaryOrder() {
                   </StyledTableCell>
                   <StyledTableCell align="right">{row.name}</StyledTableCell>
                   <StyledTableCell align="right">
-                    {row.price} {row.price != "" && <span>₪</span>}
+                    {row.price.toLocaleString()}{" "}
+                    {row.price != "" && <span>₪</span>}
                   </StyledTableCell>
                   <StyledTableCell align="right">{row.amount}</StyledTableCell>
                   <StyledTableCell align="right">
-                    {row.total} {row.price != "" && <span>₪</span>}
+                    {row.total.toLocaleString()}{" "}
+                    {row.price != "" && <span>₪</span>}
                   </StyledTableCell>
                 </StyledTableRow>
               ))}
@@ -123,14 +156,27 @@ export default function SummaryOrder() {
               <StyledTableCell align="right"></StyledTableCell>
               <StyledTableCell align="right"></StyledTableCell>
               <StyledTableCell align="right"></StyledTableCell>
-              <StyledTableCell align="right">{price.toLocaleString()} ₪</StyledTableCell>
+              <StyledTableCell align="right">
+                {price.toLocaleString()} ₪
+              </StyledTableCell>
             </StyledTableRow>
           </TableBody>
         </Table>
       </TableContainer>
-      <br/> <br/><br/>
+      <br /> <br />
+      <br />
       <h3> סה"כ בסל הקניות : {price.toLocaleString()} ₪</h3>
-      <Button variant="contained" onClick={()=> navigate("/orderDetails", { state: { groupedMenu, menu, date, amount, event, time, price } })}> מעבר לתשלום </Button>
+      <Button
+        variant="contained"
+        onClick={() =>
+          navigate("/orderDetails", {
+            state: { groupedMenu, menu, date, amount, event, time, price },
+          })
+        }
+      >
+        {" "}
+        מעבר לתשלום{" "}
+      </Button>
     </div>
   );
 }

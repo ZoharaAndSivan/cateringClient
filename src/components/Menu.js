@@ -86,7 +86,7 @@ export default function MenuEvent() {
         
         // Grouping
         // FIX: only pushing the object that contains id and value
-        acc[FoodType].push({ Id, Active, Name, Price });
+        acc[FoodType].push({ Id, Active, Name, Price, FoodType });
     
         return acc;
       }, {})
@@ -95,7 +95,7 @@ export default function MenuEvent() {
 
     console.log(groupedMenu);
     console.log(event,"eventttt")
-    navigate("/summaryOrder", { state: { groupedMenu, menu, date, amount, event, time } });
+    navigate("/summaryOrder", { state: { groupedMenu, menu, date, amount, event, time, menuEvent } });
 
   };
   // console.log(menuTypes);

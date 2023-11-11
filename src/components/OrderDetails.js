@@ -4,14 +4,16 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import FormInput from "./FormInput";
 import { Button, TextField } from "@mui/material";
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import Swal from "sweetalert2";
+import { useSelector } from "react-redux";
 
 export default function OrderDetails() {
   const navigate = useNavigate();
   const location = useLocation();
   const { groupedMenu, menu, amount, date, event, time, price } =
     location.state || {};
+    const user = useSelector(state=> state.catering.user);
   const schema = yup
     .object({
       FirstName: yup.string().required("שדה זה חובה"),
@@ -54,7 +56,7 @@ export default function OrderDetails() {
       Phone: data.Phone,
       Adress: data.Adress,
       Email: data.Email,
-      // UserType:,
+      UserType: user.currentUser?user.currentUser.UserType:3,
       Active: true,
     };
     const order = {
