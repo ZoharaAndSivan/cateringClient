@@ -12,7 +12,7 @@ import { Button } from "@mui/material";
 
 export default function MenuEvent() {
   //מקבלת אי די לפי שורת יו אר אל
-  const { id, date, amount } = useParams();
+  const { id, date, amount, time } = useParams();
   const navigate = useNavigate();
   const [event, setEvent] = useState(null);
   const [foodTypeId, setFoodTypeId] = useState(1);
@@ -95,7 +95,7 @@ export default function MenuEvent() {
 
     console.log(groupedMenu);
     console.log(event,"eventttt")
-    navigate("/summaryOrder", { state: { groupedMenu, menu, date, amount, event } });
+    navigate("/summaryOrder", { state: { groupedMenu, menu, date, amount, event, time } });
 
   };
   // console.log(menuTypes);

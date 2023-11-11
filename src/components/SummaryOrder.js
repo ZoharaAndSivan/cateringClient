@@ -38,7 +38,7 @@ function createData(id, name, price, amount, total) {
 export default function SummaryOrder() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { groupedMenu, menu, amount, date, event } = location.state || {};
+  const { groupedMenu, menu, amount, date, event, time } = location.state || {};
   const [rows, setRows] = React.useState([]);
   const [price, setPrice] = React.useState(0);
   const [menuProducts, setMenuProducts] = React.useState([...menu]);
@@ -64,6 +64,12 @@ export default function SummaryOrder() {
     }
     setPrice(globalSum);
     setRows(arr);
+
+    for (let i = 0; i < groupedMenu.length; i++) {
+      const element = groupedMenu[i];
+      // if(element.options.length > )
+      
+    }
   }, []);
 
   const delProduct = (item) => {
@@ -117,14 +123,14 @@ export default function SummaryOrder() {
               <StyledTableCell align="right"></StyledTableCell>
               <StyledTableCell align="right"></StyledTableCell>
               <StyledTableCell align="right"></StyledTableCell>
-              <StyledTableCell align="right">{price} ₪</StyledTableCell>
+              <StyledTableCell align="right">{price.toLocaleString()} ₪</StyledTableCell>
             </StyledTableRow>
           </TableBody>
         </Table>
       </TableContainer>
       <br/> <br/><br/>
-      <h3> סה"כ בסל הקניות : {price} ₪</h3>
-      <Button variant="contained" onClick={()=> navigate("/orderDetails", { state: { groupedMenu, menu, date, amount, event } })}> מעבר לתשלום </Button>
+      <h3> סה"כ בסל הקניות : {price.toLocaleString()} ₪</h3>
+      <Button variant="contained" onClick={()=> navigate("/orderDetails", { state: { groupedMenu, menu, date, amount, event, time, price } })}> מעבר לתשלום </Button>
     </div>
   );
 }

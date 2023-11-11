@@ -22,8 +22,7 @@ const FormInput = ({
         // onChange={(e)=>{if(name=="NumberDishes") onChange(e)}}
         style={{ backgroundColor: "#ebedf0" }}
       />
-      <br /> <span style={{ color: "red" }}>{errors[name]?.message}</span>{" "}
-      <br />
+      <br /> <span style={{ color: "red" }}>{errors[name]?.message}</span> <br/>
     </>
   );
 };
