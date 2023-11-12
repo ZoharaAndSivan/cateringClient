@@ -4,12 +4,16 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import FormInput from "./FormInput";
 import { Button, TextField } from "@mui/material";
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import Swal from "sweetalert2";
+import { useSelector } from "react-redux";
 
 export default function OrderDetails() {
+  const navigate = useNavigate();
   const location = useLocation();
-  const { groupedMenu, menu, amount, date, event } = location.state || {};
-
+  const { groupedMenu, menu, amount, date, event, time, price } =
+    location.state || {};
+    const user = useSelector(state=> state.catering.user);
   const schema = yup
     .object({
       FirstName: yup.string().required("שדה זה חובה"),
@@ -19,24 +23,20 @@ export default function OrderDetails() {
         .required("שדה זה חובה")
         .min(9, "מספר הפלאפון אינו תקין")
         .max(10, "מספר הפלאפון אינו תקין"),
-      Date: yup
-        .date()
-        .min(new Date(), "תאריך לא תקין")
-        .typeError("שדה זה חובה")
-        .required("שדה זה חובה"),
-      Address: yup.string().required("שדה זה חובה"),
+      Adress: yup.string().required("שדה זה חובה"),
+      Email: yup.string().required("שדה זה חובה"),
+      EventPlace: yup.string().required("שדה זה חובה"),
       Notes: yup.string(),
     })
     .required();
-  //להוסיף כתובת מגורים כדי שיכנס לטבלת משתמשים אם צריך
-  const arr = [
+
+  const orderDetails = [
     { lableName: "שם פרטי ", name: "FirstName", type: "text" },
     { lableName: "שם משפחה", name: "LastName", type: "text" },
-    { lableName: "טלפון", name: "Phone", type: "string" },
-    { lableName: "תאריך אירוע", name: "Date", type: "date" },
-    { lableName: "כתובת", name: "Adress", type: "text" },
-    // { lableName: " מחיר סופי", name: "Price", type: "number" },
-    // { lableName: "הערות", name: "Notes", type: "text" },
+    { lableName: "טלפון", name: "Phone", type: "text" },
+    { lableName: "כתובת מייל", name: "Email", type: "text" },
+    { lableName: "כתובת לקוח", name: "Adress", type: "text" },
+    { lableName: "כתובת אירוע", name: "EventPlace", type: "text" },
   ];
 
   const {
@@ -50,26 +50,68 @@ export default function OrderDetails() {
 
   const onSubmit = (data) => {
     console.log(data);
+    const user = {
+      FirstName: data.FirstName,
+      LastName: data.LastName,
+      Phone: data.Phone,
+      Adress: data.Adress,
+      Email: data.Email,
+      UserType: user.currentUser?user.currentUser.UserType:3,
+      Active: true,
+    };
+    const order = {
+      MenuId: event.Id,
+      NumberPeople: amount,
+      OrderDate: new Date(),
+      EventDate: date,
+      EventPlace: data.EventPlace,
+      EventTime: time,
+      FullPrice: price,
+      Note: data.Note,
+    };
+    const details = { user, order, menu };
+    console.log(details);
+    Swal.fire({
+      title: "הזמנתך בוצעה בהצלחה!",
+      text: "פרטי הזמנה נשלחו לך למייל.",
+      icon: "success",
+      confirmButtonText: "סיים",
+    }).then((result) => {
+      navigate("/");
+    });
   };
 
   return (
     <>
-      <h2> פרטי הזמנה: </h2>
       <form onSubmit={handleSubmit(onSubmit)}>
-        {arr.map((item) => ( <>
-        <label> {item.lableName} </label> <br/>
-          <FormInput
-            name={item.name}
-            type={item.type}
-            errors={errors}
-            register={register}
-            flag={false}
-          />
+        <h4> פרטי הזמנה: </h4>
+        {/* Id, FirstName, LastName, Phone, Adress, Email, Password, UserType, Active */}
+        {/* Id, UserId, MenuId,NumberPeople, OrderDate, EventDate, EventPlace, EventTime, ArrivalTime, FullPrice, Note, IsClose */}
+        {orderDetails.map((item) => (
+          <>
+            <label> {item.lableName} </label> <br />
+            <FormInput
+              name={item.name}
+              type={item.type}
+              errors={errors}
+              register={register}
+              flag={false}
+            />
           </>
         ))}
-        
+        <br /> <br />
+        <h4> מידע נוסף </h4>
+        <label> הערות להזמנה (אופציונלי) </label> <br /> <br />
+        <TextField
+          id="outlined-multiline-flexible"
+          multiline
+          maxRows={4}
+          {...register("Note")}
+          variant="filled"
+        />
+        <p> מחיר סופי: {price.toLocaleString()} </p>
         <Button variant="contained" type="submit">
-          שלח
+          שליחת הזמנה
         </Button>
       </form>
     </>
