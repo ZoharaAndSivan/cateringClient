@@ -21,7 +21,7 @@ export default function FoodType({
   return (
     <div className="row">
       {food.map((item) => {
-        if (item.FoodType == foodTypeId)
+        if (item.FoodTypeId == foodTypeId)
           return (
             <div key={item.Id} className="containers">
               <h5>{item.Price != 0 && <span>*</span>}{item.Name}</h5>
