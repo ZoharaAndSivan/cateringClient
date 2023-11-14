@@ -61,7 +61,7 @@ export default function MenuEvent() {
       let arr = [...menu];
       arr = [...arr, item];
       setMenu(arr);
-      changeChosenAmount(1, item.FoodType);
+      changeChosenAmount(1, item.FoodTypeId);
     }
   };
 
@@ -70,7 +70,7 @@ export default function MenuEvent() {
       let arr = [...menu];
       arr = arr.filter((x) => x.Id != item.Id);
       setMenu(arr);
-      changeChosenAmount(-1, item.FoodType);
+      changeChosenAmount(-1, item.FoodTypeId);
     }
   };
 
@@ -78,20 +78,20 @@ export default function MenuEvent() {
     console.log(menu);
     const groupedMenu = Object.entries(
       // What you have done
-      menu.reduce((acc, { Id, FoodType, Active, Name, Price }) => {
+      menu.reduce((acc, { Id, FoodTypeId, Active, Name, Price }) => {
         // Group initialization
-        if (!acc[FoodType]) {
-          acc[FoodType] = [];
+        if (!acc[FoodTypeId]) {
+          acc[FoodTypeId] = [];
         }
         
         // Grouping
         // FIX: only pushing the object that contains id and value
-        acc[FoodType].push({ Id, Active, Name, Price, FoodType });
+        acc[FoodTypeId].push({ Id, Active, Name, Price, FoodTypeId });
     
         return acc;
       }, {})
     ).map(([type, options]) => ({ type, options }));
-    menu.sort((a, b) => a.FoodType - b.FoodType);
+    menu.sort((a, b) => a.FoodTypeId - b.FoodTypeId);
 
     console.log(groupedMenu);
     console.log(event,"eventttt")
