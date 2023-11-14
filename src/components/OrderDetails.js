@@ -50,35 +50,35 @@ export default function OrderDetails() {
 
   const onSubmit = (data) => {
     console.log(data);
-    const user = {
-      FirstName: data.FirstName,
-      LastName: data.LastName,
-      Phone: data.Phone,
-      Adress: data.Adress,
-      Email: data.Email,
-      UserType: user.currentUser?user.currentUser.UserType:3,
-      Active: true,
-    };
-    const order = {
-      MenuId: event.Id,
-      NumberPeople: amount,
-      OrderDate: new Date(),
-      EventDate: date,
-      EventPlace: data.EventPlace,
-      EventTime: time,
-      FullPrice: price,
-      Note: data.Note,
-    };
-    const details = { user, order, menu };
-    console.log(details);
-    Swal.fire({
-      title: "הזמנתך בוצעה בהצלחה!",
-      text: "פרטי הזמנה נשלחו לך למייל.",
-      icon: "success",
-      confirmButtonText: "סיים",
-    }).then((result) => {
-      navigate("/");
-    });
+    // const user = {
+    //   FirstName: data.FirstName,
+    //   LastName: data.LastName,
+    //   Phone: data.Phone,
+    //   Adress: data.Adress,
+    //   Email: data.Email,
+    //   UserType: user.currentUser?user.currentUser.UserType:3,
+    //   Active: true,
+    // };
+    // const order = {
+    //   MenuId: event.Id,
+    //   NumberPeople: amount,
+    //   OrderDate: new Date(),
+    //   EventDate: date,
+    //   EventPlace: data.EventPlace,
+    //   EventTime: time,
+    //   FullPrice: price,
+    //   Note: data.Note,
+    // };
+    // const details = { user, order, menu };
+    // console.log(details);
+    // Swal.fire({
+    //   title: "הזמנתך בוצעה בהצלחה!",
+    //   text: "פרטי הזמנה נשלחו לך למייל.",
+    //   icon: "success",
+    //   confirmButtonText: "סיים",
+    // }).then((result) => {
+    //   navigate("/");
+    // });
   };
 
   return (

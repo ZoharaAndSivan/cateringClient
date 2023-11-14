@@ -11,13 +11,12 @@ export default function ContactUs() {
   } = useForm({ mode: "all" });
 
   //פונקצייה שמקבלת את הנתונים שהמשתמש הקליד בתוך תיבת טקסט
-  const save = (details) => {
-    alert(details);
-    console.log(details);
+  const onSubmit = (data) => {
+    console.log(data);
   };
   return (
     <>
-      <form onSubmit={handleSubmit(save)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <h2>צור קשר</h2>
 
         <div>
@@ -87,3 +86,8 @@ export default function ContactUs() {
     </>
   );
 }
+
+
+
+
+
