@@ -20,10 +20,50 @@ import FoodType from "./components/FoodType";
 import SummaryOrder from "./components/SummaryOrder";
 import OrderDateAndAmount from "./components/OrderDateAndAmount";
 import OrderDetails from "./components/OrderDetails";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import OrderUserList from "./components/OrdersUserList";
+import { getEventsType, getMenuEvents, getMenuTypes } from "./service/event";
+import { saveEventsType, saveMenuEvents, saveMenuTypes } from "./store/action/event";
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    // השליפה
+    getMenuTypes()
+      .then((res) => {
+        console.log(res.data);
+        dispatch(saveMenuTypes(res.data));
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("error details2");
+      });
+
+      getEventsType()
+      .then((res) => {
+        console.log(res.data);
+        dispatch(saveEventsType(res.data));
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("error details1");
+      });
+
+      getMenuEvents()
+      .then((res) => {
+        console.log(res.data);
+        dispatch(saveMenuEvents(res.data));
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("error details3");
+      });
+  }, []);
   return (
     <div className="App">
       <NavBar />
+      <OrderUserList />
       {/* <Menu/> */}
       {/* <Register/> */}
       {/* <Login/> */}
@@ -33,10 +73,13 @@ function App() {
         {/* ניתוב לכל קומפוננטה */}
         <Route path="/" element={<Home />} />
         <Route path="home/" element={<Home />} />
-        <Route path="/summaryOrder" element={<SummaryOrder/>} />
+        <Route path="/summaryOrder" element={<SummaryOrder />} />
         <Route path="foodType/:menuId/:foodTypeId" element={<FoodType />} />
         <Route path="menu/:id/:date/:amount/:time" element={<Menu />} />
-        <Route path="orderDateAndAmount/:id/:min" element={<OrderDateAndAmount />} />
+        <Route
+          path="orderDateAndAmount/:id/:min"
+          element={<OrderDateAndAmount />}
+        />
         <Route path="menuType/:id" element={<MenuType />} />
         <Route path="home/eventsCatering" element={<Menu />} />
         <Route path="orderDetails" element={<OrderDetails />} />

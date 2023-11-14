@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
-import { getAllOrdersByUserId } from "../store/action/order";
+import { deleteOrder, getAllOrdersByUserId } from "../store/action/order";
+import { shallowEqual, useSelector } from "react-redux";
+import OrderUserSingle from "./OrderUserSingle";
 
 const OrderUserList = () => {
     const [ordersList, setOrdersList] = useState();
@@ -16,12 +18,26 @@ const OrderUserList = () => {
           console.log(response.data);
           setOrdersList(response.data);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => { console.log(err); });
       },[])
+
+      const cancelOrder = (item) => {
+        let isSuccedded = false;
+        deleteOrder(item.Id) 
+        .then(response => {
+            const arr = ordersList.filter(x=>x.Id==item.Id);
+            setOrdersList([...arr]);
+            isSuccedded = true;
+        })
+        .catch(err => {console.log(err);})
+        return isSuccedded;
+      }
     
-    return <div className="row">
-        {ordersList.map(item => <div className="containers" key={item.Id}>
-               
+    return <div className="row p-4">
+        {ordersList && ordersList.map(item => <div key={item.Id}>
+               <OrderUserSingle item={item} cancelOrder={cancelOrder}/>
         </div>)}
     </div>
 }
+
+export default OrderUserList;

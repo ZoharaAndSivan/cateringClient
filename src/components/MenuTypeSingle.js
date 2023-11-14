@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 export default function MenuTypeSingle({ menu }) {
   const navigate = useNavigate();
   const menuTypes = useSelector((state) => state.catering.menuTypes);
+  console.log(menu)
   return (
     <>
       <h3> {menu.Name} </h3>
@@ -25,7 +26,7 @@ export default function MenuTypeSingle({ menu }) {
             );
         })}
       </div>
-      <Button variant="contained" onClick={() => navigate("/orderDateAndAmount/" + menu.Id+"/"+menu.Minimum)}>
+      <Button variant="contained" onClick={() => navigate("/orderDateAndAmount/" + menu.Id+"/"+menu.MinimumPeople)}>
         הזמן
       </Button>
     </>
