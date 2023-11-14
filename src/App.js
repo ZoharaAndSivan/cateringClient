@@ -63,7 +63,6 @@ function App() {
   return (
     <div className="App">
       <NavBar />
-      <OrderUserList />
       {/* <Menu/> */}
       {/* <Register/> */}
       {/* <Login/> */}
@@ -73,6 +72,7 @@ function App() {
         {/* ניתוב לכל קומפוננטה */}
         <Route path="/" element={<Home />} />
         <Route path="home/" element={<Home />} />
+        <Route path="/ordersUserList" element={<OrderUserList />} />
         <Route path="/summaryOrder" element={<SummaryOrder />} />
         <Route path="foodType/:menuId/:foodTypeId" element={<FoodType />} />
         <Route path="menu/:id/:date/:amount/:time" element={<Menu />} />

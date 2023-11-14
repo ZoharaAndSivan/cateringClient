@@ -9,10 +9,31 @@ import { useState } from "react";
 import { useEffect } from "react";
 import AlertMessage from "./AlertMessage";
 import Alerts from "./Alerts";
+import { useNavigate } from "react-router";
+import { getFoodsOrder } from "../service/order";
+import { shallowEqual, useSelector } from "react-redux";
 
 export default function OrderUserSingle({ item, cancelOrder }) {
+  const navigate = useNavigate();
   const [days, setDays] = useState(0);
   const [flag, setFlag] = useState(false);
+  const [menu, setMenu] = useState([]);
+  const [event, setEvent] = useState();
+  const [menuEvent, setMenuEvent] = useState([]);
+  const {  menuTypes, menusEvents } = useSelector((state) => {
+    return {
+      menuTypes: state.catering.menuTypes,
+      menusEvents: state.catering.menusEvents
+    };
+  }, shallowEqual);
+
+  useEffect(() => {
+    console.log(menusEvents)
+    setEvent(menusEvents.find((x) => x.Id == item.Event.Id)); //מחזיר אובייקט
+    let arr = menuTypes.filter((x) => x.MenuId == item.MenuId);
+    arr = arr.map((obj) => ({ ...obj }));
+    setMenuEvent(arr);
+  }, []);
 
   useEffect(() => {
     const date1 = new Date();
@@ -22,20 +43,49 @@ export default function OrderUserSingle({ item, cancelOrder }) {
     setDays(diffDays);
   }, []);
 
+  useEffect(() => {
+    getFoodsOrder(item.Id)
+      .then((response) => {
+        setMenu(response.data.map((x) => x.Food));
+        console.log(response.data.map((x) => x.Food));
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   const cancel = () => {
-    console.log(cancelOrder(item))
+    console.log(cancelOrder(item));
     if (cancelOrder(item)) {
       setFlag(true);
     }
+  };
+
+  const orderDetails = () => {
+    console.log(menu);
+    const groupedMenu = Object.entries(
+      menu.reduce((acc, { Id, FoodTypeId, Active, Name, Price }) => {
+        if (!acc[FoodTypeId]) {
+          acc[FoodTypeId] = [];
+        }
+        acc[FoodTypeId].push({ Id, Active, Name, Price, FoodTypeId });
+        return acc;
+      }, {})
+    ).map(([type, options]) => ({ type, options }));
+    menu.sort((a, b) => a.FoodTypeId - b.FoodTypeId);
+
+    const time = item.EventTime;
+    const date = item.OrderDate;
+    const amount = item.NumberPeople;
+    const type = "watch";
+    navigate("/summaryOrder", { state: { groupedMenu, menu, date, amount, event, time, menuEvent, type } });
   };
 
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         component="img"
-        alt="green iguana"
+        alt={item.Event.Name}
         height="140"
-        image="/static/images/cards/contemplative-reptile.jpg"
+        image={`../../images/${item.Event.Image}.jpg`}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
@@ -55,6 +105,10 @@ export default function OrderUserSingle({ item, cancelOrder }) {
               <span> ההזמנה לא אושרה </span>
             )}
           </p>
+          <Button variant="contained" onClick={orderDetails}>
+            {" "}
+            לצפייה בפרטי ההזמנה{" "}
+          </Button>
         </Typography>
       </CardContent>
 
@@ -63,15 +117,16 @@ export default function OrderUserSingle({ item, cancelOrder }) {
           <Button size="small" onClick={cancel}>
             בטל
           </Button>
-          <Button size="small"> עדכן </Button>
+          <Button size="small" onClick={orderDetails}>
+            {" "}
+            עדכן{" "}
+          </Button>
         </CardActions>
       ) : flag ? (
         <AlertMessage
           variant={"success"}
           setFlag={setFlag}
-          children={
-            <Alerts message={"בוטל בהצלחה"} />
-          }
+          children={<Alerts message={"בוטל בהצלחה"} />}
         />
       ) : null}
     </Card>

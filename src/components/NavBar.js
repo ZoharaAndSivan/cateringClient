@@ -17,6 +17,7 @@ export default function NavBar() {
                 </li>
 
                 <li ><Link to="about">אודות</Link></li>
+                <li ><Link to="ordersUserList">הסטוריית הזמנות</Link></li>
                 <li ><Link to="recommendation">המלצות</Link></li>
                 <li ><Link to="contactUs">צור קשר</Link></li>
             </ul>

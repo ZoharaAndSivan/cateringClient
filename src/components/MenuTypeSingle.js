@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 export default function MenuTypeSingle({ menu }) {
   const navigate = useNavigate();
   const menuTypes = useSelector((state) => state.catering.menuTypes);
-  console.log(menu)
   return (
     <>
       <h3> {menu.Name} </h3>

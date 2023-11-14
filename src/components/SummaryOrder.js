@@ -38,7 +38,7 @@ function createData(id, name, price, amount, total) {
 export default function SummaryOrder() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { groupedMenu, menu, amount, date, event, time, menuEvent } =
+  const { groupedMenu, menu, amount, date, event, time, menuEvent, type } =
     location.state || {};
   const [grouped, setGroued] = React.useState([...groupedMenu]);
   const [rows, setRows] = React.useState([]);
@@ -133,11 +133,11 @@ export default function SummaryOrder() {
             {rows.length > 0 &&
               rows.map((row, index) => (
                 <StyledTableRow key={row.name}>
-                  <StyledTableCell
+                   <StyledTableCell
                     align="right"
                     onClick={() => delProduct(row)}
                   >
-                    {index != 0 && <ClearIcon color="error" />}
+                    {index != 0 && !type && <ClearIcon color="error" />}
                   </StyledTableCell>
                   <StyledTableCell align="right">{row.name}</StyledTableCell>
                   <StyledTableCell align="right">
@@ -165,7 +165,7 @@ export default function SummaryOrder() {
       </TableContainer>
       <br /> <br />
       <br />
-      <h3> סה"כ בסל הקניות : {price.toLocaleString()} ₪</h3>
+      {!type && <><h3> סה"כ בסל הקניות : {price.toLocaleString()} ₪</h3>
       <Button
         variant="contained"
         onClick={() =>
@@ -176,7 +176,7 @@ export default function SummaryOrder() {
       >
         {" "}
         מעבר לתשלום{" "}
-      </Button>
+      </Button> </>}
     </div>
   );
 }
