@@ -45,7 +45,6 @@ export default function MenuEvent() {
       obj = obj.filter((x) => x.Id != item.Id);
     }
     setMenu(obj);
-    console.log(obj, "llllllllllllllllllllllllll");
   };
   const changeChosenAmount = (value, id) => {
     let arr = [...menuEvent];
@@ -56,6 +55,12 @@ export default function MenuEvent() {
     }
     setMenuEvent(arr);
   };
+
+  const isPossible = (item)=>{
+      const x = menuEvent.find(x=>x.FoodTypeId.Id==item.FoodTypeId);
+      console.log(x, parseInt(x.Amount), parseInt(x.AmountChosen), "oooooooo");
+      return parseInt(x.Amount) > parseInt(x.AmountChosen);
+  }
   const addFood = (item) => {
     if (!menu.find((x) => x.Id == item.Id)) {
       let arr = [...menu];
@@ -138,6 +143,7 @@ export default function MenuEvent() {
             menuId={id}
             foodTypeId={foodTypeId}
             menu={menu}
+            isPossible ={isPossible}
             addFood={addFood}
             deleteFood={deleteFood}
           />

@@ -52,12 +52,7 @@ export default function OrderUserSingle({ item, cancelOrder }) {
       .catch((err) => console.log(err));
   }, []);
 
-  const cancel = () => {
-    console.log(cancelOrder(item));
-    if (cancelOrder(item)) {
-      setFlag(true);
-    }
-  };
+
 
   const orderDetails = () => {
     console.log(menu);
@@ -106,15 +101,14 @@ export default function OrderUserSingle({ item, cancelOrder }) {
             )}
           </p>
           <Button variant="contained" onClick={orderDetails}>
-            {" "}
-            לצפייה בפרטי ההזמנה{" "}
+            לצפייה בפרטי ההזמנה
           </Button>
         </Typography>
       </CardContent>
 
       {days > 2 && !flag ? (
         <CardActions>
-          <Button size="small" onClick={cancel}>
+          <Button size="small" onClick={()=>{cancelOrder(item)}}>
             בטל
           </Button>
           <Button size="small" onClick={orderDetails}>
