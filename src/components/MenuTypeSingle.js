@@ -24,7 +24,7 @@ export default function MenuTypeSingle({ menu }) {
               </div>
             );
         })}
-      </div>
+      </div> 
       <Button variant="contained" onClick={() => navigate("/orderDateAndAmount/" + menu.Id+"/"+menu.Minimum)}>
         הזמן
       </Button>

@@ -26,7 +26,7 @@ const OrderDateAndAmount = () => {
         text: "יש להזין מועד וכמות תקינים",
         icon: "warning",
       });
-    } else {
+    } else { 
       navigate(`/menu/${id}/${date}/${amount}/${time}`);
     }
   };

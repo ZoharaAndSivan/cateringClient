@@ -6,20 +6,18 @@ export default function NavBar() {
 
         <nav className="">
             <ul>
-                <li ><Link to="home">ראשי</Link></li>
+            <img  id="logoImage" src="../../images/logo.JPG.jpg"/>
+                <li ><Link to="home">בית  |</Link></li>
 
-                <li className="dropdown" ><Link to="eventsCatering" className="dropbtn">קייטרינג אירועים</Link>
-                    <div className="dropdown-content">
-                        <Link to="eventsCatering">בר מצווה</Link>
-                        <Link to="eventsCatering">חתונה</Link>
-                        <Link to="eventsCatering">חינה</Link>
-                    </div>
+                <li className="dropdown" ><Link to="eventsCatering" className="dropbtn">אירועים  |</Link>
                 </li>
 
-                <li ><Link to="about">אודות</Link></li>
-                <li ><Link to="recommendation">המלצות</Link></li>
-                <li ><Link to="contactUs">צור קשר</Link></li>
+                <li ><Link to="about">אודות  |</Link></li>
+                <li ><Link to="recommendation">המלצות  |</Link></li>
+                <li ><Link to="contactUs">צור קשר  |</Link></li>
+                <img  id="prophil" src="../../images/פרופיל משתמש.svg"/>
             </ul>
+            
         </nav>
         </div>
     </>
