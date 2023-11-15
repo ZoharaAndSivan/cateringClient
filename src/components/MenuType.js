@@ -16,7 +16,7 @@ export default function MenuType() {
     <div>
     
       <div className="row">
-        {menusEvents.map((item) => (
+        {menusTypes.length>0 && menusTypes.map((item) => (
           <div key={item.id} className="containers">
             <MenuTypeSingle menu={item} />
             

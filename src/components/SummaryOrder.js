@@ -31,14 +31,14 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(id, name, price, amount, total) {
-  return { id, name, price, amount, total };
+function createData(id, category, name, price, amount, total) {
+  return { id, category, name, price, amount, total };
 }
 
 export default function SummaryOrder() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { groupedMenu, menu, amount, date, event, time, menuEvent } =
+  const { groupedMenu, menu, amount, date, event, time, menuEvent, type } =
     location.state || {};
   const [grouped, setGroued] = React.useState([...groupedMenu]);
   const [rows, setRows] = React.useState([]);
@@ -53,12 +53,12 @@ export default function SummaryOrder() {
     let globalSum = 0;
     const obj = createData(
       event.Id,
+      "",
       event.Name,
       event.Price,
       amount,
       parseInt(event.Price * amount)
     );
-
     globalSum += event.Price * amount;
     let arr = [obj];
     for (let i = 0; i < arrToOrder.length; i++) {
@@ -68,18 +68,21 @@ export default function SummaryOrder() {
       );
       let priceToAdd = productInMenu.ExtraType;
       const arrProducts = element.options;
-
+      const x = menuEvent.find(
+        (x) => x.FoodTypeId.Id.toLocaleString() == element.type.toLocaleString()
+      );
       for (let i = 0; i < arrProducts.length; i++) {
-        let price = arrProducts[i].Price == 0 ? "" : arrProducts[i].Price;
-
-        if (i + 1 > productInMenu.Amount) {
-          price = priceToAdd;
-        }
-        const amount2 = arrProducts[i].Price == 0 ? 1 : amount;
+        let price =
+          arrProducts[i].Price == 0 && x.ExtraPrice == 0
+            ? ""
+            : parseInt(x.ExtraPrice)+parseInt(arrProducts[i].Price) ;
+     
+        const amount2 = arrProducts[i].Price == 0 &&  x.ExtraPrice == 0? 1 : amount;
         const sum = price == 0 ? "" : price * amount2;
         arr.push(
           createData(
             arrProducts[i].Id,
+            x.FoodTypeId.Name,
             arrProducts[i].Name,
             price,
             amount2,
@@ -97,7 +100,7 @@ export default function SummaryOrder() {
   const delProduct = (item) => {
     const arr = rows.filter((x) => x.id != item.id);
     const arrMenu = menuProducts.filter((x) => x.Id != item.id);
-    const x=[];
+    const x = [];
     for (let i = 0; i < grouped.length; i++) {
       const element = grouped[i].options;
       x[i] = { type: grouped[i].type, options: [] };
@@ -123,6 +126,7 @@ export default function SummaryOrder() {
           <TableHead>
             <TableRow>
               <StyledTableCell> </StyledTableCell>
+              <StyledTableCell align="right">סוג מוצר</StyledTableCell>
               <StyledTableCell align="right">מוצר</StyledTableCell>
               <StyledTableCell align="right">מחיר</StyledTableCell>
               <StyledTableCell align="right">כמות</StyledTableCell>
@@ -137,8 +141,9 @@ export default function SummaryOrder() {
                     align="right"
                     onClick={() => delProduct(row)}
                   >
-                    {index != 0 && <ClearIcon color="error" />}
+                    {index != 0 && !type && <ClearIcon color="error" />}
                   </StyledTableCell>
+                  <StyledTableCell align="right">{row.category}</StyledTableCell>
                   <StyledTableCell align="right">{row.name}</StyledTableCell>
                   <StyledTableCell align="right">
                     {row.price.toLocaleString()}{" "}
@@ -156,6 +161,7 @@ export default function SummaryOrder() {
               <StyledTableCell align="right"></StyledTableCell>
               <StyledTableCell align="right"></StyledTableCell>
               <StyledTableCell align="right"></StyledTableCell>
+              <StyledTableCell align="right"></StyledTableCell>
               <StyledTableCell align="right">
                 {price.toLocaleString()} ₪
               </StyledTableCell>
@@ -165,18 +171,22 @@ export default function SummaryOrder() {
       </TableContainer>
       <br /> <br />
       <br />
-      <h3> סה"כ בסל הקניות : {price.toLocaleString()} ₪</h3>
-      <Button
-        variant="contained"
-        onClick={() =>
-          navigate("/orderDetails", {
-            state: { groupedMenu, menu, date, amount, event, time, price },
-          })
-        }
-      >
-        {" "}
-        מעבר לתשלום{" "}
-      </Button>
+      {!type && (
+        <>
+          <h3> סה"כ בסל הקניות : {price.toLocaleString()} ₪</h3>
+          <Button
+            variant="contained"
+            onClick={() =>
+              navigate("/orderDetails", {
+                state: { groupedMenu, menu, date, amount, event, time, price },
+              })
+            }
+          >
+            {" "}
+            מעבר לתשלום{" "}
+          </Button>{" "}
+        </>
+      )}
     </div>
   );
 }

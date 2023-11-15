@@ -4,41 +4,10 @@ import * as types from "../actionTypes";
 const initialState = {
   //משתמשים
   eventsTypes: [
-    { Id: 1, Name: "קייטרינג" },
-    { Id: 2, Name: "בר מצווה" },
-    { Id: 3, Name: "בת מצווה" },
   ],
   menusEvents: [
-    { Id: 1, EventId: 1, Name: "בסיסי", Minimum: 30, Price: 59 },
-    { Id: 2, EventId: 2, Name: "בסיסי", Minimum: 30, Price: 59 },
-    { Id: 3, EventId: 3, Name: "בסיסי", Minimum: 30, Price: 59 },
   ],
-  menuTypes: [
-    {
-      Id: 1,
-      MenuId: 1,
-      FoodTypeId: { Id: 1, Name: "סלטים" },
-      Amount: 3,
-      ExtraPrice: 40, //???
-      ExtraType: 20,
-    },
-    {
-      Id: 2,
-      MenuId: 1,
-      FoodTypeId: { Id: 3, Name: "מנה אחרונה" },
-      Amount: 2,
-      ExtraPrice: 40,
-      ExtraType: 20,
-    },
-    {
-      Id: 3,
-      MenuId: 1,
-      FoodTypeId: { Id: 2, Name: "מנה ראשונה" },
-      Amount: 2,
-      ExtraPrice: 40,
-      ExtraType: 20,
-    },
-  ],
+  menuTypes: [],
 
   foodTypes: [
     { Id: 1, Name: "סלטים" },
@@ -65,6 +34,21 @@ const cateringReducer = (state = initialState, action) => {
       return {
         ...state,
         events: action.payload,
+      };
+    case types.SAVE_ALL_MENU_TYPES:
+      return {
+        ...state,
+        menuTypes: action.payload,
+      };
+    case types.SAVE_ALL_EVENTS_TYPE:
+      return {
+        ...state,
+        eventsTypes: action.payload,
+      };
+    case types.SAVE_ALL_MENU_EVENTS:
+      return {
+        ...state,
+        menusEvents: action.payload,
       };
   }
   return state;

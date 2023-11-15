@@ -15,17 +15,34 @@ export default function MenuTypeSingle({ menu }) {
             return (
               <div>
                 {item.Amount == 0 ? (
-                  <div> {item.FoodTypeId.Name} בתוספת {item.ExtraPrice} ש"ח </div>
+                  <div>
+                    {" "}
+                    {item.FoodTypeId.Name} בתוספת {item.ExtraPrice} ש"ח{" "}
+                  </div>
+                ) : item.ExtraPrice != 0 ? (
+                  <div>
+                    {item.Amount} {item.FoodTypeId.Name} החל מ {item.ExtraPrice}
+                  </div>
                 ) : (
                   <div>
-                    {item.Amount} {item.FoodTypeId.Name} 
+                    {item.Amount} {item.FoodTypeId.Name}
                   </div>
                 )}
               </div>
             );
         })}
+<<<<<<< HEAD
       </div> 
       <Button variant="contained" onClick={() => navigate("/orderDateAndAmount/" + menu.Id+"/"+menu.Minimum)}>
+=======
+      </div>
+      <Button
+        variant="contained"
+        onClick={() =>
+          navigate("/orderDateAndAmount/" + menu.Id + "/" + menu.MinimumPeople)
+        }
+      >
+>>>>>>> ea7abc77cd4ffb586965d04c3307b6d7724cfded
         הזמן
       </Button>
     </>

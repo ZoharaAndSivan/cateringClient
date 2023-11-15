@@ -9,11 +9,24 @@ export const saveEvents = (events)=>{
     }
 }
 
-//מחיקת משימה
-export const deleteTask = (id)=>{
+export const saveMenuTypes = (data)=>{
     return {
-        type: types.DELETE_TASK,
-        payload: id
+        type: types.SAVE_ALL_MENU_TYPES,
+        payload: data
+    }
+}
+
+export const saveEventsType = (data)=>{
+    return {
+        type: types.SAVE_ALL_EVENTS_TYPE,
+        payload: data
+    }
+}
+
+export const saveMenuEvents = (data)=>{
+    return {
+        type: types.SAVE_ALL_MENU_EVENTS,
+        payload: data
     }
 }
 
