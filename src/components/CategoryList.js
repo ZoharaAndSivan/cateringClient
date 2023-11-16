@@ -8,6 +8,7 @@ const CategoryList = ({ category, menu, deleteFood }) => {
   return (
     <>
       <div>
+        {/* לשנות */}
         {category.FoodTypeId.Name} ({category.AmountChosen}/{category.Amount})
         <span onClick={() => setIsMore(!isMore)}>
           {isMore ? <ExpandMoreIcon /> : <ExpandLessIcon />}

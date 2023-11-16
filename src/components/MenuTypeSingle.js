@@ -31,6 +31,10 @@ export default function MenuTypeSingle({ menu }) {
               </div>
             );
         })}
+<<<<<<< HEAD
+      </div> 
+      <Button variant="contained" onClick={() => navigate("/orderDateAndAmount/" + menu.Id+"/"+menu.Minimum)}>
+=======
       </div>
       <Button
         variant="contained"
@@ -38,6 +42,7 @@ export default function MenuTypeSingle({ menu }) {
           navigate("/orderDateAndAmount/" + menu.Id + "/" + menu.MinimumPeople)
         }
       >
+>>>>>>> ea7abc77cd4ffb586965d04c3307b6d7724cfded
         הזמן
       </Button>
     </>

@@ -1,23 +1,53 @@
 .box{
-    background-color:black;
-    padding: 10px;
-    margin:5px;
-    width:25%;
-    height:120px;
+    //background-color:black;
+    padding:30%;
+    margin:25px;
+    //width:100%;
+    //height:120px;
+    height:90px;
     display:inline-block;
-    color:wheat;
-    background-image: "סלומון אפוי.webp";
-    background-image: "../public/images/סלומון אפוי.webp";
+    color:rgb(142, 110, 51);
     text-decoration: none;
+    font-size: 25px;
+    font-weight: bold;
+
+}
+.box:hover{
+    opacity: 0.8;
+}
+.divallEvent{
+    display:inline-block;
+    padding:10px;
+    width:30%;
+    //background-image:"../../images/HomeImage.jpg";
+    border:solid;
 }
 a{
     text-decoration: none; 
+    color:"#"
 }
-.homePage{
-    //cover top-banner d-flex align-items-center center p-0
-    // background-size: cover;
-    // display: flex;
-    // align-items: center;
-    // padding: 0;
+#HomeImage{
+    height: 200px;
+    //opacity: 0.9;
+    width: 100%;
+   // margin-top: 33px;
+}
+#divHomeImage{
+  
+    margin-top: 33px;
+}
+p{
+    color:rgb(142, 110, 51);
+    font-weight:bold;
+    font-family:'Times New Roman', Times, serif;
+    font-size:30px;
+    margin-top:-50px;
+}
+// .homePage{
+//     //cover top-banner d-flex align-items-center center p-0
+//     // background-size: cover;
+//     // display: flex;
+//     // align-items: center;
+//     // padding: 0;
     
-}
+// }

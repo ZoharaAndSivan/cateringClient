@@ -120,7 +120,7 @@ export default function MenuEvent({type}) {
         </p>
         <p>
         <CalendarMonthIcon /> {new Date(date).toLocaleDateString()} 
-        </p>
+        </p> 
         </div>
           <h5> מסלול קיטרניג מחיר לסועד </h5>
           {menuEvent.map((item) => (

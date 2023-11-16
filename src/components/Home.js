@@ -20,15 +20,20 @@ export default function Home() {
                 <img src="https://tidhar.co.il/wp-content/uploads/2020/10/תדהר-שרת-תל-אביב-חוץ-2-e1668588621433.jpg" className='cover-image' />
             </div> */}
       {/* תמונות עם קישורים */}
+      <div id="divHomeImage">
+      <img id="HomeImage" src="../../images/HomeImage.jpg"/>
+      <p>קייטרינג בוטיק לאירוע המושלם - חוויה בטעמים נפלאים</p>
+      </div>
+
       {eventsTypes.map((item, index) => {
         return (
-          <div key={item.id}>
+          <div key={item.id}  className="divallEvent">
             <EventType eventType={item} />
           </div>
         );
       })}
-
-      <ContactUs />
+       
+      {/* <ContactUs /> */}
     </>
   );
 }
