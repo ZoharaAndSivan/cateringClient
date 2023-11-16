@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { shallowEqual, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
@@ -10,14 +10,18 @@ import FoodType from "./FoodType";
 import CategoryList from "./CategoryList";
 import { Button } from "@mui/material";
 
-export default function MenuEvent() {
+export default function MenuEvent({type}) {
   //מקבלת אי די לפי שורת יו אר אל
   const { id, date, amount, time } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
+  const {  menus } =
+  location.state || [];
+  console.log(menus)
   const [event, setEvent] = useState(null);
   const [foodTypeId, setFoodTypeId] = useState(1);
   const [menuEvent, setMenuEvent] = useState([]);
-  const [menu, setMenu] = useState([]);
+  const [menu, setMenu] = useState(menus);
   const [price, setPrice] = useState(0);
   //שליפה
   const { eventsType, menuTypes, menusEvents } = useSelector((state) => {

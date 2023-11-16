@@ -15,6 +15,7 @@ import { shallowEqual, useSelector } from "react-redux";
 
 export default function OrderUserSingle({ item, cancelOrder }) {
   const navigate = useNavigate();
+  let menus=[];
   const [days, setDays] = useState(0);
   const [flag, setFlag] = useState(false);
   const [menu, setMenu] = useState([]);
@@ -46,6 +47,7 @@ export default function OrderUserSingle({ item, cancelOrder }) {
   useEffect(() => {
     getFoodsOrder(item.Id)
       .then((response) => {
+        menus = response.data.map((x) => x.Food);
         setMenu(response.data.map((x) => x.Food));
         console.log(response.data.map((x) => x.Food));
       })
@@ -111,9 +113,8 @@ export default function OrderUserSingle({ item, cancelOrder }) {
           <Button size="small" onClick={()=>{cancelOrder(item)}}>
             בטל
           </Button>
-          <Button size="small" onClick={orderDetails}>
-            {" "}
-            עדכן{" "}
+          <Button size="small" onClick={()=>navigate(`/menu/${item.MenuId}/${item.EventDate}/${item.NumberPeople}/${item.EventTime}/${item.Id}`, { state: { menus }})}>
+            עדכן
           </Button>
         </CardActions>
       ) : flag ? (
