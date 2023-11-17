@@ -6,19 +6,22 @@ import { Button, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import Swal from "sweetalert2";
-import { shallowEqual, useSelector } from "react-redux";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import { saveEditOrder } from "../store/action/order";
+import { addOrder, deleteOrder } from "../service/order";
 
 export default function OrderDetails() {
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch();
   const { groupedMenu, menu, amount, date, event, time, price } =
     location.state || {};
-    const {user, editOrder} = useSelector(state=> {
-      return {
-        user: state.user.currentUser,
-        editOrder: state.order.editOrder
-      }
-    },shallowEqual);
+  const { user, editOrder } = useSelector((state) => {
+    return {
+      user: state.user.currentUser,
+      editOrder: state.order.editOrder,
+    };
+  }, shallowEqual);
   const schema = yup
     .object({
       FirstName: yup.string().required("שדה זה חובה"),
@@ -51,25 +54,44 @@ export default function OrderDetails() {
     setValue,
   } = useForm({
     resolver: yupResolver(schema),
-    defaultValues: { user,  editOrder }
-
+    defaultValues: { user, editOrder },
   });
 
-  useEffect(()=>{
-    console.log(user, editOrder,"kkkkkkkkkkkkkkk")
+  useEffect(() => {
     if (editOrder && user) {
       const userNames = Object.keys(user);
-      console.log(userNames)
-      const orderNames = Object.keys(editOrder);
-      orderDetails.forEach(x => {
-        if(userNames.find(y=>y==x.name)) {
-          setValue(x.name, user[x.name])
+      orderDetails.forEach((x) => {
+        if (userNames.find((y) => y == x.name)) {
+          setValue(x.name, user[x.name]);
         } else {
-          setValue(x.name, editOrder[x.name])
+          setValue(x.name, editOrder[x.name]);
         }
-        })
+      });
+    }
+  }, [user, editOrder]);
+
+  const deleteOldOrder = () => {
+    deleteOrder(editOrder.Id)
+    .then(response => {
+      console.log(response);
+    })
+    .catch(err => console.log(err))
   }
-  },[user,editOrder])
+
+  const add = (details) => {
+    addOrder(details)
+      .then((response) => {
+        Swal.fire({
+          title: "הזמנתך בוצעה בהצלחה!",
+          text: "פרטי הזמנה נשלחו לך למייל.",
+          icon: "success",
+          confirmButtonText: "סיים",
+        }).then((result) => {
+          navigate("/");
+        });
+      })
+      .catch((err) => console.log(err));
+  };
 
   const onSubmit = (data) => {
     console.log(data);
@@ -79,8 +101,9 @@ export default function OrderDetails() {
       Phone: data.Phone,
       Adress: data.Adress,
       Email: data.Email,
-      UserType: user?user.UserType:3,
+      UserType: user ? user.UserType : 3,
       Active: true,
+      Id: user?.Id,
     };
     const order = {
       MenuId: event.Id,
@@ -92,16 +115,13 @@ export default function OrderDetails() {
       FullPrice: price,
       Note: data.Note,
     };
-    const details = { user:user2, order, menu };
+    const details = { user: user2, order, menu };
     console.log(details);
-    // Swal.fire({
-    //   title: "הזמנתך בוצעה בהצלחה!",
-    //   text: "פרטי הזמנה נשלחו לך למייל.",
-    //   icon: "success",
-    //   confirmButtonText: "סיים",
-    // }).then((result) => {
-    //   navigate("/");
-    // });
+    if (editOrder) {
+      dispatch(saveEditOrder(null));
+      deleteOldOrder();
+    }
+    add(details);
   };
 
   return (
@@ -131,7 +151,7 @@ export default function OrderDetails() {
           maxRows={4}
           {...register("Note")}
           variant="filled"
-          defaultValue={editOrder?editOrder.Note:null}
+          defaultValue={editOrder ? editOrder.Note : null}
         />
         <p> מחיר סופי: {price.toLocaleString()} </p>
         <Button variant="contained" type="submit">
