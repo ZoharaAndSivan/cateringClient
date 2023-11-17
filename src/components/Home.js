@@ -22,7 +22,7 @@ export default function Home() {
       {/* תמונות עם קישורים */}
       <div id="divHomeImage">
       <img id="HomeImage" src="../../images/HomeImage.jpg"/>
-      <p>קייטרינג בוטיק לאירוע המושלם - חוויה בטעמים נפלאים</p>
+      <p className="second-title">קייטרינג בוטיק לאירוע המושלם - חוויה בטעמים נפלאים</p>
       </div>
 
       {eventsTypes.map((item, index) => {

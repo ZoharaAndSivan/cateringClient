@@ -10,7 +10,8 @@ import { Provider } from 'react-redux';
 import {combineReducers, createStore} from 'redux';
 import cateringReducer from './store/reducers/event';
 import userReducer from './store/reducers/user';
-const xstore=createStore(combineReducers({user:userReducer,catering:cateringReducer}));
+import orderReducer from './store/reducers/order';
+const xstore=createStore(combineReducers({user:userReducer,catering:cateringReducer, order:orderReducer}));
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

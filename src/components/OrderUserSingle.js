@@ -11,10 +11,12 @@ import AlertMessage from "./AlertMessage";
 import Alerts from "./Alerts";
 import { useNavigate } from "react-router";
 import { getFoodsOrder } from "../service/order";
-import { shallowEqual, useSelector } from "react-redux";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import { saveEditOrder } from "../store/action/order";
 
 export default function OrderUserSingle({ item, cancelOrder }) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   let menus=[];
   const [days, setDays] = useState(0);
   const [flag, setFlag] = useState(false);
@@ -76,6 +78,11 @@ export default function OrderUserSingle({ item, cancelOrder }) {
     navigate("/summaryOrder", { state: { groupedMenu, menu, date, amount, event, time, menuEvent, type } });
   };
 
+  const update = () => {
+    dispatch(saveEditOrder({...item, Products:menu}));
+    navigate(`/menuType/${item.Event.Id}`);
+  }
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -113,7 +120,7 @@ export default function OrderUserSingle({ item, cancelOrder }) {
           <Button size="small" onClick={()=>{cancelOrder(item)}}>
             בטל
           </Button>
-          <Button size="small" onClick={()=>navigate(`/menu/${item.MenuId}/${item.EventDate}/${item.NumberPeople}/${item.EventTime}/${item.Id}`, { state: { menus }})}>
+          <Button size="small" onClick={update}>
             עדכן
           </Button>
         </CardActions>

@@ -9,22 +9,12 @@ export default function FoodType({
   addFood,
   deleteFood,
   menu,
+  food,
   isPossible,
 }) {
   const [amount, setAmount] = useState(0);
   const [amountChosen, setAmountChosen] = useState(0);
-  const [food, setFood] = useState([]);
 
-  useEffect(() => {
-    getAllFoodByMenuId(menuId)
-      .then((response) => {
-        console.log(response.data);
-        setFood(response.data);
-      })
-      .catch((err) => console.log(err));
-    // setAmount(x.Amount);
-    // setAmountChosen(x.AmountChosen);
-  }, []);
 
   return (
     <div className="row">

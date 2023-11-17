@@ -9,3 +9,10 @@ export const getAllOrdersByUserId = (id)=>{
 export const deleteOrder = (id)=>{
     return axios.put(`http://localhost:8080/orderRouter/deleteOrder/${id}`)
 }
+
+export const saveEditOrder = (order) => {
+    return {
+        type: types.SAVE_EDIT_ORDER,
+        payload: order
+    }
+}

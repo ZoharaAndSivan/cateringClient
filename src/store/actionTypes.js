@@ -10,3 +10,6 @@ export const ADD_TASK = "ADD_TASK";
 export const ADD_USER = "ADD_USER";
 export const DELETE_TASK = "DELETE_TASK";
 export const SELECT_TASKS = "SELECT_TASKS";
+
+// order
+export const SAVE_EDIT_ORDER = "SAVE_EDIT_ORDER";
