@@ -9,5 +9,5 @@ export const addOrder = (details) => {
 }
 
 export const deleteOrder = (id) => {
-    return axios.post("http://localhost:8080/orderRouter/addOrder"+ id)
+    return axios.post("http://localhost:8080/orderRouter/deleteOrder"+ id)
 }
