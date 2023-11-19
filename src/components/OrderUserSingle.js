@@ -23,6 +23,7 @@ export default function OrderUserSingle({ item, cancelOrder }) {
   const [menu, setMenu] = useState([]);
   const [event, setEvent] = useState();
   const [menuEvent, setMenuEvent] = useState([]);
+  const contentRef = React.useRef(null);
   const {  menuTypes, menusEvents } = useSelector((state) => {
     return {
       menuTypes: state.catering.menuTypes,
@@ -82,6 +83,7 @@ export default function OrderUserSingle({ item, cancelOrder }) {
     dispatch(saveEditOrder({...item, Products:menu}));
     navigate(`/menuType/${item.Event.Id}`);
   }
+
 
   return (
     <Card sx={{ maxWidth: 345 }}>
