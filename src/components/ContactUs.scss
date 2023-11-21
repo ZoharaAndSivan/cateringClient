@@ -1,0 +1,46 @@
+h4{
+    color:rgb(142, 110, 51);
+    font-weight:500;
+}
+form{
+    border:2px solid black;
+    width:40%;
+    margin-top: 100px;
+    margin-right:500px;background-color: black;
+}
+#divOtef{
+    border:2px solid black;
+    width:100%;
+    margin-top:500px
+}
+#divNamePhone{
+    display:inline-block;
+    //width:500px;
+   // float:right;
+    //direction:rtl;
+}
+.css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root{
+right:0 !important;
+//color:rgb(212, 45, 45) !important;
+font-family: 'Times New Roman', Times, serif;
+}
+
+.MuiFormLabel-colorPrimary{
+    color:white !important ;
+    //background-color: black !important;
+}
+.css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root{
+    width:100% !important;
+    direction:rtl !important;
+    //background-color: black !important;
+}
+
+.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input:focus{
+ //color:purple !important;
+ //background-color:palevioletred !important;
+ border-color:green !important;
+//background-color: black !important;
+}
+
+
+//MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root

@@ -12,17 +12,12 @@ export default function NavBar() {
                 <li className="dropdown" ><Link to="eventsCatering" className="dropbtn">אירועים  |</Link>
                 </li>
 
-<<<<<<< HEAD
                 <li ><Link to="about">אודות  |</Link></li>
                 <li ><Link to="recommendation">המלצות  |</Link></li>
                 <li ><Link to="contactUs">צור קשר  |</Link></li>
                 <img  id="prophil" src="../../images/פרופיל משתמש.svg"/>
-=======
-                <li ><Link to="about">אודות</Link></li>
-                <li ><Link to="ordersUserList">הסטוריית הזמנות</Link></li>
-                <li ><Link to="recommendation">המלצות</Link></li>
-                <li ><Link to="contactUs">צור קשר</Link></li>
->>>>>>> ea7abc77cd4ffb586965d04c3307b6d7724cfded
+                {/* <Link to="ordersUserList"><img  id="prophil" src="../../images/פרופיל משתמש.svg"/></Link> */}
+                {/* <li ><Link to="ordersUserList">הסטוריית הזמנות</Link></li> */}
             </ul>
             
         </nav>

@@ -1,0 +1,23 @@
+.box{
+    //background-image: url("bar-mitzva.JPG");
+
+    height:90px;
+    width:80%;
+    display:inline-block;
+    color:rgb(142, 110, 51);
+    text-decoration: none;
+    font-size: 25px;
+    font-weight: bold;
+}
+#imageBox{
+  height: 220px;
+  width: 90%;
+}
+#eventName{
+  font-size: 30px;
+  color:rgb(142, 110, 51);
+  font-weight:bold;
+  font-family:'Times New Roman', Times, serif;
+  margin: 5px;
+  padding: 10px;
+}

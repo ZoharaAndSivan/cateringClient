@@ -76,12 +76,12 @@ export default function OrderUserSingle({ item, cancelOrder }) {
 
   return (
     <Card sx={{ maxWidth: 345 }}>
-      <CardMedia
+      {/* <CardMedia
         component="img"
         alt={item.Event.Name}
         height="140"
         image={`../../images/${item.Event.Image}.jpg`}
-      />
+      /> */}
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           <h5> אירוע: {item.Event.Name} </h5>

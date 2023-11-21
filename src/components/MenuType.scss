@@ -1,0 +1,27 @@
+.row{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.containers{
+    width: 25%;
+    border: 2px solid #797673;
+    margin: 12px;
+    padding: 10px;
+    height: 100%;
+}
+#bigDivType{
+    width:100%;
+    margin:65px;
+}
+#mazalTov{
+    color:rgb(142, 110, 51);
+    font-size: 50px;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+}
+#chogegim{
+    font-family: 'Times New Roman', Times, serif;
+    padding: 5px;
+    margin-right: -20px;
+}

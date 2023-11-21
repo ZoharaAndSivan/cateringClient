@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import MenuTypeSingle from "./MenuTypeSingle";
-import "./MenuType.css";
+import "./MenuType.scss";
 
 export default function MenuType() {
   const { id } = useParams();
@@ -13,17 +13,28 @@ export default function MenuType() {
     setMenuTypes(arr);
   }, []);
   return (
+    <>
+    <div style={{height:"50px"}}></div>
     <div>
+      <h2 id="mazalTov">מזל טוב!!!</h2>
+      <h3 id="chogegim">חוגגים בר מצווה</h3>
+    </div>
+    <div  id="bigDivType">
+    
+
     
       <div className="row">
         {menusTypes.length>0 && menusTypes.map((item) => (
+          <>
           <div key={item.id} className="containers">
             <MenuTypeSingle menu={item} />
             
           </div>
+          </>
         ))}
 
       </div>
     </div>
+    </>
   );
 }

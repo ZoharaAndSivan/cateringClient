@@ -1,42 +1,44 @@
-.box{
-    //background-color:black;
-    padding:30%;
-    margin:25px;
-    //width:100%;
-    //height:120px;
-    height:90px;
-    display:inline-block;
-    color:rgb(142, 110, 51);
-    text-decoration: none;
-    font-size: 25px;
-    font-weight: bold;
 
-}
-.box:hover{
+
+.divallEvent:hover{
     opacity: 0.8;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
+
 .divallEvent{
-    display:inline-block;
-    padding:10px;
-    width:30%;
-    //background-image:"../../images/HomeImage.jpg";
-    border:solid;
+    display: inline-block;
+    padding: 10px;
+    // margin: 20px;
+    // width: 30%;
+    height: 330px;
+    //border: solid;
+//box-shadow:  0 15px 8px 0 rgb(160 114 44 / 20%);
+//box-shadow: 0 15px 8px 0 rgb(185 141 74 / 26%);
+//box-shadow:  15px 8px 0 rgb(141 134 122 /20%);
+    //box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    //box-shadow:  8px 16px 0 rgba(0, 0, 0, 0.2);
+    //opacity: 0.8;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    //width: 40%;
+    margin: 30px;
+    width: 20%;
 }
 a{
     text-decoration: none; 
     color:"#"
 }
 #HomeImage{
-    height: 200px;
+    height: 610px;
     //opacity: 0.9;
     width: 100%;
    // margin-top: 33px;
 }
 #divHomeImage{
   
-    margin-top: 33px;
+    margin-top: 33px; 
 }
-p{
+#pHome{
     color:rgb(142, 110, 51);
     font-weight:bold;
     font-family:'Times New Roman', Times, serif;

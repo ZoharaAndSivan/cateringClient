@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useSelector } from "react-redux";
+import "./OrderDetails.scss";
 
 export default function OrderDetails() {
   const navigate = useNavigate();
@@ -83,13 +84,15 @@ export default function OrderDetails() {
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <h4> פרטי הזמנה: </h4>
+    <div style={{height:"140px"}}></div>
+      <form onSubmit={handleSubmit(onSubmit)} id="formOrder" style={{ width:"40vw", margin: "0 auto", padding: "64px 12px", borderRadius:"25px"}}>
+        <h4 id="h4Order"> פרטי הזמנה: </h4>
         {/* Id, FirstName, LastName, Phone, Adress, Email, Password, UserType, Active */}
         {/* Id, UserId, MenuId,NumberPeople, OrderDate, EventDate, EventPlace, EventTime, ArrivalTime, FullPrice, Note, IsClose */}
         {orderDetails.map((item) => (
           <>
-            <label> {item.lableName} </label> <br />
+          <div id="inputOrder">
+            <label id="labelOreder"> {item.lableName} </label> <br />
             <FormInput
               name={item.name}
               type={item.type}
@@ -97,6 +100,7 @@ export default function OrderDetails() {
               register={register}
               flag={false}
             />
+            </div>
           </>
         ))}
         <br /> <br />
@@ -110,8 +114,8 @@ export default function OrderDetails() {
           variant="filled"
         />
         <p> מחיר סופי: {price.toLocaleString()} </p>
-        <Button variant="contained" type="submit">
-          שליחת הזמנה
+        <Button variant="contained" type="submit" style={{backgroundColor:"rgb(142, 110, 51)"}}>
+          עבור לתשלום
         </Button>
       </form>
     </>

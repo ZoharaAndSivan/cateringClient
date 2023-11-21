@@ -22,15 +22,20 @@ export default function Home() {
       {/* תמונות עם קישורים */}
       <div id="divHomeImage">
       <img id="HomeImage" src="../../images/HomeImage.jpg"/>
-      <p>קייטרינג בוטיק לאירוע המושלם - חוויה בטעמים נפלאים</p>
+      <p id="pHome">קייטרינג בוטיק לאירוע המושלם - חוויה בטעמים נפלאים</p>
       </div>
+      <div style={{height:"150px"}} ></div>
 
       {eventsTypes.map((item, index) => {
         return (
+          <>
+          
           <div key={item.id}  className="divallEvent">
             <EventType eventType={item} />
           </div>
-        );
+          
+          </>
+        ); 
       })}
        
       {/* <ContactUs /> */}

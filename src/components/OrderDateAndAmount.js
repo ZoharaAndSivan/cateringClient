@@ -27,10 +27,12 @@ const OrderDateAndAmount = () => {
         icon: "warning",
       });
     } else { 
-      navigate(`/menu/${id}/${date}/${amount}/${time}`);
+      navigate(`/menu/${id}/${date}/${amount}/${time}`); 
     }
   };
   return (
+    <>
+    <div style={{height:"140px"}}></div>
     <div className="p-5">
       <div className="shadow text-center" style={{ width:"40vw", margin: "0 auto", padding: "64px 12px", borderRadius:"25px" }}>
         <h5>
@@ -68,9 +70,10 @@ const OrderDateAndAmount = () => {
         />
         <p>* מינימום משתתפים {min}</p>
         <br/> <br/>
-        <Button onClick={submit} variant="contained"> המשך </Button>
+        <Button onClick={submit} variant="contained" style={{backgroundColor:"rgb(142, 110, 51)"}}> המשך </Button>
       </div>
     </div>
+    </>
   );
 };
 export default OrderDateAndAmount;

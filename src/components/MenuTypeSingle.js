@@ -1,24 +1,29 @@
 import { Button } from "@mui/material";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
+import "./MenuTypeSingle.scss"
 export default function MenuTypeSingle({ menu }) {
   const navigate = useNavigate();
   const menuTypes = useSelector((state) => state.catering.menuTypes);
   return (
     <>
-      <h3> {menu.Name} </h3>
-      <h4> {menu.Price} </h4>
+      <h3 id="MenuTypeSingle3"> {menu.Name} </h3>
+      <h4 id="MenuTypeSingle4"> {menu.Price} ש"ח</h4>
+      <br/>
       <div>
         {menuTypes.map((item) => {
           if (item.MenuId == menu.Id)
             return (
+          <>
+          
               <div>
                 {item.Amount == 0 ? (
                   <div>
                     {" "}
                     {item.FoodTypeId.Name} בתוספת {item.ExtraPrice} ש"ח{" "}
                   </div>
+                
+                  
                 ) : item.ExtraPrice != 0 ? (
                   <div>
                     {item.Amount} {item.FoodTypeId.Name} החל מ {item.ExtraPrice}
@@ -28,21 +33,19 @@ export default function MenuTypeSingle({ menu }) {
                     {item.Amount} {item.FoodTypeId.Name}
                   </div>
                 )}
+
               </div>
+               <hr style={{color:"rgb(142, 110, 51)"}}/>
+               </>
             );
         })}
-<<<<<<< HEAD
-      </div> 
-      <Button variant="contained" onClick={() => navigate("/orderDateAndAmount/" + menu.Id+"/"+menu.Minimum)}>
-=======
       </div>
       <Button
-        variant="contained"
+        variant="contained" style={{backgroundColor:"black"}}
         onClick={() =>
           navigate("/orderDateAndAmount/" + menu.Id + "/" + menu.MinimumPeople)
         }
       >
->>>>>>> ea7abc77cd4ffb586965d04c3307b6d7724cfded
         הזמן
       </Button>
     </>
