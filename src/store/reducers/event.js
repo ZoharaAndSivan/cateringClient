@@ -3,10 +3,8 @@ import * as types from "../actionTypes";
 //סטייט כללי
 const initialState = {
   //משתמשים
-  eventsTypes: [
-  ],
-  menusEvents: [
-  ],
+  eventsTypes: [],
+  menusEvents: [],
   menuTypes: [],
 
   foodTypes: [
@@ -49,6 +47,11 @@ const cateringReducer = (state = initialState, action) => {
       return {
         ...state,
         menusEvents: action.payload,
+      };
+    case types.UPDATE_EVENTS_TYPE:
+      return {
+        ...state,
+        eventsTypes: action.payload,
       };
   }
   return state;

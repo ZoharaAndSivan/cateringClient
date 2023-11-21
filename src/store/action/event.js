@@ -30,6 +30,13 @@ export const saveMenuEvents = (data)=>{
     }
 }
 
+export const updateEventsType = (data)=>{
+    return {
+        type: types.UPDATE_EVENTS_TYPE,
+        payload: data
+    }
+}
+
 export const getAllFoodByMenuId = (menuId)=>{
     return axios.get(`http://localhost:8080/productToMenuRouter/getAllFoodByMenuId/${menuId}`)
 }
