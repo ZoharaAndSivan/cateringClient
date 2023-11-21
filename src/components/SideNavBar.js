@@ -11,7 +11,7 @@ export default function SideNavBar({ menuEvent, setFoodTypeId }) {
                   // to={"/foodType/" + item.MenuId + "/"+item.FoodTypeId.Id}
                 >
                   {item.FoodTypeId.Name}
-                </div>
+                </div> <br/>
               </li>
             ))}
           </ul>

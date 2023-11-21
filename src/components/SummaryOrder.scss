@@ -1,3 +1,14 @@
-#bigDiv{
-    height:100% !important
+@media print {
+    body {
+      direction: rtl !important; /* Set text direction to right-to-left */
+    }
+      /* Additional styles for RTL printing */
+  .MuiTableCell-root {
+    text-align: right;
+    direction: rtl;
+    /* Add any additional specific styles for table cells when printing */
+  }
+  table{
+    direction: rtl;
+  }
 }

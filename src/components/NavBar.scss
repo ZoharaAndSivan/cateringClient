@@ -7,17 +7,20 @@ body {
   height:50px;
 
 }
-ul {
+ ul {
   list-style-type: none;
   margin: 0;
   padding: 15px;
   overflow: hidden;
   //background-color: #bf9000;
-  background-color:black;
   text-align: center;
 }
 
-li {
+.div-nav ul {
+  background-color:black;
+}
+
+ li {
   //float: left;
   //float: right;
   text-align: center;

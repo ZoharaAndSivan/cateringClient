@@ -75,7 +75,8 @@ function App() {
         <Route path="/ordersUserList" element={<OrderUserList />} />
         <Route path="/summaryOrder" element={<SummaryOrder />} />
         <Route path="foodType/:menuId/:foodTypeId" element={<FoodType />} />
-        <Route path="menu/:id/:date/:amount/:time" element={<Menu />} />
+        <Route path="menu/:id/:date/:amount/:time" element={<Menu type={"new"}/>} />
+        <Route path="menu/:id/:date/:amount/:time/:orderId" element={<Menu type={"edit"}/>} />
         <Route
           path="orderDateAndAmount/:id/:min"
           element={<OrderDateAndAmount />}

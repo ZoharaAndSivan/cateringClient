@@ -3,14 +3,25 @@ import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import PeopleIcon from "@mui/icons-material/People";
 import AccessTime from "@mui/icons-material/AccessTime";
 import { Button, TextField } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
+import { useSelector } from "react-redux";
 const OrderDateAndAmount = () => {
   const { id, min } = useParams();
   const navigate = useNavigate();
   const [date, setDate] = useState(null);
   const [time, setTime] = useState(null);
   const [amount, setAmount] = useState(null);
+  const editOrder = useSelector((state) => state.order.editOrder);
+
+  useEffect(()=>{
+    console.log(editOrder)
+    if(editOrder) {
+      setDate(editOrder.EventDate);
+      setTime(editOrder.EventTime);
+      setAmount(editOrder.NumberPeople);
+    }
+  },[editOrder])
 
   function TDate() {
     const ToDate = new Date();
@@ -19,8 +30,9 @@ const OrderDateAndAmount = () => {
 
   const submit = () => {
     console.log(TDate())
+    console.log( amount >= min , amount,min)
     console.log(date, amount,new Date(date).toLocaleDateString(),(new Date(date).toLocaleDateString() > new Date().toLocaleDateString() && amount > 0))
-    if (!(TDate() && amount >= min && time)) {
+    if (!(TDate() && parseInt(amount) >= parseInt(min) && time)) {
       Swal.fire({
         title: "אופס...",
         text: "יש להזין מועד וכמות תקינים",
@@ -42,6 +54,8 @@ const OrderDateAndAmount = () => {
           id="outlined-basic"
           variant="outlined"
           type="date"
+          defaultValue={editOrder ? new Date(editOrder.EventDate).toISOString().split('T')[0]
+        :null}
           style={{width:"15vw"}}
           onChange={(e) => setDate(e.target.value)}
         />
@@ -53,6 +67,7 @@ const OrderDateAndAmount = () => {
           id="outlined-basic"
           variant="outlined"
           type="time"
+          defaultValue={editOrder && editOrder.EventTime}
           style={{width:"15vw"}}
           onChange={(e) => setTime(e.target.value)}
         />
@@ -65,6 +80,7 @@ const OrderDateAndAmount = () => {
           id="outlined-basic"
           variant="outlined"
           type="number"
+          defaultValue={editOrder ? editOrder.NumberPeople : null}
           style={{width:"15vw"}}
           onChange={(e) => setAmount(e.target.value)}
         />

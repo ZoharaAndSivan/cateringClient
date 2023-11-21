@@ -10,7 +10,7 @@ import Paper from "@mui/material/Paper";
 import { useLocation, useNavigate } from "react-router-dom";
 import ClearIcon from "@mui/icons-material/Clear";
 import { Button } from "@mui/material";
-import "./SummaryOrder.scss"
+import "./SummaryOrder.scss";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -45,6 +45,7 @@ export default function SummaryOrder() {
   const [rows, setRows] = React.useState([]);
   const [price, setPrice] = React.useState(0);
   const [menuProducts, setMenuProducts] = React.useState([...menu]);
+  const contentRef = React.useRef(null);
 
   React.useEffect(() => {
     orderRows(groupedMenu);
@@ -119,11 +120,23 @@ export default function SummaryOrder() {
     }
     orderRows(x);
   };
-
+  const handlePrint = () => {
+    const content = contentRef.current;
+    if (content) {
+      const printWindow = window.open('', '_blank');
+      printWindow.document.write('<html><head><title>הדפסת תפריט</title>');
+      printWindow.document.write(
+        '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">'
+      ); // Replace with your stylesheet link
+      printWindow.document.write('</head><body>');
+      printWindow.document.write(content.innerHTML);
+      printWindow.document.write('</body></html>');
+      printWindow.document.close();
+      printWindow.print();
+    }
+  };
   return (
-    <>
-    <div style={{height:"150px"}}></div>
-    <div id="bigDiv" style={{ margin: "24px auto", width: "70vw" }}>
+    <div style={{ margin: "24px auto", width: "70vw" }}  ref={contentRef}>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableHead>
@@ -174,11 +187,12 @@ export default function SummaryOrder() {
       </TableContainer>
       <br /> <br />
       <br />
+      <Button variant="contained" onClick={handlePrint}>הדפסת הזמנה</Button>
+
       {!type && (
         <>
-          <h3> מחיר סופי: {price.toLocaleString()} ₪</h3>
+          <h3> סה"כ בסל הקניות : {price.toLocaleString()} ₪</h3>
           <Button
-          style={{backgroundColor:"rgb(142, 110, 51)"}}
             variant="contained"
             onClick={() =>
               navigate("/orderDetails", {
@@ -186,12 +200,12 @@ export default function SummaryOrder() {
               })
             }
           >
+
             {" "}
-            המשך{" "}
+            מעבר לתשלום{" "}
           </Button>{" "}
         </>
       )}
     </div>
-    </>
   );
 }

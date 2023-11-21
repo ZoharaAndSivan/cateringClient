@@ -1,17 +1,53 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ContactUs from "./ContactUs";
 import EventType from "./eventType";
 import "./Home.scss";
+import { updateActiveEventType, updateEventType } from "../service/event";
+import { updateEventsType } from "../store/action/event";
 export default function Home() {
+  const dispatch = useDispatch();
   //שולף מהרדיוסר את טבלץ סוגי אירועים
   const eventsTypes = useSelector((state) => state.catering.eventsTypes);
-  console.log(eventsTypes);
+  const [eventArr, setEventArr] = useState([]);
+
+  useEffect(() => {
+    setEventArr(eventsTypes);
+  }, [eventsTypes]);
+
+  const updateEvent = (eventType) => {
+    updateEventType(eventType.Id, eventType)
+      .then((x) => {
+        console.log(x.data);
+        let arr = [];
+
+        for (let i = 0; i < eventArr.length; i++) {
+          const element = eventArr[i];
+          if(element.Id==eventType.Id) {
+             arr.push(eventType);
+          } else {
+            arr.push(element);
+          }
+        }
+        
+        dispatch(updateEventsType(arr));
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const deleteEvent = (eventType) => {
+    updateActiveEventType(eventType.Id)
+      .then((x) => {
+        const arr = eventArr.filter((x) => x.Id != eventType.Id);
+        setEventArr(arr);
+        dispatch(updateEventsType(arr));
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <>
-
       {/* <div className='homePage cover top-banner d-flex align-items-center center p-0'>
                 <div class="sm-txt mt-4 pe-5">
                     <h1 style={{ fontWeight: "100px", fontSize: "60px" }}><strong>HOUSEMENT</strong></h1>
@@ -21,23 +57,25 @@ export default function Home() {
             </div> */}
       {/* תמונות עם קישורים */}
       <div id="divHomeImage">
-      <img id="HomeImage" src="../../images/HomeImage.jpg"/>
-      <p id="pHome">קייטרינג בוטיק לאירוע המושלם - חוויה בטעמים נפלאים</p>
+        <img id="HomeImage" src="../../images/HomeImage.jpg" />
+        <p className="second-title">
+          קייטרינג בוטיק לאירוע המושלם - חוויה בטעמים נפלאים
+        </p>
       </div>
-      <div style={{height:"150px"}} ></div>
 
-      {eventsTypes.map((item, index) => {
-        return (
-          <>
-          
-          <div key={item.id}  className="divallEvent">
-            <EventType eventType={item} />
-          </div>
-          
-          </>
-        ); 
-      })}
-       
+      {eventArr.length > 0 &&
+        eventArr.map((item, index) => {
+          return (
+            <div key={item.id} className="divallEvent">
+              <EventType
+                eventType={item}
+                deleteEvent={deleteEvent}
+                updateEvent={updateEvent}
+              />
+            </div>
+          );
+        })}
+
       {/* <ContactUs /> */}
     </>
   );

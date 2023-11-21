@@ -3,18 +3,25 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import FormInput from "./FormInput";
 import { Button, TextField } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import Swal from "sweetalert2";
-import { useSelector } from "react-redux";
-import "./OrderDetails.scss";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import { saveEditOrder } from "../store/action/order";
+import { addOrder, deleteOrder } from "../service/order";
 
 export default function OrderDetails() {
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch();
   const { groupedMenu, menu, amount, date, event, time, price } =
     location.state || {};
-    const user = useSelector(state=> state.catering.user);
+  const { user, editOrder } = useSelector((state) => {
+    return {
+      user: state.user.currentUser,
+      editOrder: state.order.editOrder,
+    };
+  }, shallowEqual);
   const schema = yup
     .object({
       FirstName: yup.string().required("שדה זה חובה"),
@@ -27,7 +34,7 @@ export default function OrderDetails() {
       Adress: yup.string().required("שדה זה חובה"),
       Email: yup.string().required("שדה זה חובה"),
       EventPlace: yup.string().required("שדה זה חובה"),
-      Notes: yup.string(),
+      Note: yup.string(),
     })
     .required();
 
@@ -47,52 +54,85 @@ export default function OrderDetails() {
     setValue,
   } = useForm({
     resolver: yupResolver(schema),
+    defaultValues: { user, editOrder },
   });
+
+  useEffect(() => {
+    if (editOrder && user) {
+      const userNames = Object.keys(user);
+      orderDetails.forEach((x) => {
+        if (userNames.find((y) => y == x.name)) {
+          setValue(x.name, user[x.name]);
+        } else {
+          setValue(x.name, editOrder[x.name]);
+        }
+      });
+    }
+  }, [user, editOrder]);
+
+  const deleteOldOrder = () => {
+    deleteOrder(editOrder.Id)
+    .then(response => {
+      console.log(response);
+    })
+    .catch(err => console.log(err))
+  }
+
+  const add = (details) => {
+    addOrder(details)
+      .then((response) => {
+        Swal.fire({
+          title: "הזמנתך בוצעה בהצלחה!",
+          text: "פרטי הזמנה נשלחו לך למייל.",
+          icon: "success",
+          confirmButtonText: "סיים",
+        }).then((result) => {
+          navigate("/");
+        });
+      })
+      .catch((err) => console.log(err));
+  };
 
   const onSubmit = (data) => {
     console.log(data);
-    // const user = {
-    //   FirstName: data.FirstName,
-    //   LastName: data.LastName,
-    //   Phone: data.Phone,
-    //   Adress: data.Adress,
-    //   Email: data.Email,
-    //   UserType: user.currentUser?user.currentUser.UserType:3,
-    //   Active: true,
-    // };
-    // const order = {
-    //   MenuId: event.Id,
-    //   NumberPeople: amount,
-    //   OrderDate: new Date(),
-    //   EventDate: date,
-    //   EventPlace: data.EventPlace,
-    //   EventTime: time,
-    //   FullPrice: price,
-    //   Note: data.Note,
-    // };
-    // const details = { user, order, menu };
-    // console.log(details);
-    // Swal.fire({
-    //   title: "הזמנתך בוצעה בהצלחה!",
-    //   text: "פרטי הזמנה נשלחו לך למייל.",
-    //   icon: "success",
-    //   confirmButtonText: "סיים",
-    // }).then((result) => {
-    //   navigate("/");
-    // });
+    const user2 = {
+      FirstName: data.FirstName,
+      LastName: data.LastName,
+      Phone: data.Phone,
+      Adress: data.Adress,
+      Email: data.Email,
+      UserType: user ? user.UserType : 3,
+      Active: true,
+      Id: user?.Id,
+    };
+    const order = {
+      MenuId: event.Id,
+      NumberPeople: amount,
+      OrderDate: new Date(),
+      EventDate: date,
+      EventPlace: data.EventPlace,
+      EventTime: time,
+      FullPrice: price,
+      Note: data.Note,
+    };
+    const details = { user: user2, order, menu };
+    console.log(details);
+    if (editOrder) {
+      dispatch(saveEditOrder(null));
+      deleteOldOrder();
+    }
+    add(details);
   };
 
   return (
     <>
-    <div style={{height:"140px"}}></div>
-      <form onSubmit={handleSubmit(onSubmit)} id="formOrder" style={{ width:"40vw", margin: "0 auto", padding: "64px 12px", borderRadius:"25px"}}>
-        <h4 id="h4Order"> פרטי הזמנה: </h4>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <h4> פרטי הזמנה: </h4>
         {/* Id, FirstName, LastName, Phone, Adress, Email, Password, UserType, Active */}
         {/* Id, UserId, MenuId,NumberPeople, OrderDate, EventDate, EventPlace, EventTime, ArrivalTime, FullPrice, Note, IsClose */}
         {orderDetails.map((item) => (
           <>
-          <div id="inputOrder">
-            <label id="labelOreder"> {item.lableName} </label> <br />
+            <label> {item.lableName} </label> <br />
             <FormInput
               name={item.name}
               type={item.type}
@@ -100,7 +140,6 @@ export default function OrderDetails() {
               register={register}
               flag={false}
             />
-            </div>
           </>
         ))}
         <br /> <br />
@@ -112,10 +151,11 @@ export default function OrderDetails() {
           maxRows={4}
           {...register("Note")}
           variant="filled"
+          defaultValue={editOrder ? editOrder.Note : null}
         />
         <p> מחיר סופי: {price.toLocaleString()} </p>
-        <Button variant="contained" type="submit" style={{backgroundColor:"rgb(142, 110, 51)"}}>
-          עבור לתשלום
+        <Button variant="contained" type="submit">
+          שליחת הזמנה
         </Button>
       </form>
     </>

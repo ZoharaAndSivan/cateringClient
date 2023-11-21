@@ -28,18 +28,18 @@ const OrderUserList = () => {
     let isSuccedded = false;
 
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "האם אתה בטוח?",
+      text: "האם אתה בטוח שברצונך לבטל את ההזמנה!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "כן, לבטל את זה!",
     }).then((result) => {
       if (result.isConfirmed) {
         deleteOrder(item.Id)
           .then((response) => {
-            const arr = ordersList.filter((x) => x.Id == item.Id);
+            const arr = ordersList.filter((x) => x.Id != item.Id);
             setOrdersList([...arr]);
             isSuccedded = true;
           })

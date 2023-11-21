@@ -16,5 +16,12 @@ export const getMenuEvents = () => {
     return axios.get("http://localhost:8080/menuEventTypeRouter/getAllMenuEventType")
 }
 
+export const updateActiveEventType = (id) => {
+    return axios.put("http://localhost:8080/eventTypeRouter/updateActive/"+id);
+}
+
+export const updateEventType = (id, event) => {
+    return axios.put(`http://localhost:8080/eventTypeRouter/updateNameEventType/${id}`, event);
+}
 
 
