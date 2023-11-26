@@ -24,4 +24,8 @@ export const updateEventType = (id, event) => {
     return axios.put(`http://localhost:8080/eventTypeRouter/updateNameEventType/${id}`, event);
 }
 
+export const addEventType = (event) => {
+    return axios.post(`http://localhost:8080/eventTypeRouter/addEventType`, event);
+}
+
 

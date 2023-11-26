@@ -6,6 +6,8 @@ import EventType from "./eventType";
 import "./Home.scss";
 import { updateActiveEventType, updateEventType } from "../service/event";
 import { updateEventsType } from "../store/action/event";
+import { Button } from "@mui/material";
+
 export default function Home() {
   const dispatch = useDispatch();
   //שולף מהרדיוסר את טבלץ סוגי אירועים
@@ -24,13 +26,13 @@ export default function Home() {
 
         for (let i = 0; i < eventArr.length; i++) {
           const element = eventArr[i];
-          if(element.Id==eventType.Id) {
-             arr.push(eventType);
+          if (element.Id == eventType.Id) {
+            arr.push(eventType);
           } else {
             arr.push(element);
           }
         }
-        
+
         dispatch(updateEventsType(arr));
       })
       .catch((err) => console.log(err));
@@ -62,6 +64,7 @@ export default function Home() {
           קייטרינג בוטיק לאירוע המושלם - חוויה בטעמים נפלאים
         </p>
       </div>
+
 
       {eventArr.length > 0 &&
         eventArr.map((item, index) => {
