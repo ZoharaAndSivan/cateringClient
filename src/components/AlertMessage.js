@@ -22,7 +22,7 @@ const AlertMessage = ({ variant, children ,setFlag}) => {
 
   // If show is true this will be returned
   return (
-    <div className={`alert alert-${variant}`}>
+    <div>
     {children}
   </div>
   )

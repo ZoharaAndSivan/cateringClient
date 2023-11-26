@@ -7,6 +7,7 @@ import "./Home.scss";
 import { updateActiveEventType, updateEventType } from "../service/event";
 import { updateEventsType } from "../store/action/event";
 import { Button } from "@mui/material";
+import AddEventType from "./AddEventType";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -64,8 +65,7 @@ export default function Home() {
           קייטרינג בוטיק לאירוע המושלם - חוויה בטעמים נפלאים
         </p>
       </div>
-
-
+      <AddEventType/>
       {eventArr.length > 0 &&
         eventArr.map((item, index) => {
           return (

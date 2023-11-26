@@ -128,8 +128,6 @@ export default function OrderDetails() {
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
         <h4> פרטי הזמנה: </h4>
-        {/* Id, FirstName, LastName, Phone, Adress, Email, Password, UserType, Active */}
-        {/* Id, UserId, MenuId,NumberPeople, OrderDate, EventDate, EventPlace, EventTime, ArrivalTime, FullPrice, Note, IsClose */}
         {orderDetails.map((item) => (
           <>
             <label> {item.lableName} </label> <br />
