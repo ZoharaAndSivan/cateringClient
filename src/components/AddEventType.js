@@ -4,14 +4,19 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import { Switch, TextField } from "@mui/material";
-import { addEventType } from "../service/event";
+import { IconButton, Switch, TextField } from "@mui/material";
+import { addEventType, updateEventType } from "../service/event";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import AlertMessage from "./AlertMessage";
 import Alerts from "./Alerts";
 import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
+import { useDispatch, useSelector } from "react-redux";
+import { AddCircleOutlined } from "@mui/icons-material";
+import { updateEventsType } from "../store/action/event";
 
 const style = {
   position: "absolute",
@@ -25,19 +30,28 @@ const style = {
   p: 4,
 };
 
-export default function AddEventType() {
-  const schema = yup
-    .object({
-      Name: yup.string().min(2, "שם קצר מידי").required("שדה זה חובה"),
-      Details: yup.string().required("שדה זה חובה"),
-      Active: yup.bool(),
-      Image: yup.mixed().required("שדה זה חובה"),
-    })
-    .required();
+const schema = yup
+  .object({
+    Name: yup.string().min(2, "שם קצר מידי").required("שדה זה חובה"),
+    Details: yup.string().required("שדה זה חובה"),
+    Active: yup.bool(),
+    Image: yup.mixed(),
+  })
+  .required();
 
+export default function AddEventType() {
+  //   const { id } = useParams();
+  const id = undefined;
+  const dispatch = useDispatch();
+  const eventsTypes = useSelector((state) => state.catering.eventsTypes);
+  const [event, setEvent] = React.useState(null);
+  const [image, setImage] = React.useState("");
   const [open, setOpen] = React.useState(false);
   const [flag, setFlag] = React.useState(false);
-  const handleOpen = () => {setOpen(true); setFlag(false);};
+  const handleOpen = () => {
+    setOpen(true);
+    setFlag(false);
+  };
   const handleClose = () => setOpen(false);
 
   const {
@@ -50,21 +64,61 @@ export default function AddEventType() {
     resolver: yupResolver(schema),
   });
 
-  useEffect(()=>{
-    setFlag(false);
+  useEffect(() => {
+    if (id) {
+      const x = eventsTypes.find((x) => x.Id == id);
+      setImage(x?.Image);
+      setEvent(x);
+    } else{
+        setImage("לא נבחר קובץ")
+    }
+  }, [id, eventsTypes]);
 
-  },[])
+  useEffect(() => {}, [event]);
+  useEffect(() => {
+    setFlag(false);
+  }, []);
 
   const onSubmit = (data) => {
     console.log(data);
-    data.Image = data.Image["0"]?.name;
-    addEventType(data)
-      .then((x) => {
-        console.log(x.data);
-        setFlag(true);
-        setTimeout( ()=> {reset(); handleClose(); }, 3000);
-      })
-      .catch((err) => console.log(err));
+    data.Image = image;
+    let arr = [];
+    if (id) {
+      updateEventType(id, data)
+        .then((x) => {
+          setFlag(true);
+          data.Id = id;
+          data.Active = {"data":[data.Active]}
+
+          for (let i = 0; i < eventsTypes.length; i++) {
+            const element = eventsTypes[i];
+            if (element.Id == id) {
+              arr.push(data);
+            } else {
+              arr.push(element);
+            }
+          }
+
+          dispatch(updateEventsType(arr));
+          setTimeout(() => {
+            //   reset();
+            handleClose();
+          }, 3000);
+        })
+        .catch((err) => console.log(err));
+    } else {
+      addEventType(data)
+        .then((x) => {
+          setFlag(true);
+          arr = [...eventsTypes, x.data];
+          dispatch(updateEventsType(arr));
+          setTimeout(() => {
+            reset();
+            handleClose();
+          }, 3000);
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
   return (
@@ -89,6 +143,7 @@ export default function AddEventType() {
                 label="שם אירוע"
                 {...register("Name")}
                 type="text"
+                defaultValue={event ? event.Name : null}
               />
               <br />
               <span style={{ color: "red" }}>{errors.Name?.message}</span>{" "}
@@ -98,16 +153,31 @@ export default function AddEventType() {
                 label="פרטים"
                 {...register("Details")}
                 type="text"
+                defaultValue={event ? event.Details : null}
               />
               <br />
               <span style={{ color: "red" }}>
                 {errors.Details?.message}
               </span>{" "}
               <br />
-              <input className="pe-5 me-4" {...register("Image")} type="file" />
+              <IconButton aria-label="upload picture" component="label">
+                <input
+                  hidden
+                  accept="image/*"
+                  type="file"
+                  onChange={(e) => {
+                    setImage(e.target.files[0].name);
+                    setValue("Image", e.target.files[0].name);
+                  }}
+                />
+                <AddPhotoAlternateIcon />
+              </IconButton>
+              {image}
               <br />
-              <span style={{ color: "red" }}>{errors.Image?.message}</span>{" "} <br/>
+              <span style={{ color: "red" }}>{errors.Image?.message}</span>{" "}
+              <br />
               <Switch
+                defaultChecked={event ? event.Active.data[0] : null}
                 {...register("Active")}
                 inputProps={{ "aria-label": "controlled" }}
               />{" "}
@@ -115,13 +185,17 @@ export default function AddEventType() {
               <br /> <br />
               {!flag ? (
                 <Button variant="contained" type="submit">
-                  הוסף
+                  {id ? "ערוך" : "הוסף"}
                 </Button>
               ) : (
                 <AlertMessage
                   variant={"success"}
                   setFlag={setFlag}
-                  children={<Alerts message={"התווסף בהצלחה!"} />}
+                  children={
+                    <Alerts
+                      message={id ? "התעדכן בהצלחה!" : "התווסף בהצלחה!"}
+                    />
+                  }
                 />
               )}
             </form>
