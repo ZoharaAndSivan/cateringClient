@@ -128,6 +128,9 @@ export default function EventType({ eventType, updateEvent, deleteEvent }) {
             </div>
           )}
         </Typography>
+        <Typography gutterBottom variant="p" component="div">
+          {eventType.Details}
+        </Typography>
       </CardContent>
       <CardActions>
         {currentUser?.UserType == 1 && (
