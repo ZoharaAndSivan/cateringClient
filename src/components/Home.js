@@ -6,6 +6,9 @@ import EventType from "./eventType";
 import "./Home.scss";
 import { updateActiveEventType, updateEventType } from "../service/event";
 import { updateEventsType } from "../store/action/event";
+import ContactManager from "./ContactManager";
+
+import Register from "./Register";
 export default function Home() {
   const dispatch = useDispatch();
   //שולף מהרדיוסר את טבלץ סוגי אירועים
@@ -77,6 +80,10 @@ export default function Home() {
         })}
 
       {/* <ContactUs /> */}
+      <div style={{height:"200px"}}></div>
+      <ContactManager/>
+      {/* <Register/> */}
+
     </>
   );
 }

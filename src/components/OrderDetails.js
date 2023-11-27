@@ -22,6 +22,7 @@ export default function OrderDetails() {
       editOrder: state.order.editOrder,
     };
   }, shallowEqual);
+  
   const schema = yup
     .object({
       FirstName: yup.string().required("שדה זה חובה"),

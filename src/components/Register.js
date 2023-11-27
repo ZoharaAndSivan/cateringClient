@@ -1,155 +1,88 @@
 //קומפוננטת הרשמה
 //ייבוא סיפריה שמטפלת בטפסים
 import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { connect, useSelector } from "react-redux";
-import { addUser } from "../store/action/user";
 import "./Register.scss";
+import * as yup from "yup";
+import {useForm} from "react-hook-form"
+import { yupResolver } from "@hookform/resolvers/yup";
 
-//export default function RegisterUser()
+import { Button, TextField } from "@mui/material";
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
 
-const RegisterUser = (props) => {
-  const { users } = useSelector;
-  //navigation = useNavigate();
-  //let user = useState((state) => state.user);
-  let {
-    register,
-    handleSubmit,
-    formState: { isValid, errors },
-  } = useForm({ mode: "all" }); //בכל מצב תוצג השגיאה בתיבת טקסט
-  let p = props;
-  //פונקצייה שמקבלת את הנתונים שהמשתמש הקליד בתוך תיבת טקסט
-  const save = (details) => {
-    //navigation(addUser(details));
+export default function Register(){
 
-    alert(details);
-    console.log(details);
-  };
-  return (
-    <>
-      <h1>הרשמה</h1>
-      <form onSubmit={handleSubmit(save)}>
-        <div>
-          <label>שם פרטי</label>
-          <br />
-          <input
-            type="text"
-            {...register("FirstName", {
-              minLength: 2,
-              required: true,
-              pattern: /^[a-zA-Zא-ת]/,
-            })}
-          />
-          {/* {errors.FirstName?.type=="pattern"&&errors.FirstName.type=="minLength"&&
-                <div>שםמכיל אותיות בלבד</div>
-                } */}
 
-          {errors.FirstName?.type == "minLength" && (
-            <div>*שם מכיל לפחות 2 אותיות</div>
-          )}
-          {errors.FirstName?.type == "required" && (
-            <div>*שדה זה הוא שדה חובה</div>
-          )}
-          {errors.FirstName?.type == "pattern" && (
-            <div>*שם מכיל אותיות בלבד</div>
-          )}
-        </div>
+  const schema = yup
+  .object({ 
+      Email: yup.string().email().required("שדה זה חובה"),
+      Password: yup.string().required("שדה זה חובה")
+  })
+  .required();
 
-        <div>
-          <label>שם משפחה</label>
-          <br />
-          <input
-            type="text"
-            {...register("LastName", {
-              minLength: 2,
-              required: true,
-              pattern: /^[a-zA-Zא-ת]/,
-            })}
-          />
-          {errors.LastName?.type == "minLength" && (
-            <div>*שם מכיל לפחות 2 אותיות</div>
-          )}
-          {errors.LastName?.type == "required" && (
-            <div>*שדה זה הוא שדה חובה</div>
-          )}
-          {errors.LastName?.type == "pattern" && (
-            <div>*שם מכיל אותיות בלבד</div>
-          )}
-        </div>
+const arr = [
+  { lableName: "שם מלא ", name: "FullName", type: "text" },
+  { lableName: "סיסמא", name: "Password", type: "string" },
+];
 
-        <div>
-          <label>טלפון</label>
-          <br />
-          <input
-            type="text"
-            {...register("Fhone", {
-              maxLength: 10,
-              minLength: 10,
-              required: true,
-              pattern: /^[0-9]/,
-            })}
-          />
-          {errors.Fhone?.type == "maxLength" && (
-            <div>*מספר טלפון יכיל רק 10 ספרות</div>
-          )}
-          {errors.Fhone?.type == "minLength" && (
-            <div>*מספר טלפון מכיל 10 ספרות</div>
-          )}
-          {errors.Fhone?.type == "required" && <div>*שדה זה הוא שדה חובה</div>}
-          {errors.Fhone?.type == "pattern" && (
-            <div>*מספר טלפון מכיל ספרות בלבד</div>
-          )}
-        </div>
-        <div>
-          <label>כתובת</label>
-          <br />
-          <input type="text" {...register("Address", { required: true })} />
-          {errors.Address?.type == "required" && (
-            <div>*שדה זה הוא שדה חובה</div>
-          )}
-        </div>
-        <div>
-          <label>e-mail</label>
-          <br />
-          <input
-            type="text"
-            {...register("Email", {
-              required: true,
-              pattern: /^[0-9a-zA-Z]{1,}@$/,
-            })}
-          />
-          {errors.Email?.type == "pattern" && <div>*מייל לא בתבנית הנכונה</div>}
-          {errors.Email?.type == "required" && <div>*שדה זה הוא שדה חובה</div>}
-        </div>
-        <div>
-          <label>סיסמא</label>
-          <br />
-          <input
-            type="text"
-            {...register("Password", {
-              maxLength: 15,
-              minLength: 6,
-              required: true,
-            })}
-          />
-          {errors.Password?.type == "maxLength" && (
-            <div>*סיסמא תכיל מקסימום 15 תווים</div>
-          )}
-          {errors.Password?.type == "minLength" && (
-            <div>*סיסמא תכיל מינימום 6 תווים</div>
-          )}
-          {errors.Password?.type == "required" && (
-            <div>*שדה זה הוא שדה חובה</div>
-          )}
-        </div>
+const {
+  register,
+  handleSubmit,
+  formState: { errors },
+  setValue,
+  //pattern,
+} = useForm({
+  resolver: yupResolver(schema),
+});
 
-        {/* {isValid} */}
-        {/* הטופס ישלח רק אם הטופס תקין */}
-        <input type="submit" value="הרשם" disabled={!isValid} />
-        <br />
-      </form>
-    </>
-  );
+
+const onSubmit = (data) => {
+  //נשלח לשרת
+  console.log(data);
 };
 
-export default connect(null, { addUser })(RegisterUser);
+  return(
+    <>
+    {/* <div id="divOtef" >vghftdvrdchghfvgfvd</div> */}
+     <form onSubmit={handleSubmit(onSubmit)}>
+       
+       <h4 id="h4">בוא נתכנן את האירוע המושלם שלכם!!!</h4>
+
+
+        <TextField
+          id="outlined-basic"
+          //id="outlined"
+          label={"כתובת מייל"}
+          name={"Email"}
+          type={"text"}
+          {...register("Email")}
+          variant="outlined"
+          disabled={false}
+          //color="yellow"
+          //border-c
+          style={{ backgroundColor: "#ebedf0", margin: 20, textAlign: "center",width:"95%" }}
+        />
+  <MailOutlineIcon/>
+        <br/>
+        <TextField
+          id="outlined-basic"
+          //id="outlined"
+          label={"סיסמא"}
+          name={"Password"}
+          type={"string"}
+          {...register("Password")}
+          variant="outlined"
+          disabled={false}
+          //color="yellow"
+          style={{ backgroundColor: "#ebedf0", margin: 20, textAlign: "center" }}
+        />
+        <br/>
+
+       <Button variant="contained" type="submit">
+        התחבר
+        </Button>
+     </form>
+     
+    
+    </>
+  )
+}

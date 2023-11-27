@@ -25,6 +25,7 @@ import { useDispatch } from "react-redux";
 import OrderUserList from "./components/OrdersUserList";
 import { getEventsType, getMenuEvents, getMenuTypes } from "./service/event";
 import { saveEventsType, saveMenuEvents, saveMenuTypes } from "./store/action/event";
+import ContactManager from "./components/ContactManager";
 function App() {
   const dispatch = useDispatch();
 
@@ -87,6 +88,9 @@ function App() {
         <Route path="about" element={<About />} />
         <Route path="recommendation" element={<Recommendation />} />
         <Route path="contactUs" element={<ContactUs />} />
+
+
+        <Route path="contact" element={<ContactManager/>} />
 
         {/* <Route path='ezorIshi' element={<Login/>}/> */}
       </Routes>

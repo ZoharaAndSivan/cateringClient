@@ -16,10 +16,8 @@ export default function NavBar() {
                 <li ><Link to="recommendation">המלצות  |</Link></li>
                 <li ><Link to="contactUs">צור קשר  |</Link></li>
                 <img  id="prophil" src="../../images/פרופיל משתמש.svg"/>
-                <li ><Link to="about">אודות</Link></li>
                 <li ><Link to="ordersUserList">הסטוריית הזמנות</Link></li>
-                <li ><Link to="recommendation">המלצות</Link></li>
-                <li ><Link to="contactUs">צור קשר</Link></li>
+                <li ><Link to="contact">יצירת קשר </Link></li>
             </ul>
             
         </nav>

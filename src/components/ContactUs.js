@@ -25,7 +25,7 @@ export default function ContactUs(){
       .required("שדה זה חובה")
       .min(9, "מספר הפלאפון אינו תקין")
       .max(10, "מספר הפלאפון אינו תקין"),
-      Email: yup.string().required("שדה זה חובה"),
+      Email: yup.string().email().required("שדה זה חובה"),
       Note: yup.string(),
   })
   .required();
@@ -61,6 +61,8 @@ const onSubmit = (data) => {
 
 <div id="divNamePhone">
        <TextField
+       className="divNameandPhone"
+       color="action"
           id="outlined-basic"
           //id="outlined"
           label={"שם מלא "}
@@ -76,6 +78,8 @@ const onSubmit = (data) => {
 
 
        <TextField
+       className="divNameandPhone"
+       color="action"
           id="outlined-basic"
           //id="outlined"
           label={"טלפון"}
@@ -91,6 +95,7 @@ const onSubmit = (data) => {
         </div>
 
         <TextField
+        color="action"
           id="outlined-basic"
           //id="outlined"
           label={"כתובת מייל"}
@@ -100,12 +105,15 @@ const onSubmit = (data) => {
           variant="outlined"
           disabled={false}
           //color="yellow"
-          border-color="warning"
+          //border-c
           style={{ backgroundColor: "#ebedf0", margin: 20, textAlign: "center",width:"95%" }}
+         
         />
+      
 
         <br/>
         <TextField
+        color="action"
           id="outlined-basic"
           //id="outlined"
           label={"הערות"}
