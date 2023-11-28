@@ -9,6 +9,7 @@ import { updateEventsType } from "../store/action/event";
 import ContactManager from "./ContactManager";
 
 import Register from "./Register";
+import Swal from "sweetalert2";
 export default function Home() {
   const dispatch = useDispatch();
   //שולף מהרדיוסר את טבלץ סוגי אירועים
@@ -27,26 +28,43 @@ export default function Home() {
 
         for (let i = 0; i < eventArr.length; i++) {
           const element = eventArr[i];
-          if(element.Id==eventType.Id) {
-             arr.push(eventType);
+          if (element.Id == eventType.Id) {
+            arr.push(eventType);
           } else {
             arr.push(element);
           }
         }
-        
+
         dispatch(updateEventsType(arr));
       })
       .catch((err) => console.log(err));
   };
 
   const deleteEvent = (eventType) => {
-    updateActiveEventType(eventType.Id)
-      .then((x) => {
-        const arr = eventArr.filter((x) => x.Id != eventType.Id);
-        setEventArr(arr);
-        dispatch(updateEventsType(arr));
-      })
-      .catch((err) => console.log(err));
+    Swal.fire({
+      title: "האם אתה בטוח?",
+      text: "האם אתה בטוח שברצונך למחוק את סוג האירוע?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "כן, לבטל את זה!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        updateActiveEventType(eventType.Id)
+          .then((x) => {
+            const arr = eventArr.filter((x) => x.Id != eventType.Id);
+            setEventArr(arr);
+            dispatch(updateEventsType(arr));
+          })
+          .catch((err) => console.log(err));
+        Swal.fire({
+          title: "נמחק בהצלחה!",
+          text: "סוג האירוע נמחק בהצלחה!",
+          icon: "success",
+        });
+      }
+    });
   };
 
   return (
@@ -80,10 +98,9 @@ export default function Home() {
         })}
 
       {/* <ContactUs /> */}
-      <div style={{height:"200px"}}></div>
-      <ContactManager/>
+      <div style={{ height: "200px" }}></div>
+      <ContactManager />
       {/* <Register/> */}
-
     </>
   );
 }
