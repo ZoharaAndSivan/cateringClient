@@ -7,7 +7,6 @@ import "./Home.scss";
 import { updateActiveEventType, updateEventType } from "../service/event";
 import { updateEventsType } from "../store/action/event";
 import ContactManager from "./ContactManager";
-
 import Register from "./Register";
 import Swal from "sweetalert2";
 export default function Home() {

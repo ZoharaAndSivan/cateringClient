@@ -158,7 +158,7 @@ export default function AddEventType() {
               <br />
               <span style={{ color: "red" }}>
                 {errors.Details?.message}
-              </span>{" "}
+              </span>
               <br />
               <IconButton aria-label="upload picture" component="label">
                 <input

@@ -28,4 +28,20 @@ export const addEventType = (event) => {
     return axios.post(`http://localhost:8080/eventTypeRouter/addEventType`, event);
 }
 
+export const changeActiveFood = (id) => {
+    return axios.put(`http://localhost:8080/foodRouter/updateActive/${id}`);
+}
+
+export const getAllFood = () => {
+    return axios.get(`http://localhost:8080/foodRouter/getAllFood`);
+}
+
+export const getAllFoodType = () => {
+    return axios.get(`http://localhost:8080/foodsTypeRouter/getAllFoodsType`);
+}
+
+export const addFood = (food) => {
+    return axios.post(`http://localhost:8080/foodRouter/addFood`, food);
+}
+
 
