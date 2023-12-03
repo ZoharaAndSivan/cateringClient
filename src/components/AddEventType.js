@@ -13,6 +13,7 @@ import AlertMessage from "./AlertMessage";
 import Alerts from "./Alerts";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import EditIcon from "@mui/icons-material/Edit";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import { useDispatch, useSelector } from "react-redux";
 import { AddCircleOutlined } from "@mui/icons-material";
@@ -39,9 +40,8 @@ const schema = yup
   })
   .required();
 
-export default function AddEventType() {
-  //   const { id } = useParams();
-  const id = undefined;
+export default function AddEventType({id}) {
+//   const { id } = useParams();
   const dispatch = useDispatch();
   const eventsTypes = useSelector((state) => state.catering.eventsTypes);
   const [event, setEvent] = React.useState(null);
@@ -69,8 +69,8 @@ export default function AddEventType() {
       const x = eventsTypes.find((x) => x.Id == id);
       setImage(x?.Image);
       setEvent(x);
-    } else{
-        setImage("לא נבחר קובץ")
+    } else {
+      setImage("לא נבחר קובץ");
     }
   }, [id, eventsTypes]);
 
@@ -88,7 +88,7 @@ export default function AddEventType() {
         .then((x) => {
           setFlag(true);
           data.Id = id;
-          data.Active = {"data":[data.Active]}
+          data.Active = { data: [data.Active] };
 
           for (let i = 0; i < eventsTypes.length; i++) {
             const element = eventsTypes[i];
@@ -122,10 +122,13 @@ export default function AddEventType() {
   };
 
   return (
-    <div>
+    <>
+      {id?<Button onClick={handleOpen}>
+      <EditIcon style={{ cursor: "pointer" }}/>
+      </Button>:
       <Button onClick={handleOpen}>
         <AddCircleOutlineIcon style={{ cursor: "pointer" }} /> הוסף אירוע
-      </Button>
+      </Button>}
       <Modal
         open={open}
         onClose={handleClose}
@@ -156,9 +159,7 @@ export default function AddEventType() {
                 defaultValue={event ? event.Details : null}
               />
               <br />
-              <span style={{ color: "red" }}>
-                {errors.Details?.message}
-              </span>
+              <span style={{ color: "red" }}>{errors.Details?.message}</span>
               <br />
               <IconButton aria-label="upload picture" component="label">
                 <input
@@ -202,6 +203,6 @@ export default function AddEventType() {
           </Typography>
         </Box>
       </Modal>
-    </div>
+    </>
   );
 }

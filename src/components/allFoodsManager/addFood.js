@@ -32,6 +32,7 @@ const AddFood = ({ onSubmit, food }) => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
     setValue,
   } = useForm({

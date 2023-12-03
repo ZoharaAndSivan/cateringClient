@@ -9,6 +9,7 @@ import { updateEventsType } from "../store/action/event";
 import ContactManager from "./ContactManager";
 import Register from "./Register";
 import Swal from "sweetalert2";
+import AddEventType from "./AddEventType";
 export default function Home() {
   const dispatch = useDispatch();
   //שולף מהרדיוסר את טבלץ סוגי אירועים
@@ -82,7 +83,9 @@ export default function Home() {
           קייטרינג בוטיק לאירוע המושלם - חוויה בטעמים נפלאים
         </p>
       </div>
-
+      <div>
+        <AddEventType />
+      </div>
       {eventArr.length > 0 &&
         eventArr.map((item, index) => {
           return (

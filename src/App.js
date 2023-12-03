@@ -27,6 +27,7 @@ import { getEventsType, getMenuEvents, getMenuTypes } from "./service/event";
 import { saveEventsType, saveMenuEvents, saveMenuTypes } from "./store/action/event";
 import ContactManager from "./components/ContactManager";
 import AllFoods from "./components/allFoodsManager/allFoods";
+import AddEventType from "./components/AddEventType";
 function App() {
   const dispatch = useDispatch();
 
@@ -75,6 +76,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="home/" element={<Home />} />
         <Route path="/ordersUserList" element={<OrderUserList />} />
+        <Route path="/editEventType/:id" element={<AddEventType />} />
         <Route path="/summaryOrder" element={<SummaryOrder />} />
         <Route path="foodType/:menuId/:foodTypeId" element={<FoodType />} />
         <Route path="menu/:id/:date/:amount/:time" element={<Menu type={"new"}/>} />

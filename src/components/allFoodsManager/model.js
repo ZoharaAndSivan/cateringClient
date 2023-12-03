@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import AddFood from "./addFood";
+import EditIcon from "@mui/icons-material/Edit";
 
 const style = {
   position: "absolute",
@@ -25,14 +26,19 @@ export default function Model({
 }) {
   return (
     <div>
-      <Button
-        variant="contained"
-        className="mx-auto"
-        style={{ backgroundColor: "#94db9f" }}
-        onClick={handleOpen}
-      >
-        הוסף מאכל
-      </Button>
+      <div onClick={handleOpen}>
+        {food ? (
+          <EditIcon style={{ cursor: "pointer" }} />
+        ) : (
+          <Button
+            variant="contained"
+            className="mx-auto"
+            style={{ backgroundColor: "#94db9f" }}
+          >
+            הוסף מאכל
+          </Button>
+        )}
+      </div>
       <Modal
         open={open}
         onClose={handleClose}
@@ -45,7 +51,7 @@ export default function Model({
               className=" col-12 text-align-center"
               style={{ fontSize: "25px", textAlign: "center" }}
             >
-              הוספת מאכל
+              {food ? <>עריכת מאכל</> : <> הוספת מאכל </>}
             </p>
           </div>
           <AddFood food={food} onSubmit={onSubmit} />

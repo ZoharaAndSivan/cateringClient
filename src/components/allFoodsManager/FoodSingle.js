@@ -4,9 +4,19 @@ import { useDispatch, useSelector } from "react-redux";
 import AlertMessage from "../AlertMessage";
 import Alerts from "../Alerts";
 import Poppers from "../Popper";
+import Model from "./model";
 
-const FoodSingle = ({ row, isItemSelected, labelId, handleClick, count }) => {
-  const [checked, setChecked] = React.useState(row.isPay);
+const FoodSingle = ({
+  row,
+  isItemSelected,
+  labelId,
+  handleClick,
+  open,
+  handleOpen,
+  handleClose,
+  onSubmit,
+}) => {
+  const [checked, setChecked] = React.useState(row.Active);
   const [flag, setFlag] = React.useState(false);
   const dispatch = useDispatch();
 
@@ -45,31 +55,39 @@ const FoodSingle = ({ row, isItemSelected, labelId, handleClick, count }) => {
           }}
         />
       </TableCell>
-      <TableCell component="th" id={labelId} scope="row" padding="none">
-        {row.Image}
+      <TableCell align="right" >
+        <img src={`../../images/${row.Image}`} alt={row.Name}/>
       </TableCell>
       <TableCell align="right">{row.Name}</TableCell>
       <TableCell align="right">{row.Price}</TableCell>
-      <TableCell>
+      <TableCell align="right">
         {!flag ? (
           <Poppers
             type={2}
             func={changeExpense}
-            text="שנות את התשלום"
+            text="שנות את פעילות המאכל"
             checked={checked}
-            content={checked ? "שולם" : "לא שולם"}
+            content={checked ? "פעיל" : "לא פעיל"}
             setChecked={setChecked}
           />
-        ) : row.Id != 10 ? (
+        ) : (
           <AlertMessage
             setFlag={setFlag}
             variant={"success"}
             children={<Alerts message={"התשלום שונה בהצלחה!"} />}
           />
-        ) : null}
+        )}
       </TableCell>
-
-      <TableCell align="right">{row.Active ? "פעיל" : "לא פעיל"}</TableCell>
+      <TableCell align="right">
+        <Model
+          food={row}
+          handleClose={handleClose}
+          handleOpen={handleOpen}
+          open={open}
+          onSubmit={onSubmit}
+          key={row.Id}
+        />
+      </TableCell>
     </TableRow>
   );
 };

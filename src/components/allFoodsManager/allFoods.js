@@ -33,6 +33,7 @@ import {
 import SelectInput from "../selectInput";
 import FoodSingle from "./FoodSingle";
 import SearchButton from "../SearchButton";
+import Swal from "sweetalert2";
 
 function createData(Id, Name, FoodTypeId, Price, Image, Active) {
   return {
@@ -131,7 +132,8 @@ function EnhancedTableHead(props) {
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
-            align={headCell.numeric ? "right" : "left"}
+            align="right"
+            // align={headCell.numeric ? "right" : "left"}
             padding={headCell.disablePadding ? "none" : "normal"}
             sortDirection={orderBy === headCell.id ? order : false}
           >
@@ -322,6 +324,11 @@ export default function AllFoods() {
         console.log(res);
         const arr = [...foods, res.data];
         doArr(arr);
+        Swal.fire({
+            title: "התווסף בהצלחה!",
+            text: "המאכל התווסף בהצלחה!",
+            icon: "success",
+          });
     })
     .catch(err => console.log(err))
     // try {
@@ -354,6 +361,10 @@ export default function AllFoods() {
     }
     setSelected([]);
   };
+
+  const editFood =(food) =>{
+
+  }
 
   const handleClick = (event, name) => {
     const selectedIndex = selected.indexOf(name);
@@ -456,6 +467,10 @@ export default function AllFoods() {
                           isItemSelected={isItemSelected}
                           labelId={labelId}
                           row={row}
+                          handleClose={handleClose}
+                          handleOpen={handleOpen}
+                          open={open}
+                          onSubmit={editFood}
                         />
                       );
                     })}
