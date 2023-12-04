@@ -76,9 +76,11 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useState } from "react";
 import Swal from "sweetalert2";
+import AddEventType from "./AddEventType";
 
 export default function EventType({ eventType, updateEvent, deleteEvent }) {
   const navigate = useNavigate();
+  const [flag, setFlag] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [name, setName] = useState(eventType.Name);
   const currentUser = useSelector((state) => state.user.currentUser);
@@ -130,12 +132,16 @@ export default function EventType({ eventType, updateEvent, deleteEvent }) {
             </div>
           )}
         </Typography>
+        <Typography gutterBottom variant="p" component="div">
+          {eventType.Details}
+        </Typography>
       </CardContent>
       <CardActions>
         {currentUser?.UserType == 1 && (
           <div>
-            <span className="ms-2">
-              <EditIcon onClick={update} />
+            <span className="">
+             <AddEventType id={eventType.Id}/>
+              {/* <EditIcon onClick={()=>setFlag(!flag)} /> */}
             </span>
             <DeleteIcon onClick={() => deleteEvent(eventType)} />
           </div>
