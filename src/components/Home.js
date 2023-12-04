@@ -6,12 +6,7 @@ import EventType from "./eventType";
 import "./Home.scss";
 import { updateActiveEventType, updateEventType } from "../service/event";
 import { updateEventsType } from "../store/action/event";
-<<<<<<< HEAD
-import SubNavBar from "./SubNavBar";
-
-=======
 import ContactManager from "./ContactManager";
->>>>>>> 32f0891c984b783b0003dfc8cd0bb089814ec1d2
 import Register from "./Register";
 import Swal from "sweetalert2";
 import AddEventType from "./AddEventType";
@@ -25,37 +20,12 @@ export default function Home() {
     setEventArr(eventsTypes);
   }, [eventsTypes]);
 
-  // const updateEvent = (eventType) => {
-  //   updateEventType(eventType.Id, eventType)
-  //     .then((x) => {
-  //       console.log(x.data);
-  //       let arr = [];
+  const updateEvent = (eventType) => {
+    updateEventType(eventType.Id, eventType)
+      .then((x) => {
+        console.log(x.data);
+        let arr = [];
 
-<<<<<<< HEAD
-  //       for (let i = 0; i < eventArr.length; i++) {
-  //         const element = eventArr[i];
-  //         if(element.Id==eventType.Id) {
-  //            arr.push(eventType);
-  //         } else {
-  //           arr.push(element);
-  //         }
-  //       }
-        
-  //       dispatch(updateEventsType(arr));
-  //     })
-  //     .catch((err) => console.log(err));
-  // };
-
-  // const deleteEvent = (eventType) => {
-  //   updateActiveEventType(eventType.Id)
-  //     .then((x) => {
-  //       const arr = eventArr.filter((x) => x.Id != eventType.Id);
-  //       setEventArr(arr);
-  //       dispatch(updateEventsType(arr));
-  //     })
-  //     .catch((err) => console.log(err));
-  // };
-=======
         for (let i = 0; i < eventArr.length; i++) {
           const element = eventArr[i];
           if (element.Id == eventType.Id) {
@@ -96,7 +66,6 @@ export default function Home() {
       }
     });
   };
->>>>>>> 32f0891c984b783b0003dfc8cd0bb089814ec1d2
 
   return (
     <>
@@ -108,47 +77,32 @@ export default function Home() {
                 <img src="https://tidhar.co.il/wp-content/uploads/2020/10/תדהר-שרת-תל-אביב-חוץ-2-e1668588621433.jpg" className='cover-image' />
             </div> */}
       {/* תמונות עם קישורים */}
-      <div id="divHomeImage">
+      <div className="divHomeImage">
         {/* <img id="HomeImage" src="../../images/HomeImage.jpg" /> */}
-        {/* <h4 id="delishes"> Delishes <br/></h4> */}
         <p className="second-title">
-         
           קייטרינג בוטיק לאירוע המושלם - חוויה בטעמים נפלאים
         </p>
       </div>
-<<<<<<< HEAD
-
-
-=======
       <div>
         <AddEventType />
       </div>
->>>>>>> 32f0891c984b783b0003dfc8cd0bb089814ec1d2
       {eventArr.length > 0 &&
         eventArr.map((item, index) => {
           return (
             <div key={item.id} className="divallEvent">
               <EventType
                 eventType={item}
-                // deleteEvent={deleteEvent}
-                // updateEvent={updateEvent}
+                deleteEvent={deleteEvent}
+                updateEvent={updateEvent}
               />
             </div>
           );
         })}
 
       {/* <ContactUs /> */}
-<<<<<<< HEAD
-      <div style={{height:"200px"}}></div>
-      {/* <Register/> */}
-
-      <SubNavBar/>
-
-=======
       <div style={{ height: "200px" }}></div>
       <ContactManager />
       {/* <Register/> */}
->>>>>>> 32f0891c984b783b0003dfc8cd0bb089814ec1d2
     </>
   );
 }

@@ -71,7 +71,7 @@ function App() {
       {/* <Menu/> */}
       {/* <Register/> */}
       {/* <Login/> */}
-<AllFoods/>
+{/*<AllFoods/>*/}
       {/* תגית שעוטפת את כל הניתובים */}
       <Routes>
         {/* ניתוב לכל קומפוננטה */}
