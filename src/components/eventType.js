@@ -90,7 +90,7 @@ export default function EventType({ eventType, updateEvent, deleteEvent }) {
     }
     if (name == "") {
       Swal.fire({
-        title: "אופס...",
+        title: "אופס...", 
         text: "יש להזין שם אירוע",
         icon: "warning",
       });
@@ -103,10 +103,11 @@ export default function EventType({ eventType, updateEvent, deleteEvent }) {
 
   return (
     <Card sx={{ maxWidth: 400 }}>
-      <CardMedia
+      <CardMedia 
         sx={{ height: 200 }}
-        image={`../../images/${eventType.Image}`}
+        image={`../../images/eventImages/${eventType.Image}`}
         title={eventType.Name}
+        style={{height:"450px"}}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
@@ -119,11 +120,12 @@ export default function EventType({ eventType, updateEvent, deleteEvent }) {
               onChange={(e) => setName(e.target.value)}
             />
           ) : (
-            <div
+            <div id="eventName" style={{color:"rgb(142, 110, 51)", fontSize:"40px"}}
               onClick={() => {
                 navigate("/menuType/" + eventType.Id);
               }}
             >
+              
               {eventType.Name}
             </div>
           )}

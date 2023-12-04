@@ -10,6 +10,7 @@ import Home from "./components/Home";
 import About from "./components/About";
 //ייבוא קומפוננטת דף  המלצות
 import Recommendation from "./components/Recommendation";
+import SubNavBar from "./components/SubNavBar";
 //ייבוא קומפוננטת דף יצירת קשר
 import ContactUs from "./components/ContactUs";
 import Register from "./components/Register";

@@ -7,12 +7,12 @@ import { useState } from "react";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useSelector } from "react-redux";
-//import "./ContactUs.scss"
+import "./ContactUs.scss"
 
 
 
 
-export default function ContactUs(){
+export default function ContactUs(){ 
 
 
   const schema = yup
@@ -55,6 +55,10 @@ const onSubmit = (data) => {
   return(
     <>
     {/* <div id="divOtef" >vghftdvrdchghfvgfvd</div> */}
+   <div id="bigDivContactUs">
+
+    <div id="divForm">
+
      <form onSubmit={handleSubmit(onSubmit)}>
        
        <h4 id="h4">בוא נתכנן את האירוע המושלם שלכם!!!</h4>
@@ -131,8 +135,11 @@ const onSubmit = (data) => {
           שלח
         </Button>
      </form>
-     
-    
+
+
+     </div>
+     {/* <div  style={{border:"1px solid",backgroundColor:"black",height:"500px"}}></div> */}
+     </div>
     </>
   )
 }

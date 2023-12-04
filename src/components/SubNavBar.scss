@@ -1,0 +1,57 @@
+body {
+    text-align: center;
+    direction: rtl;
+  
+  }
+ .div-Subnav{
+    width:100%;
+    background-color: black;
+    display: block;
+ } 
+  .div-Subnav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 10px;
+    overflow: hidden;
+    text-align: center;
+    height: 100%;
+  }
+//   .div-nav{
+//     height:100%;
+//   }
+//   .nav-bar{
+//     height:100%;
+//   }
+  
+  .div-Subnav ul {
+    background-color:black;
+    height:100%;
+    float: right;
+  }
+  
+
+  
+  .sub-nav li {
+    text-align: center;
+    //float:right;
+    display: block;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 50px;
+    /* width: 123px; */
+    margin: 10px;
+  }
+  
+  .sub-nav li a
+   {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size:32px;
+  }
+  
+  .sub-nav li a:hover {
+    color: #bf9000;
+  }
+  

@@ -3,54 +3,61 @@ body {
   direction: rtl;
 
 }
-.div-nav{
-  height:50px;
 
-}
- ul {
+.nav-bar ul {
   list-style-type: none;
   margin: 0;
-  padding: 15px;
+  padding: 10px;
   overflow: hidden;
-  //background-color: #bf9000;
   text-align: center;
+  height: 100%;
+}
+.div-nav{
+  height:100%;
+}
+.nav-bar{
+  height:100%;
 }
 
 .div-nav ul {
   background-color:black;
+  height:100%;
 }
 
- li {
-  //float: left;
-  //float: right;
+#logoImage{
+
+  height: 100%;
+  width: 240px;
+  float: right;
+  
+}
+
+.nav-bar li {
   text-align: center;
-  display:inline-block;
-  font-family:'Times New Roman', Times, serif;
- // font-size:25px;
+  display: inline-block;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 50px;
+  /* width: 123px; */
+  margin: 10px;
 }
 
-li a
+.nav-bar li a
  {
   display: inline-block;
   color: white;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-  font-size:20px;
+  font-size:32px;
 }
 
-li a:hover {
+.nav-bar li a:hover {
   color: #bf9000;
 }
 
-#logoImage{
-
-  height: 50px;
-  width: 150px;
-  float: right;
-  
-}
 #prophil{
-  float:left;
-  width: 60px;
+  float: left;
+  width: 120px;
+  height: 100%;
+ 
 }
