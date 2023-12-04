@@ -29,6 +29,7 @@ import { saveEventsType, saveMenuEvents, saveMenuTypes } from "./store/action/ev
 import ContactManager from "./components/ContactManager";
 import AllFoods from "./components/allFoodsManager/allFoods";
 import AddEventType from "./components/AddEventType";
+import AddMenuEventType from "./components/addMenuTypeEventType/AddMenuEventType";
 function App() {
   const dispatch = useDispatch();
 
@@ -79,6 +80,7 @@ function App() {
         <Route path="/ordersUserList" element={<OrderUserList />} />
         <Route path="/editEventType/:id" element={<AddEventType />} />
         <Route path="/summaryOrder" element={<SummaryOrder />} />
+        <Route path="/addMenuEventType/:eventId" element={<AddMenuEventType />} />
         <Route path="foodType/:menuId/:foodTypeId" element={<FoodType />} />
         <Route path="menu/:id/:date/:amount/:time" element={<Menu type={"new"}/>} />
         <Route path="menu/:id/:date/:amount/:time/:orderId" element={<Menu type={"edit"}/>} />

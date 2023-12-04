@@ -1,10 +1,16 @@
 import { Button } from "@mui/material";
-import { useSelector } from "react-redux";
+import { shallowEqual, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import DeleteIcon from "@mui/icons-material/Delete";
 
-export default function MenuTypeSingle({ menu }) {
+export default function MenuTypeSingle({ menu, deleteMenuType }) {
   const navigate = useNavigate();
-  const menuTypes = useSelector((state) => state.catering.menuTypes);
+  const { menuTypes, user } = useSelector((state) => {
+    return {
+      menuTypes: state.catering.menuTypes,
+      user: state.user.currentUser,
+    };
+  }, shallowEqual);
   return (
     <>
       <h3> {menu.Name} </h3>
@@ -16,7 +22,6 @@ export default function MenuTypeSingle({ menu }) {
               <div>
                 {item.Amount == 0 ? (
                   <div>
-                    {" "}
                     {item.FoodTypeId.Name} בתוספת {item.ExtraPrice} ש"ח{" "}
                   </div>
                 ) : item.ExtraPrice != 0 ? (
@@ -31,8 +36,8 @@ export default function MenuTypeSingle({ menu }) {
               </div>
             );
         })}
-      </div> 
-  
+      </div>
+
       <Button
         variant="contained"
         onClick={() =>
@@ -41,6 +46,7 @@ export default function MenuTypeSingle({ menu }) {
       >
         הזמן
       </Button>
+      {user.UserType==1 && <DeleteIcon onClick={() => deleteMenuType(menu)} />}
     </>
   );
 }

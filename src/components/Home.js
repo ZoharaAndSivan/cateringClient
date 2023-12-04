@@ -78,7 +78,7 @@ export default function Home() {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "כן, לבטל את זה!",
+      confirmButtonText: "כן, למחוק את זה!",
     }).then((result) => {
       if (result.isConfirmed) {
         updateActiveEventType(eventType.Id)

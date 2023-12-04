@@ -19,7 +19,6 @@ const initialState = {
     { Id: 3, Name: "לחם", Price: 0, IsActive: true, FoodTypeId: 2 },
     { Id: 4, Name: "כרוב", Price: 0, IsActive: true, FoodTypeId: 1 },
   ],
-  events: [{ Id: 1, eventTypesId: 3 }],
   //אירוע נבחר
   currentEvent: null,
 };

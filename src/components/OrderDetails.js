@@ -59,7 +59,7 @@ export default function OrderDetails() {
   });
 
   useEffect(() => {
-    if (editOrder && user) {
+    if (editOrder || user) {
       const userNames = Object.keys(user);
       orderDetails.forEach((x) => {
         if (userNames.find((y) => y == x.name)) {

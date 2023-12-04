@@ -25,7 +25,7 @@ import Alerts from "../Alerts";
 import Model from "./model";
 import { useState, useEffect } from "react";
 import {
-    addFood,
+  addFood,
   changeActiveFood,
   getAllFood,
   getAllFoodType,
@@ -92,12 +92,6 @@ const headCells = [
     numeric: true,
     disablePadding: true,
     label: "מחיר",
-  },
-  {
-    id: "Active",
-    numeric: true,
-    disablePadding: true,
-    label: "האם פעיל",
   },
 ];
 
@@ -173,7 +167,7 @@ function EnhancedTableToolbar(props) {
     rows,
     setRows,
     setSelected,
-    asyncFn,
+    doArr,
   } = props;
   const [flag, setFlag] = React.useState(false);
   const deleteExpenses = () => {
@@ -184,11 +178,11 @@ function EnhancedTableToolbar(props) {
         .then((res) => {
           console.log(res.data);
           setFlag(true);
-          const vec = [...rows.filter((x) => selected.indexOf(x._id) == -1)];
+          const vec = [...rows.filter((x) => selected.indexOf(x.Id) == -1)];
           setRows(vec);
           setNumSelected(0);
           setSelected([]);
-          //   asyncFn();
+          doArr(vec);
         })
         .catch((err) => console.log(err));
     });
@@ -286,15 +280,17 @@ export default function AllFoods() {
     getAllFood()
       .then((res) => {
         setFoods(res.data);
-        const firstItem = res.data[0];
-        const arr = res.data.filter((x) => x.FoodTypeId == firstItem.Id);
+        const firstItem = 1;
+        const arr = res.data.filter((x) => x.FoodTypeId == firstItem);
         doArr(arr);
       })
       .catch((err) => console.log(err));
   }, []);
 
   useEffect(() => {
-    const arr = foods.filter((x) => x.FoodTypeId == foodType && x.Name.includes(searchValue));
+    const arr = foods.filter(
+      (x) => x.FoodTypeId == foodType && x.Name.includes(searchValue)
+    );
     doArr(arr);
   }, [foodType, searchValue]);
 
@@ -318,19 +314,19 @@ export default function AllFoods() {
     handleClose();
     delete object.Food;
     object.FoodTypeId = foodType;
-    console.log(object,"oooo")
+    console.log(object, "oooo");
     addFood(object)
-    .then(res => {
+      .then((res) => {
         console.log(res);
         const arr = [...foods, res.data];
         doArr(arr);
         Swal.fire({
-            title: "התווסף בהצלחה!",
-            text: "המאכל התווסף בהצלחה!",
-            icon: "success",
-          });
-    })
-    .catch(err => console.log(err))
+          title: "התווסף בהצלחה!",
+          text: "המאכל התווסף בהצלחה!",
+          icon: "success",
+        });
+      })
+      .catch((err) => console.log(err));
     // try {
     //   console.log(object.date_created);
     //   const url = API_URL + "/expenses/" + building._id;
@@ -362,9 +358,7 @@ export default function AllFoods() {
     setSelected([]);
   };
 
-  const editFood =(food) =>{
-
-  }
+  const editFood = (food) => {};
 
   const handleClick = (event, name) => {
     const selectedIndex = selected.indexOf(name);
@@ -437,6 +431,7 @@ export default function AllFoods() {
             selected={selected}
             rows={rows}
             setRows={setRows}
+            doArr={doArr}
           />
           <TableContainer>
             <Table
@@ -458,7 +453,7 @@ export default function AllFoods() {
                   {stableSort(rows, getComparator(order, orderBy))
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((row, index) => {
-                      const isItemSelected = isSelected(row._id);
+                      const isItemSelected = isSelected(row.Id);
                       const labelId = `enhanced-table-checkbox-${index}`;
                       return (
                         <FoodSingle
