@@ -24,6 +24,7 @@ export default function Model({
   handleOpen,
   open,
 }) {
+    React.useEffect(()=>{},[food])
   return (
     <div>
       <div onClick={handleOpen}>

@@ -63,7 +63,7 @@ const AddFood = ({ onSubmit, food }) => {
             type={item.type}
             errors={errors}
             register={register}
-            expense={food}
+            // expense={food}
             flag={false}
           />
         ))}

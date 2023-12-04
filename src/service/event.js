@@ -44,4 +44,12 @@ export const addFood = (food) => {
     return axios.post(`http://localhost:8080/foodRouter/addFood`, food);
 }
 
+export const updateActiveMenuType = (id) => {
+    return axios.put(`http://localhost:8080/menuEventTypeRouter/updateActive/${id}`);
+}
+
+export const addMenuEventType = (menuEvent) => {
+    return axios.post(`http://localhost:8080/menuEventTypeRouter/addMenuEventType`, menuEvent);
+}
+
 
