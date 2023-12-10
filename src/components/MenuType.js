@@ -68,7 +68,7 @@ export default function MenuType() {
     </div>
     <div  id="bigDivType">
     
-<Button variant="contained" onClick={addMenuEvent}> הוסף תפריט </Button>
+{/* <Button variant="contained" onClick={addMenuEvent}> הוסף תפריט </Button> */}
     
       <div className="row">
         {menusTypes.length>0 && menusTypes.map((item) => (
