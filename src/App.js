@@ -95,8 +95,8 @@ function App() {
         <Route path="about" element={<About />} />
         <Route path="recommendation" element={<Recommendation />} />
         <Route path="contactUs" element={<ContactUs />} />
-
-
+        <Route path="login" element={<Login />} />
+        <Route path="allFoods" element={<AllFoods />} />
         <Route path="contact" element={<ContactManager/>} />
 
         {/* <Route path='ezorIshi' element={<Login/>}/> */}

@@ -10,7 +10,8 @@ export const saveUser = (user) => {
 //פונקציית יציאת משתמש
 export const logOut = () => {
     return {
-        type: types.LOG_OUT
+        type: types.LOG_OUT,
+        payload: null
     }
 }
 
