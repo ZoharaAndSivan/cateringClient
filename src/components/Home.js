@@ -10,6 +10,7 @@ import ContactManager from "./ContactManager";
 import Register from "./Register";
 import Swal from "sweetalert2";
 import AddEventType from "./AddEventType";
+import SubNavBar from "./SubNavBar";
 export default function Home() {
   const dispatch = useDispatch();
   //שולף מהרדיוסר את טבלץ סוגי אירועים
@@ -83,17 +84,17 @@ export default function Home() {
           קייטרינג בוטיק לאירוע המושלם - חוויה בטעמים נפלאים
         </p>
       </div>
-      <div>
+      {/* <div>
         <AddEventType />
-      </div>
+      </div> */}
       {eventArr.length > 0 &&
         eventArr.map((item, index) => {
           return (
             <div key={item.id} className="divallEvent">
               <EventType
                 eventType={item}
-                deleteEvent={deleteEvent}
-                updateEvent={updateEvent}
+                // deleteEvent={deleteEvent}
+                // updateEvent={updateEvent}
               />
             </div>
           );
@@ -101,8 +102,9 @@ export default function Home() {
 
       {/* <ContactUs /> */}
       <div style={{ height: "200px" }}></div>
-      <ContactManager />
+      {/* <ContactManager /> */}
       {/* <Register/> */}
+      <SubNavBar/>
     </>
   );
 }

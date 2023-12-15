@@ -136,7 +136,7 @@ export default function EventType({ eventType, updateEvent, deleteEvent }) {
           )}
         </Typography>
         <Typography gutterBottom variant="p" component="div">
-          {eventType.Details}
+          {/* {eventType.Details} */}
         </Typography>
       </CardContent>
       <CardActions>
