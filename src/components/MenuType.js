@@ -14,10 +14,11 @@ export default function MenuType() {
   const navigate = useNavigate();
   const [menusTypes, setMenuTypes] = useState([]);
   const [event, setEvent] = useState(null);
-  const {menusEvents, eventsTypes}  = useSelector((state) => {
+  const {menusEvents, eventsTypes, user}  = useSelector((state) => {
     return{
       menusEvents: state.catering.menusEvents,
-      eventsTypes: state.catering.eventsTypes
+      eventsTypes: state.catering.eventsTypes,
+      user: state.user.currentUser
     }
   },shallowEqual);
 
@@ -68,7 +69,7 @@ export default function MenuType() {
     </div>
     <div  id="bigDivType">
     
-<Button variant="contained" onClick={addMenuEvent}> הוסף תפריט </Button>
+    {user.UserType==1 && <Button variant="contained" onClick={addMenuEvent}> הוסף תפריט </Button>}
     
       <div className="row">
         {menusTypes.length>0 && menusTypes.map((item) => (

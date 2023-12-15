@@ -44,6 +44,7 @@ export default function MenuEvent({ type }) {
     getAllFoodByMenuId(id)
     .then((response) => {
       setFood(response.data);
+      console.log(response.data)
     })
     .catch((err) => console.log(err));
 

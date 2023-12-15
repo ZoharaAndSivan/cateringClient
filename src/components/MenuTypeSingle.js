@@ -2,6 +2,7 @@ import { Button } from "@mui/material";
 import { shallowEqual, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 
 export default function MenuTypeSingle({ menu, deleteMenuType }) {
   const navigate = useNavigate();
@@ -46,7 +47,9 @@ export default function MenuTypeSingle({ menu, deleteMenuType }) {
       >
         הזמן
       </Button>
-      {user.UserType==1 && <DeleteIcon onClick={() => deleteMenuType(menu)} />}
+      {user.UserType==1 && <><DeleteIcon onClick={() => deleteMenuType(menu)} />
+      <EditIcon  onClick={() => navigate(`/addMenuEventType/${menu.Id}/edit`)}/>
+      </>}
     </>
   );
 }

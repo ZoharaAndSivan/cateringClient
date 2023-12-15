@@ -5,7 +5,7 @@ export default function SideNavBar({ menuEvent, setFoodTypeId }) {
         <nav>
           <ul>
             {menuEvent.map((item) => (
-              <li>
+              <li style={{cursor:"pointer"}}>
                 <div
                 onClick={()=> setFoodTypeId(item.FoodTypeId.Id)}
                   // to={"/foodType/" + item.MenuId + "/"+item.FoodTypeId.Id}

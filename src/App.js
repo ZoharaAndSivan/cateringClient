@@ -81,6 +81,7 @@ function App() {
         <Route path="/editEventType/:id" element={<AddEventType />} />
         <Route path="/summaryOrder" element={<SummaryOrder />} />
         <Route path="/addMenuEventType/:eventId" element={<AddMenuEventType />} />
+        <Route path="/addMenuEventType/:menuId/:type" element={<AddMenuEventType />} />
         <Route path="foodType/:menuId/:foodTypeId" element={<FoodType />} />
         <Route path="menu/:id/:date/:amount/:time" element={<Menu type={"new"}/>} />
         <Route path="menu/:id/:date/:amount/:time/:orderId" element={<Menu type={"edit"}/>} />

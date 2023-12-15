@@ -109,7 +109,10 @@ export default function EventType({ eventType, updateEvent, deleteEvent }) {
         sx={{ height: 200 }}
         image={`../../images/eventImages/${eventType.Image}`}
         title={eventType.Name}
-        style={{height:"450px"}}
+        style={{height:"450px", cursor:"pointer"}}
+        onClick={() => {
+          navigate("/menuType/" + eventType.Id);
+        }}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
@@ -122,7 +125,7 @@ export default function EventType({ eventType, updateEvent, deleteEvent }) {
               onChange={(e) => setName(e.target.value)}
             />
           ) : (
-            <div id="eventName" style={{color:"rgb(142, 110, 51)", fontSize:"40px"}}
+            <div id="eventName" style={{color:"rgb(142, 110, 51)", fontSize:"40px", cursor:"pointer"}}
               onClick={() => {
                 navigate("/menuType/" + eventType.Id);
               }}

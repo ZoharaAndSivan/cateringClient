@@ -7,6 +7,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Checkbox, FormControlLabel, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
+import { getAllFoodByMenuId } from "../../store/action/event";
 
 const bull = (
   <Box
@@ -17,14 +18,19 @@ const bull = (
   </Box>
 );
 
-export default function FoodTypeDetails({ foodType, foods, change, changeMenuTypes }) {
+export default function FoodTypeDetails({ foodType, foods, change, type, changeMenuTypes, chosenFoods, menuType }) {
   const [foodsArr, setFoodaArr] = useState([]);
   const [isShow, setIsShow] = useState(false);
   const [card, setCard] = useState(null);
+  const [itemsChosen, setItemsChosen] = useState([]);
 
   useEffect(() => {
     const arr = foods?.filter((x) => x.FoodTypeId == foodType.Id);
     setFoodaArr(arr);
+    if(chosenFoods) {
+      setItemsChosen(chosenFoods.filter((x) => x.FoodTypeId == foodType.Id));
+    }
+console.log(menuType)
     const x = (
       <React.Fragment>
         <CardContent>
@@ -45,6 +51,7 @@ export default function FoodTypeDetails({ foodType, foods, change, changeMenuTyp
               type="number"
               style={{width:"10vw"}}
               onChange={(e) => changeMenuTypes(e, foodType)}
+              defaultValue={type?menuType.find(x=>x.FoodTypeId.Id==foodType.Id)?.Amount:null}
             />
             <TextField
               id="outlined-basic"
@@ -55,6 +62,7 @@ export default function FoodTypeDetails({ foodType, foods, change, changeMenuTyp
               type="number"
               style={{width:"10vw"}}
               onChange={(e) => changeMenuTypes(e, foodType)}
+              defaultValue={type?menuType.find(x=>x.FoodTypeId.Id==foodType.Id)?.ExtraPrice:null}
             />
           </Typography>
         </CardContent>
@@ -67,6 +75,7 @@ export default function FoodTypeDetails({ foodType, foods, change, changeMenuTyp
               control={<Checkbox />}
               label={item.Name}
               key={item.Id}
+              checked={itemsChosen.find(x=>x.FoodId == item.Id)}
               onChange={(e)=>change(e,item)}
             /> 
           )}

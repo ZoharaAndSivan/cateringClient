@@ -37,6 +37,6 @@ export const updateEventsType = (data)=>{
     }
 }
 
-export const getAllFoodByMenuId = (menuId)=>{
-    return axios.get(`http://localhost:8080/productToMenuRouter/getAllFoodByMenuId/${menuId}`)
+export const getAllFoodByMenuId = (id)=>{
+    return axios.get(`http://localhost:8080/productToMenuRouter/getAllFoodByMenuId/${id}` );
 }
