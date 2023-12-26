@@ -78,8 +78,6 @@ function App() {
       {/* <Menu/> */}
       {/* <Register/> */}
       {/* <Login/> */}
-{/*<AllFoods/>*/}
-<OrderManagerList/>
       {/* תגית שעוטפת את כל הניתובים */}
       <Routes>
         ניתוב לכל קומפוננטה
@@ -111,17 +109,10 @@ function App() {
 
 
 
-
-
-
-
-
-
-
        {/* המלצות- חוות דעת */}
        <Route path="recommendation" element={<Recommendation />} />
        
-       צור קשר - משתמש
+       {/* צור קשר - משתמש */}
        <Route path="contactUs" element={<ContactUs />} />
        <Route path="login" element={<Login />} />
 
@@ -129,6 +120,7 @@ function App() {
        <Route path="menu/:id/:date/:amount/:time" element={<Menu type={"new"}/>} />
         <Route path="menu/:id/:date/:amount/:time/:orderId" element={<Menu type={"edit"}/>} />
 
+        <Route path="/ordersUserListForManger" element={<OrderManagerList />} />
         <Route path="/ordersUserList" element={<OrderUserList />} />
         <Route path="/editEventType/:id" element={<AddEventType />} />
         

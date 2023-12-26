@@ -66,6 +66,12 @@ function ResponsiveAppBar() {
         role: [1],
         icon: <DinnerDiningIcon fontSize="small" />,
       },
+      {
+        to: "/ordersUserListForManger",
+        name: "הזמנות",
+        role: [1],
+        icon: <DinnerDiningIcon fontSize="small" />,
+      },
     ]);
   }, []);
 
