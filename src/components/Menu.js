@@ -2,15 +2,21 @@ import { useForm } from "react-hook-form";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { shallowEqual, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import PeopleIcon from "@mui/icons-material/People";
-import "./Menu.scss";
+
+
+import "./ScssComponets/Menu.scss";
 import SideNavBar from "./SideNavBar";
 import FoodType from "./FoodType";
 import CategoryList from "./CategoryList";
-import { Button } from "@mui/material";
 import DisplayOrderProducts from "./DisplayOrderProducts";
 import { getAllFoodByMenuId } from "../store/action/event";
+
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import PeopleIcon from "@mui/icons-material/People";
+import { Button } from "@mui/material"; 
+
+
+
 
 export default function MenuEvent({ type }) {
   //מקבלת אי די לפי שורת יו אר אל
@@ -116,8 +122,11 @@ export default function MenuEvent({ type }) {
   return (
     <>
     {editOrder && <DisplayOrderProducts order={editOrder} food={food}/>}
+
       <div className="row">
         <div className="containers" style={{ width: "20%" }}>
+
+          {/* כמות מוזמנים ותאריך */}
           <div>
             <p>
               <PeopleIcon /> {amount} אורחים
@@ -126,31 +135,41 @@ export default function MenuEvent({ type }) {
               <CalendarMonthIcon /> {new Date(date).toLocaleDateString()}
             </p>
           </div>
+
+
           <h5> מסלול קיטרניג מחיר לסועד </h5>
           {menuEvent.map((item) => (
             <div key={item.Id}>
               <CategoryList
                 category={item}
                 menu={menu}
-                sendOrder={sendOrder}
+                //sendOrder={sendOrder}
                 deleteFood={deleteFood}
               />
             </div>
           ))}
+
           <Button onClick={sendOrder} variant="contained">
             סיים הזמנה
           </Button>
         </div>
-        <div className="containers" style={{ width: "10%" }}>
+
+
+
+
+       {/* רשימת קטגוריות */}
+        <div className="sideNavBar" style={{ width: "15%" }}>
           <SideNavBar
             menuEvent={menuEvent}
             setFoodTypeId={setFoodTypeId}
             sendOrder={sendOrder}
           />
         </div>
-        <div className="containers" style={{ width: "60%" }}>
+        
+        <div   className="containers" style={{ width: "60%"}}>
           <FoodType
-            menuId={id}
+         
+            menuId={id} 
             foodTypeId={foodTypeId}
             menu={menu}
             food={food}

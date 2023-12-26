@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom"
-import "./SubNavBar.scss";
+import "./ScssComponets/SubNavBar.scss";
 
 export default function SubNavBar() {
     return <>
+    <div className="divvvvvvvvv2">
     <div className="div-Subnav">
 
         <nav className="sub-nav">
@@ -21,6 +22,7 @@ export default function SubNavBar() {
             </ul>
             
         </nav>
+        </div>
         </div>
     </>
 

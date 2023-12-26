@@ -1,8 +1,10 @@
+import "./ScssComponets/SideNavBar.scss";
+
 export default function SideNavBar({ menuEvent, setFoodTypeId }) {
   return (
     <>
-      <div className="">
-        <nav>
+      <div className="div-side-navBar">
+        <nav className="nav-side-navBar">
           <ul>
             {menuEvent.map((item) => (
               <li style={{cursor:"pointer"}}>

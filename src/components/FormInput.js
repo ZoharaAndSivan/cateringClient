@@ -13,7 +13,7 @@ const FormInput = ({ register, errors, name, lableName, type, flag, width }) => 
             style={{ backgroundColor: "#ebedf0", width: width ? width : null }} />
     </Fragment> :
         <Fragment>
-            <FormControlLabel
+            <FormControlLabel 
                 label={lableName}
                 name={name}
                 {...register(name)}

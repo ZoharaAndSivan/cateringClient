@@ -5,7 +5,7 @@ import OrderUserSingle from "./OrderUserSingle";
 import Swal from "sweetalert2";
 
 const OrderUserList = () => {
-  const [ordersList, setOrdersList] = useState();
+  const [ordersList, setOrdersList] = useState([]);
 
   const { user } = useSelector((state) => {
     return {
@@ -17,7 +17,7 @@ const OrderUserList = () => {
     getAllOrdersByUserId(user.Id)
       .then((response) => {
         console.log(response.data);
-        setOrdersList(response.data);
+        setOrdersList(response.data.filter(x=>x.Status.data[0]==true));
       })
       .catch((err) => {
         console.log(err);
@@ -60,12 +60,12 @@ const OrderUserList = () => {
     <>
     <div style={{height:"100px"}}></div>
     <div className="row p-4">
-      {ordersList &&
+      {ordersList.length>0?
         ordersList.map((item) => (
           <div key={item.Id}>
             <OrderUserSingle item={item} cancelOrder={cancelOrder} />
           </div>
-        ))}
+        )):<h4>עדיין אין לך הזמנות</h4>}
     </div>
     </>
   );

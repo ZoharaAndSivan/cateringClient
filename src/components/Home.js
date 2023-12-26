@@ -1,19 +1,32 @@
+import "./ScssComponets/Home.scss";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import ContactUs from "./ContactUs";
-import EventType from "./eventType";
-import "./Home.scss";
+
+
+
 import { updateActiveEventType, updateEventType } from "../service/event";
 import { updateEventsType } from "../store/action/event";
-import ContactManager from "./ContactManager";
-import Register from "./Register";
+
+
 import Swal from "sweetalert2";
-import AddEventType from "./AddEventType";
+
+
+ import Recommendation from "./Recommendation";
+ import ContactUs from "./ContactUs";
 import SubNavBar from "./SubNavBar";
+
+
+// import Register from "./Register";
+// import ContactManager from "./ContactManager";
+
+ import EventType from "./eventType";
+// import AddEventType from "./AddEventType";
+
+
 export default function Home() {
   const dispatch = useDispatch();
-  //שולף מהרדיוסר את טבלץ סוגי אירועים
+  //שולף מהרדיוסר את טבלת סוגי אירועים
   const eventsTypes = useSelector((state) => state.catering.eventsTypes);
   const [eventArr, setEventArr] = useState([]);
 
@@ -77,16 +90,16 @@ export default function Home() {
                 </div>
                 <img src="https://tidhar.co.il/wp-content/uploads/2020/10/תדהר-שרת-תל-אביב-חוץ-2-e1668588621433.jpg" className='cover-image' />
             </div> */}
-      {/* תמונות עם קישורים */}
+
       <div className="divHomeImage">
-        {/* <img id="HomeImage" src="../../images/HomeImage.jpg" /> */}
+      <p className="first-title">Delishes</p>
         <p className="second-title">
-          קייטרינג בוטיק לאירוע המושלם - חוויה בטעמים נפלאים
+          קייטרינג  לאירוע מושלם - חוויה בטעמים נפלאים
         </p>
       </div>
-      {/* <div>
-        <AddEventType />
-      </div> */}
+
+
+
       {eventArr.length > 0 &&
         eventArr.map((item, index) => {
           return (
@@ -100,11 +113,21 @@ export default function Home() {
           );
         })}
 
-      {/* <ContactUs /> */}
-      <div style={{ height: "200px" }}></div>
-      {/* <ContactManager /> */}
-      {/* <Register/> */}
-      <SubNavBar/>
+      <br/>
+      <br/>
+      <Recommendation/>
+      <br/>
+      <br/>
+      <ContactUs/>
+      <br/>
+
+      
+<SubNavBar/>
+      {/* <div>
+        <AddEventType />
+      </div> */}
+      
+ 
     </>
   );
 }

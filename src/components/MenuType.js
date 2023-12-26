@@ -2,11 +2,14 @@ import { useState, useEffect } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import MenuTypeSingle from "./MenuTypeSingle";
-import "./MenuType.scss";
+import "./ScssComponets/MenuType.scss";
 import Swal from "sweetalert2";
 import { updateActiveMenuType } from "../service/event";
 import { saveMenuEvents } from "../store/action/event";
 import { Button } from "@mui/material";
+
+
+import ContactUs from "./ContactUs";
 
 export default function MenuType() {
   const { id } = useParams();
@@ -23,6 +26,7 @@ export default function MenuType() {
   },shallowEqual);
 
   useEffect(() => {
+    //שולף את כל סוגי התפריטים של אירוע מסוים שנבחר
     const arr = menusEvents.filter((x) => x.EventId == id && x.Active.data[0]==true);
     setMenuTypes(arr);
     setEvent(eventsTypes.find(x=>x.Id==id));
@@ -61,13 +65,17 @@ export default function MenuType() {
   }
   return (
     <>
-    <div style={{height:"50px"}}></div>
-    <div>
-      <h2 id="mazalTov">{event?.Details}</h2>
-      {/* <h2 id="mazalTov">מזל טוב!!!</h2>
-      <h3 id="chogegim">חוגגים בר מצווה</h3> */}
-    </div>
-    <div  id="bigDivType">
+     <div>
+      <h2 className="mazalTov">{event?.Details}</h2>
+      <h3 className="h3-mazalTov"> אצלינו תמצאו את התפריט שיתאים בדיוק עבורכם </h3>
+    </div> 
+
+
+
+
+    {/* <div style={{height:"50px"}}></div> */}
+   
+    <div  className="bigDivType">
     
     {user.UserType==1 && <Button variant="contained" onClick={addMenuEvent}> הוסף תפריט </Button>}
     
@@ -83,6 +91,14 @@ export default function MenuType() {
 
       </div>
     </div>
+
+    <div>
+        <h2>מתלבטים, אנחנו נעזור לכם</h2>
+      </div>
+
+
+      <br/>
+      <ContactUs/>
     </>
   );
 }

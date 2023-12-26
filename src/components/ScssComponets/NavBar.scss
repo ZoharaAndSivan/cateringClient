@@ -1,0 +1,56 @@
+body {
+  text-align: center;
+  direction: rtl;
+}
+.div-navbar {
+  display: block;
+  background-color: black;
+  //height:60px;
+}
+
+.nav-bar {
+  padding: 5px;
+}
+
+.ul-navBar {
+  list-style-type: none;
+  margin: 0;
+  padding: 13px;
+  text-align: center;
+  height: 70px;
+  margin-top: -70px;
+}
+
+.logoImage {
+  height: 83px;
+  width: 311px;
+  //display: inline-block;
+  //float:right;
+}
+
+.ul-navBar li {
+  //text-align: center;
+  font-family: "Times New Roman", Times, serif;
+  display: inline-block;
+  margin-right: 30px;
+}
+
+.ul-navBar li a {
+  //display: inline-block;
+  color: white;
+  font-weight: bold;
+  //text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 27px;
+}
+
+.ul-navBar li a:hover {
+  color: #bf9000;
+}
+
+// #prophil{
+//   float: left;
+//   width: 120px;
+//   height: 100%;
+// }

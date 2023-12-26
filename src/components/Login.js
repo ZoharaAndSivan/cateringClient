@@ -1,12 +1,16 @@
 //ייבוא סיפריה שמטפלת בטפסים
 import { useForm } from "react-hook-form";
-import "./Login.scss";
+import "./ScssComponets/Login.scss";
 import { login } from "../service/User";
 import { useDispatch } from "react-redux";
 import { saveUser } from "../store/action/user";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 //קומפוננטת התחברות
+
+
+
+
 
 export default function Login() {
   let {
@@ -99,7 +103,7 @@ export default function Login() {
             <input
               type="text"
               {...register("Password", {
-                minLength: 6,
+                minLength: 5,
                 maxLength: 15,
                 required: true,
               })}
