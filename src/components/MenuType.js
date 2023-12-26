@@ -77,7 +77,7 @@ export default function MenuType() {
    
     <div  className="bigDivType">
     
-    {user.UserType==1 && <Button variant="contained" onClick={addMenuEvent}> הוסף תפריט </Button>}
+    {user?.UserType==1 && <Button variant="contained" onClick={addMenuEvent}> הוסף תפריט </Button>}
     
       <div className="row">
         {menusTypes.length>0 && menusTypes.map((item) => (
