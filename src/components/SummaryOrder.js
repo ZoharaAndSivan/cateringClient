@@ -10,7 +10,7 @@ import Paper from "@mui/material/Paper";
 import { useLocation, useNavigate } from "react-router-dom";
 import ClearIcon from "@mui/icons-material/Clear";
 import { Button } from "@mui/material";
-import "./SummaryOrder.scss";
+import "./ScssComponets/SummaryOrder.scss"; 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -53,6 +53,7 @@ export default function SummaryOrder() {
 
   const orderRows = (arrToOrder) => {
     let globalSum = 0;
+    // סוג אירוע
     const obj = createData(
       event.Id,
       "",
@@ -61,18 +62,27 @@ export default function SummaryOrder() {
       amount,
       parseInt(event.Price * amount)
     );
+
+    //מחיר סופי
     globalSum += event.Price * amount;
+
     let arr = [obj];
+    console.log(arrToOrder);
+    console.log(menuEvent);
+
     for (let i = 0; i < arrToOrder.length; i++) {
+      //אובייקט
       const element = arrToOrder[i];
-      const productInMenu = menuEvent.find(
-        (x) => x.FoodTypeId.Id.toLocaleString() == element.type.toLocaleString()
-      );
-      let priceToAdd = productInMenu.ExtraType;
+
+      // const productInMenu = menuEvent.find(
+      //   (x) => x.FoodTypeId.Id.toLocaleString() == element.type.toLocaleString()
+      // );
+      //let priceToAdd = productInMenu.ExtraType;
       const arrProducts = element.options;
       const x = menuEvent.find(
         (x) => x.FoodTypeId.Id.toLocaleString() == element.type.toLocaleString()
       );
+
       for (let i = 0; i < arrProducts.length; i++) {
         let price =
           arrProducts[i].Price == 0 && x.ExtraPrice == 0
@@ -80,6 +90,7 @@ export default function SummaryOrder() {
             : parseInt(x.ExtraPrice)+parseInt(arrProducts[i].Price) ;
      
         const amount2 = arrProducts[i].Price == 0 &&  x.ExtraPrice == 0? 1 : amount;
+
         const sum = price == 0 ? "" : price * amount2;
         arr.push(
           createData(
@@ -123,7 +134,7 @@ export default function SummaryOrder() {
   const handlePrint = () => {
     const content = contentRef.current;
     if (content) {
-      const printWindow = window.open('', '_blank');
+      const printWindow = window.open('', '_target');
       printWindow.document.write('<html><head><title>הדפסת תפריט</title>');
       printWindow.document.write(
         '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">'
@@ -136,6 +147,9 @@ export default function SummaryOrder() {
     }
   };
   return (
+<>
+    <h2>סיכום הזמנה</h2>
+    <br/>
     <div style={{ margin: "24px auto", width: "70vw" }}  ref={contentRef}>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -172,6 +186,7 @@ export default function SummaryOrder() {
                   </StyledTableCell>
                 </StyledTableRow>
               ))}
+              
             <StyledTableRow>
               <StyledTableCell align="right">סה"כ</StyledTableCell>
               <StyledTableCell align="right"></StyledTableCell>
@@ -184,14 +199,16 @@ export default function SummaryOrder() {
             </StyledTableRow>
           </TableBody>
         </Table>
-      </TableContainer>
+      </TableContainer> 
       <br /> <br />
       <br />
-      <Button variant="contained" onClick={handlePrint}>הדפסת הזמנה</Button>
+     
 
-      {!type && (
+      
+          <h3> סה"כ   : {price.toLocaleString()} ₪</h3> 
+          <Button variant="contained" onClick={handlePrint}>הדפסת הזמנה</Button>
+          {!type && (
         <>
-          <h3> סה"כ בסל הקניות : {price.toLocaleString()} ₪</h3>
           <Button
             variant="contained"
             onClick={() =>
@@ -207,5 +224,6 @@ export default function SummaryOrder() {
         </>
       )}
     </div>
+    </>
   );
 }

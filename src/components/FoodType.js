@@ -11,6 +11,7 @@ export default function FoodType({
   menu,
   food,
   isPossible,
+  
 }) {
   const [amount, setAmount] = useState(0);
   const [amountChosen, setAmountChosen] = useState(0);
@@ -22,6 +23,8 @@ export default function FoodType({
         if (item.FoodTypeId == foodTypeId)
           return (
             <div key={item.Id} className="containers">
+              
+             
               <h5>
                 {item.Price != 0 && <span>*</span>}
                 {item.Name}

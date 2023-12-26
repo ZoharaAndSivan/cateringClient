@@ -64,7 +64,9 @@ export default function OrderDetails() {
       orderDetails.forEach((x) => {
         if (userNames.find((y) => y == x.name)) {
           setValue(x.name, user[x.name]);
-        } else {
+        } else 
+        if(editOrder){
+          
           setValue(x.name, editOrder[x.name]);
         }
       });
@@ -102,7 +104,7 @@ export default function OrderDetails() {
       Phone: data.Phone,
       Adress: data.Adress,
       Email: data.Email,
-      UserType: user ? user.UserType : 3,
+      UserType: user ? user.UserType :3,
       Active: true,
       Id: user?.Id,
     };
@@ -133,7 +135,7 @@ export default function OrderDetails() {
           <>
             <label> {item.lableName} </label> <br />
             <FormInput
-              name={item.name}
+              name={item.name} 
               type={item.type}
               errors={errors}
               register={register}

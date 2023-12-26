@@ -1,11 +1,14 @@
 //ייבוא סיפריות
 //מאפשר ניתובים
 import { Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import "./App.css";
 //ייבוא קומפוננטתת נב בר
 import NavBar from "./components/NavBar";
 // ייבוא קומפוננטת דף הבית
 import Home from "./components/Home";
+
 // ייבוא קומפוננטת דף אודות
 import About from "./components/About";
 //ייבוא קומפוננטת דף  המלצות
@@ -21,11 +24,14 @@ import FoodType from "./components/FoodType";
 import SummaryOrder from "./components/SummaryOrder";
 import OrderDateAndAmount from "./components/OrderDateAndAmount";
 import OrderDetails from "./components/OrderDetails";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+
 import OrderUserList from "./components/OrdersUserList";
 import { getEventsType, getMenuEvents, getMenuTypes } from "./service/event";
-import { saveEventsType, saveMenuEvents, saveMenuTypes } from "./store/action/event";
+import {
+  saveEventsType,
+  saveMenuEvents,
+  saveMenuTypes,
+} from "./store/action/event";
 import ContactManager from "./components/ContactManager";
 import AllFoods from "./components/allFoodsManager/allFoods";
 import AddEventType from "./components/AddEventType";
@@ -46,7 +52,7 @@ function App() {
         alert("error details2");
       });
 
-      getEventsType()
+    getEventsType()
       .then((res) => {
         console.log(res.data);
         dispatch(saveEventsType(res.data));
@@ -56,7 +62,7 @@ function App() {
         alert("error details1");
       });
 
-      getMenuEvents()
+    getMenuEvents()
       .then((res) => {
         console.log(res.data);
         dispatch(saveMenuEvents(res.data));
@@ -76,32 +82,72 @@ function App() {
 <OrderManagerList/>
       {/* תגית שעוטפת את כל הניתובים */}
       <Routes>
-        {/* ניתוב לכל קומפוננטה */}
+        ניתוב לכל קומפוננטה
+        {/* דף הבית */}
         <Route path="/" element={<Home />} />
         <Route path="home/" element={<Home />} />
-        <Route path="/ordersUserList" element={<OrderUserList />} />
-        <Route path="/editEventType/:id" element={<AddEventType />} />
-        <Route path="/summaryOrder" element={<SummaryOrder />} />
-        <Route path="/addMenuEventType/:eventId" element={<AddMenuEventType />} />
-        <Route path="/addMenuEventType/:menuId/:type" element={<AddMenuEventType />} />
-        <Route path="foodType/:menuId/:foodTypeId" element={<FoodType />} />
-        <Route path="menu/:id/:date/:amount/:time" element={<Menu type={"new"}/>} />
-        <Route path="menu/:id/:date/:amount/:time/:orderId" element={<Menu type={"edit"}/>} />
+
+        {/* דף תפריט לפי אי די אירוע */}
+        <Route path="menuType/:id" element={<MenuType />} />
+
+        {/* הולכת לדף עם אי די אירוע וכמות המוזמנים המינימלית לבדיקה */}
         <Route
           path="orderDateAndAmount/:id/:min"
           element={<OrderDateAndAmount />}
         />
+
+        {/* ניגש לתפריט עם אי די אירוע תאריך כמות ושעה */}
+        <Route
+          path="menu/:id/:date/:amount/:time"
+          element={<Menu type={"new"} />}
+        />
+
+        {/* סיכום הזמנה */}
+       <Route path="/summaryOrder" element={<SummaryOrder />} />
+
+        {/* טופס הזמנה */}
+        <Route path="orderDetails" element={<OrderDetails />} />
+
+
+
+
+
+
+
+
+
+
+
+       {/* המלצות- חוות דעת */}
+       <Route path="recommendation" element={<Recommendation />} />
+       
+       צור קשר - משתמש
+       <Route path="contactUs" element={<ContactUs />} />
+       <Route path="login" element={<Login />} />
+
+
+       <Route path="menu/:id/:date/:amount/:time" element={<Menu type={"new"}/>} />
+        <Route path="menu/:id/:date/:amount/:time/:orderId" element={<Menu type={"edit"}/>} />
+
+        <Route path="/ordersUserList" element={<OrderUserList />} />
+        <Route path="/editEventType/:id" element={<AddEventType />} />
+        
+        <Route path="/addMenuEventType/:eventId" element={<AddMenuEventType />} />
+        <Route path="/addMenuEventType/:menuId/:type" element={<AddMenuEventType />} />
+        <Route path="foodType/:menuId/:foodTypeId" element={<FoodType />} />
+       
+       
         <Route path="menuType/:id" element={<MenuType />} />
         <Route path="home/eventsCatering" element={<Menu />} />
-        <Route path="orderDetails" element={<OrderDetails />} />
+        
         <Route path="about" element={<About />} />
-        <Route path="recommendation" element={<Recommendation />} />
-        <Route path="contactUs" element={<ContactUs />} />
-        <Route path="login" element={<Login />} />
+        
+        
+        
         <Route path="allFoods" element={<AllFoods />} />
         <Route path="contact" element={<ContactManager/>} />
 
-        {/* <Route path='ezorIshi' element={<Login/>}/> */}
+        <Route path='ezorIshi' element={<Login/>}/>
       </Routes>
     </div>
   );

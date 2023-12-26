@@ -1,0 +1,32 @@
+//1
+.divHomeImage {
+  height: 100vh;
+  background-image: url("../../../public/images/HomeImage.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  // opacity: 0.9;
+}
+
+.first-title {
+  color: white;
+  font-weight: bold;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 136px;
+  padding: 95px;
+}
+
+.second-title {
+  color: white;
+  font-weight: bold;
+  font-size: 30px;
+  margin-top: -115px;
+}
+
+//2
+.divallEvent {
+  display: inline-block;
+  //padding: 60px;
+  width: 30%;
+  margin-top: 130px;
+  //background-color: black;
+}

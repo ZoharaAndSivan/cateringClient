@@ -1,5 +1,6 @@
-import NavBar from "./NavBar"
-import "./About.scss"
+
+import "./ScssComponets/About.scss"
+import ContactUs from "./ContactUs"
 export default function About()
 {
     //<NavBar/>
@@ -56,6 +57,7 @@ export default function About()
             בזמן שאתם נהנים מהמנות 
             </div>
     </div>
+    <ContactUs/>
         </>
     )
 }

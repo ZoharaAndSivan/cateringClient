@@ -6,13 +6,13 @@ body {
  .div-Subnav{
     width:100%;
     background-color: black;
-    display: block;
+    //display: block;
  } 
   .div-Subnav ul {
     list-style-type: none;
     margin: 0;
     padding: 10px;
-    overflow: hidden;
+    //overflow: hidden;
     text-align: center;
     height: 100%;
   }
@@ -34,7 +34,7 @@ body {
   .sub-nav li {
     text-align: center;
     //float:right;
-    display: block;
+    //display: block;
     font-family: "Times New Roman", Times, serif;
     font-size: 50px;
     /* width: 123px; */
@@ -55,3 +55,6 @@ body {
     color: #bf9000;
   }
   
+.divvvvvvvvv2{
+  display:block;
+}

@@ -1,14 +1,40 @@
-#bigDivContactUs{
-    margin-top: 200px;
+// .div-contactUs{
+//   background-color: black;
+// }
+
+.h4-ContactUs {
+  font-size: 50px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-weight: bold;
+  padding: 20px;
+  margin: 50px;
 }
-#divForm{
-    border:1px solid;
-    //display:inline-block;
-    float:right;
-    margin-right: auto;
 
 
+
+
+.bigDivContactUs {
+  width: 60%;
+  height: 70vh;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-image: url("../../../public/images/שולחן מעוצב.jpg");
+  //background-image: url("../../public/images/רקע.jpg");
+  margin: 0px auto;
+  
 }
+
+.divForm {
+  border: 3px solid #deb887;
+  height: 100%;
+  padding: 100px;
+}
+
+#divNamePhone{
+  display:inline-block;
+}
+
+
 // form{
 //     //display: inline-block;
 //     float:right;
@@ -62,6 +88,5 @@
 // //  //border-color:green !important;
 // // //background-color: black !important;
 // // }
-
 
 // //MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-outlined css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root

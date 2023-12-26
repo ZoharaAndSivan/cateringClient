@@ -1,3 +1,7 @@
+import "./ScssComponets/Recommendation.scss";
+
+import StarBorderIcon from '@mui/icons-material/StarBorder';
+
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
 import PhoneInTalkIcon from '@mui/icons-material/PhoneInTalk';
@@ -7,38 +11,60 @@ import RoomServiceIcon from '@mui/icons-material/RoomService';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
-import StarBorderIcon from '@mui/icons-material/StarBorder';
+
 import { useSelector } from 'react-redux';
 import { FuncOpinion } from "../service/User";
-import "./Recommendation.scss";
-//npm install @mui/icons-material @mui/material @emotion/styled @emotion/react
+
+
+
 
 
 export default function recommendation() {
   
-  const AllRecommendation=FuncOpinion().then(x=>{
-    console.log(x.data);
- })
- .catch(err=>console.log(err));
-  console.log(AllRecommendation);
+
+//שליפת כל חוות הדעת
+//   const AllRecommendation=FuncOpinion().then(x=>{
+//     console.log(x.data);
+//  })
+//  .catch(err=>console.log(err));
+//   console.log(AllRecommendation);
 
 
   return (
-    <>
-    <h2>לקוחות ממליצים</h2>
-    <div id="star" style={{color:"yellow"}}>
-    <StarBorderIcon style={{height:"50px"}}/>
+    <> 
+   
+
+    <div className="divvvvvvvv">
+      
+    <h2  className="h2-reco">לקוחות ממליצים</h2>
+
+    <div className="star">
+    <StarBorderIcon />
     <StarBorderIcon/>
     <StarBorderIcon/>
     <StarBorderIcon/>
     <StarBorderIcon/>
     </div>
-     <div id="bigDiv">
-      <div>
-       <bottom>< KeyboardDoubleArrowRightIcon/></bottom>
-      </div>
-      
-      <div>
+
+    <br/>
+    <hr className="hr-reco"/>
+    </div>
+   
+        
+        <div  className="div-one-reco" style={{height:"90px"}}>
+sbvwxbsbxb 
+        </div>
+
+        <div className="div-one-reco" style={{height:"90px"}}>
+sbvwxbsbxb 
+        </div>
+
+        <div className="div-one-reco" style={{height:"90px"}}>
+sbvwxbsbxb 
+        </div>
+
+
+        <div>..........</div>
 
       
        {/* {AllRecommendation.length > 0 &&
@@ -50,15 +76,16 @@ export default function recommendation() {
             </div>
           );
         })} */}
-        </div>
+
 
 
 
 
        <div>
-       <bottom>< KeyboardDoubleArrowLeftIcon/></bottom>
+       {/* <bottom>< KeyboardDoubleArrowLeftIcon/></bottom> */}
         </div>
-    </div>
+   
+   
     </>
   );
 }
