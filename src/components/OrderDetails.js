@@ -77,6 +77,7 @@ export default function OrderDetails() {
     deleteOrder(editOrder.Id)
     .then(response => {
       console.log(response);
+      dispatch(saveEditOrder(null));
     })
     .catch(err => console.log(err))
   }
@@ -120,8 +121,8 @@ export default function OrderDetails() {
     };
     const details = { user: user2, order, menu };
     console.log(details);
+    console.log(editOrder)
     if (editOrder) {
-      dispatch(saveEditOrder(null));
       deleteOldOrder();
     }
     add(details);

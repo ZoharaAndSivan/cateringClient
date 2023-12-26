@@ -49,7 +49,7 @@ export default function MenuEvent({ type }) {
 
     getAllFoodByMenuId(id)
     .then((response) => {
-      setFood(response.data);
+      setFood(response.data.filter(x=>x.Active.data[0]==true));
       console.log(response.data)
     })
     .catch((err) => console.log(err));
