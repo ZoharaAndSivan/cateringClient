@@ -1,8 +1,8 @@
 import * as types from "../actionTypes";
 
 const initialState = {
-    //currentUser:null,
-     currentUser: {Id:4, FirstName:"Tehila", LastName:"Elkarif",Phone:"0547654545",Adress:"שדרות ירושלים 15",Email:"Tehila123@gmail.com", UserType:3},
+    currentUser:null,
+    //  currentUser: {Id:4, FirstName:"Tehila", LastName:"Elkarif",Phone:"0547654545",Adress:"שדרות ירושלים 15",Email:"Tehila123@gmail.com", UserType:3},
     users:[
         {id:1,firstName:"michal",lastName:"cohen",fhone:"0533177645",adress:"שדרות ירושלים 15",email:"michal@gmail.com",password:"1254"},
         {id:2,firstName:"hodaya",lastName:"levi",fhone:"0524875147",adress:"ויצמן 67",email:"hodaya@gmail.com",password:"48754"},
