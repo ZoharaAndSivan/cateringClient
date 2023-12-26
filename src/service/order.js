@@ -11,3 +11,11 @@ export const addOrder = (details) => {
 export const deleteOrder = (id) => {
     return axios.post("http://localhost:8080/orderRouter/deleteOrder"+ id)
 }
+
+export const getAllOrders = () => {
+    return axios.get("http://localhost:8080/orderRouter/getAllOrder");
+}
+
+export const changeIsClose = (id) => {
+    return axios.put("http://localhost:8080/orderRouter/UpdateIsClose/"+id);
+}

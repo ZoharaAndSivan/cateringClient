@@ -44,3 +44,20 @@
     transform: rotate(360deg);
   }
 }
+
+th, td{
+  text-align: right !important;
+  padding: 0 !important;
+  line-height: 1.43 !important;
+  height:  42px !important;
+}
+.css-j204z7-MuiFormControlLabel-root,
+.css-j204z7-MuiFormControlLabel-root,
+.css-j204z7-MuiFormControlLabel-root,
+.css-j204z7-MuiFormControlLabel-root {
+    margin:0 !important;
+}
+
+td .css-j204z7-MuiFormControlLabel-root .MuiFormControlLabel-label{
+  font-size: 13px !important;
+}

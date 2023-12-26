@@ -30,6 +30,7 @@ import ContactManager from "./components/ContactManager";
 import AllFoods from "./components/allFoodsManager/allFoods";
 import AddEventType from "./components/AddEventType";
 import AddMenuEventType from "./components/addMenuTypeEventType/AddMenuEventType";
+import OrderManagerList from "./components/OrderManagerList";
 function App() {
   const dispatch = useDispatch();
 
@@ -72,6 +73,7 @@ function App() {
       {/* <Register/> */}
       {/* <Login/> */}
 {/*<AllFoods/>*/}
+<OrderManagerList/>
       {/* תגית שעוטפת את כל הניתובים */}
       <Routes>
         {/* ניתוב לכל קומפוננטה */}
