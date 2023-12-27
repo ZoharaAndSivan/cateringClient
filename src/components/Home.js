@@ -25,7 +25,10 @@ import SubNavBar from "./SubNavBar";
 
 
 export default function Home() {
+<<<<<<< Updated upstream
   const dispatch = useDispatch();
+=======
+>>>>>>> Stashed changes
   //שולף מהרדיוסר את טבלת סוגי אירועים
   const eventsTypes = useSelector((state) => state.catering.eventsTypes);
   const [eventArr, setEventArr] = useState([]);

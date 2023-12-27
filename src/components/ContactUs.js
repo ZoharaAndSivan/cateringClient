@@ -55,7 +55,14 @@ export default function ContactUs() {
 
   return (
     <>
+<<<<<<< Updated upstream
     <div className="div-contactUs">
+=======
+      <form onSubmit={handleSubmit(onSubmit)}>
+      <br></br>
+      <br></br>
+        <h2>צור קשר</h2>
+>>>>>>> Stashed changes
 
       <h4 className="h4-ContactUs">בואו נתכנן את האירוע המושלם שלכם!!!</h4>
 

@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import ResponsiveAppBar from "./Avatar";
 import "./ScssComponets/NavBar.scss";
 
+<<<<<<< Updated upstream
 const NavBar = () => {
   const navigate = useNavigate();
   const [arr, setArr] = useState([]);
@@ -12,6 +13,13 @@ const NavBar = () => {
       user: state.user.currentUser,
     };
   }, shallowEqual);
+=======
+        <nav className="">
+            <ul className="">
+                
+            <img  id="logoImage" src="../../images/logo.JPG.jpg"/>
+                <li ><Link to="home">בית  |</Link></li>
+>>>>>>> Stashed changes
 
   useEffect(() => {
     setArr([
