@@ -20,8 +20,10 @@ import AddEventType from "./AddEventType";
 export default function EventType({ eventType, updateEvent, deleteEvent }) {
   const navigate = useNavigate();
   const [flag, setFlag] = useState(false);
+  //עריכה
   const [isEdit, setIsEdit] = useState(false);
   const [name, setName] = useState(eventType.Name);
+  //שליפת משתמשים
   const currentUser = useSelector((state) => state.user.currentUser);
 
   const update = () => {
@@ -68,6 +70,7 @@ export default function EventType({ eventType, updateEvent, deleteEvent }) {
             />
           ) : (
             // משתמש
+            //שם אירוע
             <div className="eventName" style={{color:"rgb(142, 110, 51)", fontSize:"35px", cursor:"pointer"}}
               onClick={() => {
                 navigate("/menuType/" + eventType.Id);

@@ -80,7 +80,7 @@ function App() {
       {/* <Login/> */}
       {/* תגית שעוטפת את כל הניתובים */}
       <Routes>
-        ניתוב לכל קומפוננטה
+        {/* ניתוב לכל קומפוננטה */}
         {/* דף הבית */}
         <Route path="/" element={<Home />} />
         <Route path="home/" element={<Home />} />

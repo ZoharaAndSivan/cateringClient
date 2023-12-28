@@ -1,4 +1,13 @@
 import * as types from "../actionTypes";
+import axios from "axios";
+
+
+
+
+export const getOpinionsByAttrctionId=()=>{
+    return axios.get("http://localhost:8080/opinionRouter/getAllOpinion")
+
+}
 
 //פונקצייה שמחזירה את סוג הפעולה ואת האובייקט 
 export const saveUser = (user) => {

@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import ResponsiveAppBar from "./Avatar";
 import "./ScssComponets/NavBar.scss";
 
+
+import "./ScssComponets/Avatar.scss";
 const NavBar = () => {
   const navigate = useNavigate();
   const [arr, setArr] = useState([]);
@@ -53,9 +55,12 @@ const NavBar = () => {
             });
           })}
 
-           
+
+           <div className="user-login">
+            
+            
             <ResponsiveAppBar />
-          
+          </div>
         </ul>
       </nav>
     </div>

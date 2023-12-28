@@ -22,18 +22,27 @@ export default function MenuEvent({ type }) {
   //מקבלת אי די לפי שורת יו אר אל
   const { id, date, amount, time } = useParams();
   const navigate = useNavigate();
+  //אירוע
   const [event, setEvent] = useState(null);
+  //מאכל
   const [food, setFood] = useState([]);
+  //סוג מאכל
   const [foodTypeId, setFoodTypeId] = useState(1);
+  //סוגי תפריטים לאירוע
   const [menuEvent, setMenuEvent] = useState([]);
+  //תפריט
   const [menu, setMenu] = useState([]);
   //שליפה
   const { eventsType, menuTypes, menusEvents, editOrder } = useSelector(
     (state) => {
       return {
+        //סוגי אירועים
         eventsType: state.catering.eventsTypes,
+        //סוגי תפריטים
         menuTypes: state.catering.menuTypes,
+        //סוגי תפריטים לאירוע
         menusEvents: state.catering.menusEvents,
+        //עריכת הזמנה
         editOrder: state.order.editOrder,
       };
     },
@@ -41,12 +50,16 @@ export default function MenuEvent({ type }) {
   );
 
   useEffect(() => {
+    //סוגי תפריטים לאירועים
+    //שליפת כל סוגי התפריטים לאירוע שנבחר
     setEvent(menusEvents.find((x) => x.Id == id)); //מחזיר אובייקט
+    //שליפת כל הפריטיםם של סוג התפריט שנבחר
     let arr = menuTypes.filter((x) => x.MenuId == id);
     arr = arr.map((obj) => ({ ...obj, AmountChosen: 0 }));
     setMenuEvent(arr); //מחזיר מערך
     console.log(arr, "lllllllllllll");
 
+    //שליפת המאכלים
     getAllFoodByMenuId(id)
     .then((response) => {
       setFood(response.data.filter(x=>x.Active.data[0]==true));
@@ -75,6 +88,7 @@ export default function MenuEvent({ type }) {
     setMenuEvent(arr);
   };
 
+  //בדיקה אם לא עבר את הכמות המותרת
   const isPossible = (item) => {
     const x = menuEvent.find((x) => x.FoodTypeId.Id == item.FoodTypeId);
     console.log(x, parseInt(x.Amount), parseInt(x.AmountChosen), "oooooooo");
@@ -89,11 +103,13 @@ export default function MenuEvent({ type }) {
     }
   };
 
+  //מחיקת נממאכל מהתפריט האישי
   const deleteFood = (item) => {
     if (menu.find((x) => x.Id == item.Id)) {
       let arr = [...menu];
       arr = arr.filter((x) => x.Id != item.Id);
       setMenu(arr);
+    //מורידה בכמות בתצוגה
       changeChosenAmount(-1, item.FoodTypeId);
     }
   };
@@ -121,10 +137,11 @@ export default function MenuEvent({ type }) {
 
   return (
     <>
+    {/* בזמן עריכה */}
     {editOrder && <DisplayOrderProducts order={editOrder} food={food}/>}
 
       <div className="row">
-        <div className="containers" style={{ width: "20%" }}>
+        <div className="containers" style={{ width: "20%",border:" black 1px solid" }}>
 
           {/* כמות מוזמנים ותאריך */}
           <div>
@@ -138,6 +155,7 @@ export default function MenuEvent({ type }) {
 
 
           <h5> מסלול קיטרניג מחיר לסועד </h5>
+          {/* עוברת על סוגי המאכלים של התפריט שנבחר */}
           {menuEvent.map((item) => (
             <div key={item.Id}>
               <CategoryList
@@ -158,7 +176,7 @@ export default function MenuEvent({ type }) {
 
 
        {/* רשימת קטגוריות */}
-        <div className="sideNavBar" style={{ width: "15%" }}>
+        <div className="sideNavBar" style={{ width: "15%",border:" black 1px solid" }}>
           <SideNavBar
             menuEvent={menuEvent}
             setFoodTypeId={setFoodTypeId}
@@ -166,7 +184,7 @@ export default function MenuEvent({ type }) {
           />
         </div>
         
-        <div   className="containers" style={{ width: "60%"}}>
+        <div   className="containers" style={{ width: "60%" ,border:" black 1px solid"}}>
           <FoodType
          
             menuId={id} 

@@ -41,7 +41,7 @@ const schema = yup
   .required();
 
 export default function AddEventType({id}) {
-//   const { id } = useParams();
+  //  const { id } = useParams();
   const dispatch = useDispatch();
   const eventsTypes = useSelector((state) => state.catering.eventsTypes);
   const [event, setEvent] = React.useState(null);

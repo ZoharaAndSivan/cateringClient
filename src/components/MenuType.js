@@ -12,15 +12,20 @@ import { Button } from "@mui/material";
 import ContactUs from "./ContactUs";
 
 export default function MenuType() {
+  //אידי סוג אירוע
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const [menusTypes, setMenuTypes] = useState([]);
   const [event, setEvent] = useState(null);
   const {menusEvents, eventsTypes, user}  = useSelector((state) => {
     return{
+      //תפריטי אירועים
       menusEvents: state.catering.menusEvents,
+      //סוגי אירועים
       eventsTypes: state.catering.eventsTypes,
+      //משתמשים
       user: state.user.currentUser
     }
   },shallowEqual);
@@ -29,6 +34,7 @@ export default function MenuType() {
     //שולף את כל סוגי התפריטים של אירוע מסוים שנבחר
     const arr = menusEvents.filter((x) => x.EventId == id && x.Active.data[0]==true);
     setMenuTypes(arr);
+    //האירוע שנבחר
     setEvent(eventsTypes.find(x=>x.Id==id));
   }, [id]);
 
@@ -76,10 +82,11 @@ export default function MenuType() {
     {/* <div style={{height:"50px"}}></div> */}
    
     <div  className="bigDivType">
-    
+    {/* מנהל */}
     {user?.UserType==1 && <Button variant="contained" onClick={addMenuEvent}> הוסף תפריט </Button>}
     
       <div className="row">
+        {/* סוגי תפריטים */}
         {menusTypes.length>0 && menusTypes.map((item) => (
           <>
           <div key={item.id} className="containers">

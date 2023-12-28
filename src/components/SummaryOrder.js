@@ -11,6 +11,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import ClearIcon from "@mui/icons-material/Clear";
 import { Button } from "@mui/material";
 import "./ScssComponets/SummaryOrder.scss"; 
+import { Padding } from "@mui/icons-material";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -31,6 +32,20 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     border: 0,
   },
 }));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function createData(id, category, name, price, amount, total) {
   return { id, category, name, price, amount, total };
@@ -131,6 +146,8 @@ export default function SummaryOrder() {
     }
     orderRows(x);
   };
+
+  //הדפסת תפריט
   const handlePrint = () => {
     const content = contentRef.current;
     if (content) {
@@ -207,9 +224,13 @@ export default function SummaryOrder() {
       
           <h3> סה"כ   : {price.toLocaleString()} ₪</h3> 
           <Button variant="contained" onClick={handlePrint}>הדפסת הזמנה</Button>
+          <br/>
+          <br/>
+          <br/>
           {!type && (
         <>
           <Button
+          
             variant="contained"
             onClick={() =>
               navigate("/orderDetails", {

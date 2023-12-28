@@ -16,6 +16,7 @@ const OrderDateAndAmount = () => {
   const [time, setTime] = useState(null);
   const [amount, setAmount] = useState(null);
 
+//עריכת הזמנה
   const editOrder = useSelector((state) => state.order.editOrder);
 
   useEffect(() => {
@@ -71,6 +72,7 @@ const OrderDateAndAmount = () => {
             id="outlined-basic"
             variant="outlined"
             type="date"
+            //ברירת מחדל בעת עריכת הזמנה
             defaultValue={
               editOrder
                 ? new Date(editOrder.EventDate).toISOString().split("T")[0]
