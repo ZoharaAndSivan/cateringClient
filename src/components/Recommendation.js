@@ -35,7 +35,8 @@ export default function recommendation() {
    
 
     <div className="divvvvvvvv">
-      
+
+       <br/>
     <h2  className="h2-reco">לקוחות ממליצים</h2>
 
     <div className="star">
@@ -52,15 +53,31 @@ export default function recommendation() {
    
         
         <div  className="div-one-reco" style={{height:"90px"}}>
-sbvwxbsbxb 
+         היה לנו העונג לעבוד עם  Delishes לחתונה שלנו
+        <br/>
+        הצוות היה מקצועי ועשה  הכול
+      
+         להבטיח שכל אורח יהיה מרוצה.
+        <br/>
+        אנחנו ממליצים  על  Delishes לכל אירוע.
         </div>
 
         <div className="div-one-reco" style={{height:"90px"}}>
-sbvwxbsbxb 
+        לא מזמן שכרנו את  Delishes לבר מצווה של הבן שלנו 
+        <br/>
+       
+        האורחים שלנו התרשמו, האוכל היה מדהים 
+        <br/> וקיבלנו מחמאות רבות על האוכל והשירות.
         </div>
 
         <div className="div-one-reco" style={{height:"90px"}}>
-sbvwxbsbxb 
+         ערכנו לאחרונה את האירוסין שלנו 
+          ולא יכולנו להיות מרוצים יותר
+          <br/>
+          האורחים שלנו התלהבו מהאוכל
+           והשירות היה יוצא דופן.
+           <br/>
+           אנו ממליצים עליהם בחום.
         </div>
 
 
