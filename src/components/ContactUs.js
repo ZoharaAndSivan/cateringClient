@@ -51,6 +51,8 @@ export default function ContactUs() {
 
   const onSubmit = (data) => {
     console.log(data);
+    //הוספת צור קשר
+
   };
 
   return (

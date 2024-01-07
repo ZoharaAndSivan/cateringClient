@@ -6,6 +6,12 @@ export default function About()
     //<NavBar/>
     return(
         <>
+<div className="divupabout">
+
+    <p className="p_about">קצת עלינו</p>
+    {/* <img /> */}
+</div>
+
     <div style={{height:"100px"}}></div>
     <div id="bigDivAbout">
     <div className="divAbout" >
