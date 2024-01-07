@@ -6,11 +6,8 @@ import { useDispatch } from "react-redux";
 import { saveUser } from "../store/action/user";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 //קומפוננטת התחברות
-
-
-
-
 
 export default function Login() {
   let {
@@ -19,7 +16,7 @@ export default function Login() {
     formState: { isValid, errors },
   } = useForm({ mode: "all" });
   const dispatch = useDispatch();
- const nav = useNavigate();
+  const nav = useNavigate();
 
   //פונקצייה שמקבלת את הנתונים שהמשתמש הקליד בתוך תיבת טקסט
   const save = (details) => {
@@ -29,7 +26,13 @@ export default function Login() {
       .then((res) => {
         console.log(res.data);
         dispatch(saveUser(res.data.user));
-        nav("/");
+        if (res.data.user) nav("/");
+        else
+          Swal.fire({
+            title: "אופס...",
+            text: "שם משתמש או סיסמא שגויים",
+            icon: "warning",
+          });
       })
       .catch((err) => console.log(err));
   };
@@ -119,11 +122,10 @@ export default function Login() {
             )}
           </div>
           <br />
-          <Button
-            variant="contained"
-            type="submit"
-            disabled={!isValid}
-          > התחבר </Button>
+          <Button variant="contained" type="submit" disabled={!isValid}>
+            {" "}
+            התחבר{" "}
+          </Button>
         </form>
       </div>
     </>

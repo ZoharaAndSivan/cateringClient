@@ -16,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 const OrderManagerSingle = ({ row, isItemSelected }) => {
   const navigate = useNavigate();
   const [checked, setChecked] = useState(row.IsClose.data[0]);
+  const [isClose, setIsClose] = useState(row.IsClose.data[0]);
   const [flag, setFlag] = useState(false);
   const [menu, setMenu] = useState([]);
   const [event, setEvent] = useState();
@@ -48,6 +49,8 @@ const OrderManagerSingle = ({ row, isItemSelected }) => {
     changeIsClose(row.Id)
       .then((res) => {
         console.log(res.data);
+        setChecked(!checked)
+        setIsClose(true)
       })
       .catch((err) => console.log(err));
   };
@@ -98,7 +101,7 @@ const OrderManagerSingle = ({ row, isItemSelected }) => {
       <TableCell align="right">{row.Note}</TableCell>
       <TableCell align="right">{row.FullPrice.toLocaleString()}</TableCell>
       <TableCell>
-        {checked ? (
+        {isClose ? (
           <>הזמנה אושרה</>
         ) : !flag ? (
           <Poppers

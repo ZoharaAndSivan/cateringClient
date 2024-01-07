@@ -28,6 +28,7 @@ import SearchButton from "./SearchButton";
 import Swal from "sweetalert2";
 import { getAllOrders } from "../service/order";
 import OrderManagerSingle from "./OrderManagerSingle";
+import { useLocation } from "react-router-dom";
 
 function createData(
   Id,
@@ -338,15 +339,19 @@ export default function AllFoods() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const location = useLocation();
+  const {orders} = location.state || {};
   const dispatch = useDispatch();
   React.useEffect(() => {
-    getAllOrders()
-      .then((res) => {
-        setOrdersArr(res.data);
-        console.log(res.data);
-        doArr(res.data)
-      })
-      .catch((err) => console.log(err));
+    setOrdersArr(orders);
+    doArr(orders);
+    // getAllOrders()
+    //   .then((res) => {
+    //     setOrdersArr(res.data);
+    //     console.log(res.data);
+    //     doArr(res.data)
+    //   })
+    //   .catch((err) => console.log(err));
   }, []);
 console.log(rows)
 //   useEffect(() => {

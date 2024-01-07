@@ -37,6 +37,7 @@ import AllFoods from "./components/allFoodsManager/allFoods";
 import AddEventType from "./components/AddEventType";
 import AddMenuEventType from "./components/addMenuTypeEventType/AddMenuEventType";
 import OrderManagerList from "./components/OrderManagerList";
+import Calender from "./components/calender/Calender";
 function App() {
   const dispatch = useDispatch();
 
@@ -78,6 +79,7 @@ function App() {
       {/* <Menu/> */}
       {/* <Register/> */}
       {/* <Login/> */}
+      {/* <Calender/> */}
       {/* תגית שעוטפת את כל הניתובים */}
       <Routes>
         {/* ניתוב לכל קומפוננטה */}
@@ -120,7 +122,8 @@ function App() {
        <Route path="menu/:id/:date/:amount/:time" element={<Menu type={"new"}/>} />
         <Route path="menu/:id/:date/:amount/:time/:orderId" element={<Menu type={"edit"}/>} />
 
-        <Route path="/ordersUserListForManger" element={<OrderManagerList />} />
+        <Route path="/ordersUserList" element={<OrderManagerList />} />
+        <Route path="/ordersUserListForManger" element={<Calender />} />
         <Route path="/ordersUserList" element={<OrderUserList />} />
         <Route path="/editEventType/:id" element={<AddEventType />} />
         
