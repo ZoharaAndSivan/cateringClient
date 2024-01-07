@@ -21,6 +21,7 @@ import { Logout } from "@mui/icons-material";
 import PersonIcon from "@mui/icons-material/Person";
 import { ListItemIcon } from "@mui/material";
 import { logOut } from "../store/action/user";
+import "./ScssComponets/Avatar.scss";
 
 function ResponsiveAppBar() {
   const navigate = useNavigate();
@@ -60,12 +61,12 @@ function ResponsiveAppBar() {
         role: [3],
         icon: <ShoppingBasketIcon fontSize="small" />,
       },
-      {
-        to: "/allFoods",
-        name: "כל המאכלים",
-        role: [1],
-        icon: <DinnerDiningIcon fontSize="small" />,
-      },
+      // {
+      //   to: "/allFoods",
+      //   name: "כל המאכלים",
+      //   role: [1],
+      //   icon: <DinnerDiningIcon fontSize="small" />,
+      // },
       {
         to: "/ordersUserListForManger",
         name: "הזמנות",
@@ -121,7 +122,7 @@ function ResponsiveAppBar() {
                       handleCloseUserMenu();
                       navigate(`${x.to}`);
                     }}
-                  >
+                  > 
                     {x.icon} {x.name}
                   </MenuItem>
                 );
@@ -133,7 +134,9 @@ function ResponsiveAppBar() {
                 navigate(`/login`);
               }}
             >
+              
               <PersonIcon fontSize="small" /> התחברות
+            
             </MenuItem>
           }
 

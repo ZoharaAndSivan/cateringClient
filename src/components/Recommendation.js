@@ -1,4 +1,4 @@
-import "./ScssComponets/Recommendation.scss";
+//import "./ScssComponets/Recommendation.scss";
 
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 
@@ -19,10 +19,87 @@ import { FuncOpinion } from "../service/User";
 
 
 
+// import SingleOpinion from "./SingleOpinion";
+// import { getOpinionsByAttrctionId } from "../store/action/user";
+// import { useEffect, useState } from "react";
+// import { Fragment } from "react";
+
+// const Opinions = ({ attractionId }) => {
+//     const [opinionsArr, setOpioniosArr] = useState([]);
+//     useEffect(() => {
+//         getOpinionsByAttrctionId(attractionId)
+//             .then(x => setOpioniosArr(x.data))
+//             .catch(err => console.log(err))
+//     }, [attractionId]);
+
+//     return (<Fragment>
+//         <div className="opinions-list">
+//             {opinionsArr.length > 0 && opinionsArr.map(item => {
+//                 return <div key={item.Id} className="container-opinion">
+//                     <SingleOpinion opinion={item} />
+//                 </div>
+//             })}
+//         </div>
+//     </Fragment>);
+// }
+
+// export default Opinions;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export default function recommendation() {
   
 
-//שליפת כל חוות הדעת
+// שליפת כל חוות הדעת
 //   const AllRecommendation=FuncOpinion().then(x=>{
 //     console.log(x.data);
 //  })

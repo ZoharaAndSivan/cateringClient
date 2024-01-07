@@ -12,7 +12,9 @@ export default function MenuTypeSingle({ menu, deleteMenuType }) {
   const navigate = useNavigate();
   const { menuTypes, user } = useSelector((state) => {
     return {
+      //סוגי תפריטים
       menuTypes: state.catering.menuTypes,
+      //משתמשים
       user: state.user.currentUser,
     };
   }, shallowEqual);
@@ -54,6 +56,7 @@ export default function MenuTypeSingle({ menu, deleteMenuType }) {
         })}
       </div>
 
+        {/* כפתור להזמנת תפריט */}
       <Button className="buttonOrder"
         variant="contained"
         onClick={() =>
@@ -62,6 +65,7 @@ export default function MenuTypeSingle({ menu, deleteMenuType }) {
       >
         הזמן
       </Button>
+      {/* מנהל */}
       {user?.UserType==1 && <><DeleteIcon onClick={() => deleteMenuType(menu)} />
       <EditIcon  onClick={() => navigate(`/addMenuEventType/${menu.Id}/edit`)}/>
       </>}

@@ -36,19 +36,20 @@ const DisplayOrderProducts = ({ order, food }) => {
             <span className="ps-2">{item.options[0].TypeName} :</span>
             {item.options.map((product) => (
               <li
-                className="ms-3"
-                style={{
-                  backgroundColor: food.find((x) =>
-                    x.Id == product.Id) ? "yellow" : "red"
+                // className="ms-3"
+                // style={{
+                //   color: food.find((x) =>
+                //     x.Id == product.Id) ? "brown" : "red"
                   
-                }}
+                // }}
               >
-                💮 {product.Name}.
+                {/* 💮 {product.Name}. */}
+                 {product.Name}.
               </li>
             ))}
           </ul>
         ))}
-        <p> *.צבע צהוב- מאכלים שקיימים בתפריט הנ"ל.  צבע אדום - מאכלים שאינם קיימים בתפריט הנ"ל </p>
+        {/* <p> *.צבע חום- מאכלים שקיימים בתפריט הנ"ל.  צבע אדום - מאכלים שאינם קיימים בתפריט הנ"ל </p> */}
     </div>
   );
 };

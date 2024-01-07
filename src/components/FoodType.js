@@ -18,14 +18,23 @@ export default function FoodType({
 
 
   return (
+    <>
     <div className="row">
       {food.map((item) => {
+        // מאכלים לפי סוגים
         if (item.FoodTypeId == foodTypeId)
           return (
+       
             <div key={item.Id} className="containers">
-              
-             
+
+              {/* תמונה */}
+              {/* {item.Image} */}
+              {/* {console.log(item.Image)};
+              <img src={`../../images/salatim/${item.Image}`} />
+             <img src={`../../public/images/salatim/${item.Image}`}/>
+             <img src="../../images/salatim/חציל באלדי טחינה.jpg"/> */}
               <h5>
+                {/* מחיר בתוספת */}
                 {item.Price != 0 && <span>*</span>}
                 {item.Name}
               </h5>
@@ -54,5 +63,6 @@ export default function FoodType({
           );
       })}
     </div>
+    </>
   );
 }

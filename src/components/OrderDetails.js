@@ -18,7 +18,9 @@ export default function OrderDetails() {
     location.state || {};
   const { user, editOrder } = useSelector((state) => {
     return {
+      //משתמשים
       user: state.user.currentUser,
+      //עריכת הזמנה
       editOrder: state.order.editOrder,
     };
   }, shallowEqual);
@@ -57,6 +59,10 @@ export default function OrderDetails() {
     resolver: yupResolver(schema),
     defaultValues: { user, editOrder },
   });
+
+
+
+  
 
   useEffect(() => {
     if (editOrder || user) {

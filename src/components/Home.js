@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 
-
 import { updateActiveEventType, updateEventType } from "../service/event";
 import { updateEventsType } from "../store/action/event";
 
@@ -106,8 +105,8 @@ export default function Home() {
             <div key={item.id} className="divallEvent">
               <EventType
                 eventType={item}
-                // deleteEvent={deleteEvent}
-                // updateEvent={updateEvent}
+                 deleteEvent={deleteEvent}
+                 //updateEvent={updateEvent}
               />
             </div>
           );
@@ -115,14 +114,14 @@ export default function Home() {
 
       <br/>
       <br/>
-      <Recommendation/>
+      {/* <Recommendation/> */}
       <br/>
       <br/>
       <ContactUs/>
       <br/>
 
       
-<SubNavBar/>
+{/* <SubNavBar/> */}
       {/* <div>
         <AddEventType />
       </div> */}

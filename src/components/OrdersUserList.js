@@ -3,17 +3,21 @@ import { deleteOrder, getAllOrdersByUserId } from "../store/action/order";
 import { shallowEqual, useSelector } from "react-redux";
 import OrderUserSingle from "./OrderUserSingle";
 import Swal from "sweetalert2";
+import "./ScssComponets/OrderUserList.scss";
 
 const OrderUserList = () => {
+  //רשימת הזמנות
   const [ordersList, setOrdersList] = useState([]);
 
   const { user } = useSelector((state) => {
     return {
+    //שליפת משתמש מחובר
       user: state.user.currentUser,
     };
   }, shallowEqual);
 
   useEffect(() => {
+    //שליפת כל ההזמנות לפי אידי משתמש
     getAllOrdersByUserId(user.Id)
       .then((response) => {
         console.log(response.data);

@@ -7,6 +7,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import RemoveCircleOutlineRoundedIcon from '@mui/icons-material/RemoveCircleOutlineRounded';
 
 const CategoryList = ({ category, menu, deleteFood }) => {
+  // אפשרות לראות את הבחירות של המאכלים תחת קטגוריות
     const [isMore, setIsMore] = useState(true);
   return (
     <>
@@ -18,6 +19,7 @@ const CategoryList = ({ category, menu, deleteFood }) => {
         </span>
       </div>
 
+      {/* אפשרות למחיקה מהתפריט */}
       {menu.length > 0 && isMore &&
         menu.map((itemMenu) => {
           if (itemMenu.FoodTypeId == category.FoodTypeId.Id)
