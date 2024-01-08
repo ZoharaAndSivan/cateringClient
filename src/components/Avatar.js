@@ -77,8 +77,8 @@ function ResponsiveAppBar() {
         to: "/statistics",
         name: "סטטיסטיקות",
         role: [1],
-        icon: <BarChartIcon fontSize="small" />,
-
+        icon: <BarChartIcon fontSize="small" />
+      },
       {
         to: "/ContactManager",
         name: "יצירת קשר",
