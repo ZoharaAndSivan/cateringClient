@@ -2,32 +2,53 @@
 //   background-color: black;
 // }
 
+.contactImage{
+  background-image: url("../../../public/images/r2.jpg");
+  background-repeat: no-repeat;
+ background-size: 100% 220%;
+ height:500px;
+ margin-top: -8px;
+}
+
 .h4-ContactUs {
-  font-size: 50px;
   font-family: Georgia, "Times New Roman", Times, serif;
   font-weight: bold;
   padding: 20px;
-  margin: 50px;
+  background-color:black;
+  color: #886d1dd4;
+  font-size: 42px;
 }
 
 
 
-
+.contact-image{
+  display:inline-block;
+  background-color:black;
+  height:80px;
+  width:50%;
+} 
 .bigDivContactUs {
-  width: 60%;
-  height: 70vh;
+  width: 50%;
+  //height: 70vh;
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  background-image: url("../../../public/images/שולחן מעוצב.jpg");
+  //background-image: url("../../../public/images/שולחן מעוצב.jpg");
   //background-image: url("../../public/images/רקע.jpg");
-  margin: 0px auto;
-  
+  margin: 0px auto; 
+  //display:inline-block;
+  margin-top: -504px;
+    margin-right: 760px;
 }
 
 .divForm {
-  border: 3px solid #deb887;
+  // border: 3px solid black;
+  // background-color: #976b2c;
+  
+  // height: 100%;
+  // padding: 100px;
+
   height: 100%;
-  padding: 100px;
+  padding: 39px;
 }
 
 #divNamePhone{

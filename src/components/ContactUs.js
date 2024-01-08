@@ -3,11 +3,13 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import "./ScssComponets/ContactUs.scss";
+import { useNavigate} from "react-router-dom";
+import { AddContact } from "../service/User";
 
 
 import { Button, TextField } from "@mui/material";
 import { useState } from "react";
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+//import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useSelector } from "react-redux";
 
@@ -18,6 +20,9 @@ import { useSelector } from "react-redux";
 
 
 export default function ContactUs() {
+  const navigate = useNavigate();
+
+  
   const schema = yup
     .object({
       FullName: yup.string().required("שדה זה חובה"),
@@ -52,14 +57,27 @@ export default function ContactUs() {
   const onSubmit = (data) => {
     console.log(data);
     //הוספת צור קשר
-
+    AddContact(data)
+      .then((response) => {
+        Swal.fire({
+          title: "נשלח בהצלחה!", 
+          text: "ניצור איתך קשר בהקדם ",
+          icon: "success",
+          confirmButtonText: "סיים",
+        }).then((result) => {
+          navigate("/");
+        });
+      })
+      .catch((err) => console.log(err));
+    
   };
 
   return (
     <>
+    {/* <br/> */}
+ <h4 className="h4-ContactUs">בואו נתכנן את האירוע שלכם!!!</h4>
+    <div className="contactImage"></div>
     <div className="div-contactUs">
-
-      <h4 className="h4-ContactUs">בואו נתכנן את האירוע המושלם שלכם!!!</h4>
 
       <div className="bigDivContactUs">
         <div className="divForm">
@@ -154,6 +172,8 @@ export default function ContactUs() {
           </form>
         </div>
       </div>
+
+      {/* <div className="contact-image"></div> */}
       <br />
       {/* <div       style={{border:"1px solid",backgroundColor:"black",height:"500px"}}
 ></div> */}

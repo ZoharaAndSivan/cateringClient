@@ -1,6 +1,6 @@
 
 import "./ScssComponets/About.scss"
-import ContactUs from "./ContactUs"
+//import ContactUs from "./ContactUs"
 export default function About()
 {
     //<NavBar/>
@@ -15,7 +15,7 @@ export default function About()
     <div style={{height:"100px"}}></div>
     <div id="bigDivAbout">
     <div className="divAbout" >
-    <h2>קצת עלינו</h2>
+    
     <p>delishes המקום שבו טעמים משובחים וחויה קולינרית מוקפדת ומקורית נפגשים יחד.
         <br/>
         delishes גאים במתן שירותי קייטרינג כשר עם מגע של אלגנטיות ומקצועיות מסורה. עם שנים של ניסיון בתעשייה, שלטנו באמנות של מתן חוויות קולינריות יוצאות דופן המותירות רושם מתמשך על לקוחותינו ואורחיהם 
@@ -23,14 +23,15 @@ export default function About()
         אנו עומדים לרשותכם בכל זמן.
     </p>
     </div>
-    <div id="divAboutImg"  className="divAbout">
+    {/* <div id="divAboutImg"  className="divAbout">
      <img id="aboutImg" src="../../images/שבע ברכות.jpg"/>
-    </div >
+    </div > */}
     </div>
-    <hr/>
+    {/* <hr/> */}
     <br/>
-    <div style={{height:"100px"}}></div>
+    <div style={{height:"50px"}}></div>
     <div id="divAboutColumn">
+        
         <div className="aboutColumn">
             <img className="vImage" src="../../images/v.svg"/>
             <h5>אוכל טרי</h5>
@@ -62,7 +63,7 @@ export default function About()
         אצלנו מקפידים על תעודת כשרות מהודרת, והכל כשר למהדרין כבר ברכישת חומרי הגלת בכל שלבי ההכנה בזמן שאתם נהנים מהמנות.
             </div>
     </div>
-    <ContactUs/>
+    
         </>
     )
 }

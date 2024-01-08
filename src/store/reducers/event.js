@@ -16,10 +16,10 @@ const initialState = {
   food: [
     { Id: 1, Name: "סלמון", Price: 5, IsActive: true, FoodTypeId: 3 },
     { Id: 2, Name: "דג", Price: 0, IsActive: true, FoodTypeId: 3 },
-    { Id: 3, Name: "לחם", Price: 0, IsActive: true, FoodTypeId: 2 },
+    { Id: 3, Name: "לחם", Price: 0, IsActive: true, FoodTypeId: 2 },   
     { Id: 4, Name: "כרוב", Price: 0, IsActive: true, FoodTypeId: 1 },
   ],
-  //אירוע נבחר
+  //אירוע נבחר  
   currentEvent: null,
 };
 

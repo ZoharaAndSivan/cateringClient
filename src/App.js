@@ -25,6 +25,8 @@ import SummaryOrder from "./components/SummaryOrder";
 import OrderDateAndAmount from "./components/OrderDateAndAmount";
 import OrderDetails from "./components/OrderDetails";
 
+
+
 import OrderUserList from "./components/OrdersUserList";
 import { getEventsType, getMenuEvents, getMenuTypes } from "./service/event";
 import {
@@ -127,6 +129,9 @@ function App() {
         <Route path="/ordersUserList" element={<OrderUserList />} />
         <Route path="/editEventType/:id" element={<AddEventType />} />
         
+
+        <Route path="/ContactManager" element={<ContactManager />} />
+
         <Route path="/addMenuEventType/:eventId" element={<AddMenuEventType />} />
         <Route path="/addMenuEventType/:menuId/:type" element={<AddMenuEventType />} />
         <Route path="foodType/:menuId/:foodTypeId" element={<FoodType />} />

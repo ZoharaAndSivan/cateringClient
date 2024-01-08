@@ -46,8 +46,10 @@ export default function EventType({ eventType, updateEvent, deleteEvent }) {
 
   return (
     <>
-    {/* //תמונה */}
+
     <Card sx={{ maxWidth: 400 }}>
+
+      {/* תמונת אירוע */}
       <CardMedia 
         sx={{ height: 200 }}
         image={`../../images/eventImages/${eventType.Image}`}
@@ -57,10 +59,11 @@ export default function EventType({ eventType, updateEvent, deleteEvent }) {
           navigate("/menuType/" + eventType.Id);
         }}
       />
+
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
+          {/* עריכה */}
           {isEdit ? (
-            // מנהל
             <TextField
               id="outlined-basic"
               label="שם אירוע"
@@ -70,6 +73,7 @@ export default function EventType({ eventType, updateEvent, deleteEvent }) {
             />
           ) : (
             // משתמש
+            
             //שם אירוע
             <div className="eventName" style={{color:"rgb(142, 110, 51)", fontSize:"35px", cursor:"pointer"}}
               onClick={() => {

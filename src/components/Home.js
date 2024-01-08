@@ -11,9 +11,8 @@ import { updateEventsType } from "../store/action/event";
 import Swal from "sweetalert2";
 
 
- import Recommendation from "./Recommendation";
- import ContactUs from "./ContactUs";
-import SubNavBar from "./SubNavBar";
+import Recommendation from "./Recommendation";
+import ContactUs from "./ContactUs";
 
 
 // import Register from "./Register";
@@ -26,7 +25,7 @@ import SubNavBar from "./SubNavBar";
 export default function Home() {
   const dispatch = useDispatch();
   //שולף מהרדיוסר את טבלת סוגי אירועים
-  const eventsTypes = useSelector((state) => state.catering.eventsTypes);
+  const eventsTypes = useSelector((state) => state.catering.eventsTypes); 
   const [eventArr, setEventArr] = useState([]);
 
   useEffect(() => {
@@ -82,23 +81,20 @@ export default function Home() {
 
   return (
     <>
-      {/* <div className='homePage cover top-banner d-flex align-items-center center p-0'>
-                <div class="sm-txt mt-4 pe-5">
-                    <h1 style={{ fontWeight: "100px", fontSize: "60px" }}><strong>HOUSEMENT</strong></h1>
-                    <h2 style={{ fontWeight: "50px" }}><strong> החיבור שלכם לאיכות חיים </strong></h2>
-                </div>
-                <img src="https://tidhar.co.il/wp-content/uploads/2020/10/תדהר-שרת-תל-אביב-חוץ-2-e1668588621433.jpg" className='cover-image' />
-            </div> */}
 
       <div className="divHomeImage">
-      <p className="first-title">Delishes</p>
+
+        <p className="first-title">Delishes</p>
+
         <p className="second-title">
           קייטרינג  לאירוע מושלם - חוויה בטעמים נפלאים
         </p>
+
       </div>
 
 
-
+      {/* סוגי אירועים קיימים */}
+      
       {eventArr.length > 0 &&
         eventArr.map((item, index) => {
           return (
@@ -121,7 +117,7 @@ export default function Home() {
       <br/>
 
       
-{/* <SubNavBar/> */}
+      {/* מנהל-  הוספת אירוע */}
       {/* <div>
         <AddEventType />
       </div> */}
