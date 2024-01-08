@@ -37,7 +37,7 @@ export default function MenuEvent({ type }) {
     (state) => {
       return {
         //סוגי אירועים
-        eventsType: state.catering.eventsTypes,
+        eventsType: state.catering.eventsTypes, 
         //סוגי תפריטים
         menuTypes: state.catering.menuTypes,
         //סוגי תפריטים לאירוע

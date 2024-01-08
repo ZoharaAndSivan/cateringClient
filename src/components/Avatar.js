@@ -78,6 +78,12 @@ function ResponsiveAppBar() {
         name: "סטטיסטיקות",
         role: [1],
         icon: <BarChartIcon fontSize="small" />,
+
+      {
+        to: "/ContactManager",
+        name: "יצירת קשר",
+        role: [1],
+        icon: <DinnerDiningIcon fontSize="small" />,
       },
     ]);
   }, []);

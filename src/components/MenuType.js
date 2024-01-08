@@ -69,12 +69,24 @@ export default function MenuType() {
       }
     });
   }
+
+
+
   return (
     <>
-     <div>
+
+    <div className="imageMenu" >
+      <p className="menuP">Menu</p>
+      <br/>
+      <div className="divEventName">
       <h2 className="mazalTov">{event?.Details}</h2>
-      <h3 className="h3-mazalTov"> אצלינו תמצאו את התפריט שיתאים בדיוק עבורכם </h3>
+      <h3 className="h3-mazalTov"> 
+                                                                              
+          אצלינו תמצאו את התפריט שיתאים בדיוק עבורכם </h3>
     </div> 
+    </div>
+    
+     
 
 
 
@@ -100,7 +112,7 @@ export default function MenuType() {
     </div>
 
     <div>
-        <h2>מתלבטים, אנחנו נעזור לכם</h2>
+        <h2 >מתלבטים? אנחנו נעזור לכם</h2>
       </div>
 
 

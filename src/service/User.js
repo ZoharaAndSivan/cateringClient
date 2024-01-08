@@ -20,3 +20,9 @@ export const FuncDeleteContact = (id) => {
 export const FuncOpinion=()=>{
     return axios.get("http://localhost:8080/opinionRouter/getAllOpinion") 
 }
+
+
+//הוספת צור קשר
+export const AddContact=(data)=>{
+    return axios.post("http://localhost:8080/contactRouter/addContactUs",data)
+}
