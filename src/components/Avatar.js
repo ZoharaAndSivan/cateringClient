@@ -8,7 +8,7 @@ import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
+import BarChartIcon from '@mui/icons-material/BarChart';
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
@@ -72,6 +72,12 @@ function ResponsiveAppBar() {
         name: "הזמנות",
         role: [1],
         icon: <DinnerDiningIcon fontSize="small" />,
+      },
+      {
+        to: "/statistics",
+        name: "סטטיסטיקות",
+        role: [1],
+        icon: <BarChartIcon fontSize="small" />,
       },
     ]);
   }, []);

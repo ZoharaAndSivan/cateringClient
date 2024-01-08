@@ -38,6 +38,8 @@ import AddEventType from "./components/AddEventType";
 import AddMenuEventType from "./components/addMenuTypeEventType/AddMenuEventType";
 import OrderManagerList from "./components/OrderManagerList";
 import Calender from "./components/calender/Calender";
+import IncomesGraph from "./components/statistics/incomesGraph";
+import Statistic from "./components/statistics/statistic";
 function App() {
   const dispatch = useDispatch();
 
@@ -116,6 +118,10 @@ function App() {
        
        {/* צור קשר - משתמש */}
        <Route path="contactUs" element={<ContactUs />} />
+       
+       {/* סטטיסטיקות - מנהל */}
+       <Route path="statistics" element={<Statistic />} />
+
        <Route path="login" element={<Login />} />
 
 
