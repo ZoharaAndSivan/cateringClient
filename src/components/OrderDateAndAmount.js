@@ -55,6 +55,7 @@ const OrderDateAndAmount = () => {
   };
   return (
     <>
+
       <div className="p-5">
         <div
           className="shadow text-center"
@@ -65,14 +66,16 @@ const OrderDateAndAmount = () => {
             borderRadius: "25px",
           }}
         >
+          {/* תאריך אירוע */}
           <h5>
             תאריך <CalendarMonthIcon />
           </h5>
+
           <TextField
             id="outlined-basic"
             variant="outlined"
             type="date"
-            //ברירת מחדל בעת עריכת הזמנה
+            //ברירת מחדל בעת עריכת-עדכון הזמנה
             defaultValue={
               editOrder
                 ? new Date(editOrder.EventDate).toISOString().split("T")[0]
@@ -81,32 +84,49 @@ const OrderDateAndAmount = () => {
             style={{ width: "15vw" }}
             onChange={(e) => setDate(e.target.value)}
           />
-          <br /> <br />
+
+          <br />
+          <br />
+
+
+          {/* שעת אירוע */}
           <h5>
             זמן <AccessTime />
           </h5>
+
           <TextField
             id="outlined-basic"
             variant="outlined"
             type="time"
+            // ברירת מחדל בעת עריכת-עדכון הזמנה
             defaultValue={editOrder && editOrder.EventTime}
             style={{ width: "15vw" }}
             onChange={(e) => setTime(e.target.value)}
           />
-          <br /> <br />
+
+          <br />
+          <br />
+
+          {/* כמות מוזמנים */}
           <h5>
             אורחים <PeopleIcon />
           </h5>
+
           <TextField
             id="outlined-basic"
             variant="outlined"
             type="number"
+            // ברירת מחדל בעת עריכת - עדכון הזמנה
             defaultValue={editOrder ? editOrder.NumberPeople : null}
             style={{ width: "15vw" }}
             onChange={(e) => setAmount(e.target.value)}
           />
+
           <p>* מינימום משתתפים {min}</p>
-          <br /> <br />
+          <br />
+          <br />
+
+          {/* כפתור המשך הזמנה */}
           <Button
             onClick={submit}
             variant="contained"
@@ -115,6 +135,7 @@ const OrderDateAndAmount = () => {
             {" "}
             המשך{" "}
           </Button>
+          
         </div>
       </div>
     </>

@@ -10,9 +10,11 @@ import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { saveEditOrder } from "../store/action/order";
 import { addOrder, deleteOrder } from "../service/order";
 
+import "./ScssComponets/OrderDetails.scss";
+
 export default function OrderDetails() {
   const navigate = useNavigate();
-  const location = useLocation();
+  const location = useLocation(); 
   const dispatch = useDispatch();
   const { groupedMenu, menu, amount, date, event, time, price } =
     location.state || {};
@@ -136,11 +138,14 @@ export default function OrderDetails() {
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <h4> פרטי הזמנה: </h4>
+    
+      <form className="formOrder" onSubmit={handleSubmit(onSubmit)}>
+        <h4 className="h4Order"> פרטי הזמנה: </h4>
         {orderDetails.map((item) => (
           <>
-            <label> {item.lableName} </label> <br />
+            <div className="divFormInput">
+            <label className="labelOreder"> {item.lableName} </label> <br />
+            
             <FormInput
               name={item.name} 
               type={item.type}
@@ -148,11 +153,12 @@ export default function OrderDetails() {
               register={register}
               flag={false}
             />
+            </div>
           </>
         ))}
-        <br /> <br />
-        <h4> מידע נוסף </h4>
-        <label> הערות להזמנה (אופציונלי) </label> <br /> <br />
+        <br /> 
+        <br />
+        <label className="labelOreder"> הערות להזמנה (אופציונלי) </label> <br /> <br />
         <TextField
           id="outlined-multiline-flexible"
           multiline

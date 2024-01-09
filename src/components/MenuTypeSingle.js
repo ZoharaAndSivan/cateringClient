@@ -24,6 +24,7 @@ export default function MenuTypeSingle({ menu, deleteMenuType }) {
       <h4 className="menuPrice"> {menu.Price}  ש"ח </h4>
 
 
+      {/* סוגי מאכלים וכמויות בחירה */}
       <div>
         {menuTypes.map((item) => {
           if (item.MenuId == menu.Id)
@@ -56,6 +57,8 @@ export default function MenuTypeSingle({ menu, deleteMenuType }) {
         })}
       </div>
 
+
+
         {/* כפתור להזמנת תפריט */}
       <Button className="buttonOrder"
         variant="contained"
@@ -65,13 +68,14 @@ export default function MenuTypeSingle({ menu, deleteMenuType }) {
       >
         הזמן
       </Button>
+
+<br/>
+<br/>
       {/* מנהל */}
-      {user?.UserType==1 && <><DeleteIcon onClick={() => deleteMenuType(menu)} />
+      {user?.UserType==1 && <>
+      <DeleteIcon onClick={() => deleteMenuType(menu)} />
       <EditIcon  onClick={() => navigate(`/addMenuEventType/${menu.Id}/edit`)}/>
       </>}
-
-
-
       
     </>
   );

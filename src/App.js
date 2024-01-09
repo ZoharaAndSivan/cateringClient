@@ -26,7 +26,6 @@ import OrderDateAndAmount from "./components/OrderDateAndAmount";
 import OrderDetails from "./components/OrderDetails";
 
 
-
 import OrderUserList from "./components/OrdersUserList";
 import { getEventsType, getMenuEvents, getMenuTypes } from "./service/event";
 import {
@@ -130,7 +129,7 @@ function App() {
        <Route path="menu/:id/:date/:amount/:time" element={<Menu type={"new"}/>} />
         <Route path="menu/:id/:date/:amount/:time/:orderId" element={<Menu type={"edit"}/>} />
 
-        <Route path="/ordersUserList" element={<OrderManagerList />} />
+        {/* <Route path="/ordersUserList" element={<OrderManagerList />} /> */}
         <Route path="/ordersUserListForManger" element={<Calender />} />
         <Route path="/ordersUserList" element={<OrderUserList />} />
         <Route path="/editEventType/:id" element={<AddEventType />} />

@@ -3,7 +3,6 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { shallowEqual, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 
-
 import "./ScssComponets/Menu.scss";
 import SideNavBar from "./SideNavBar";
 import FoodType from "./FoodType";
@@ -13,10 +12,8 @@ import { getAllFoodByMenuId } from "../store/action/event";
 
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import PeopleIcon from "@mui/icons-material/People";
-import { Button } from "@mui/material"; 
-
-
-
+import { Button } from "@mui/material";
+import Swal from "sweetalert2";
 
 export default function MenuEvent({ type }) {
   //מקבלת אי די לפי שורת יו אר אל
@@ -37,7 +34,7 @@ export default function MenuEvent({ type }) {
     (state) => {
       return {
         //סוגי אירועים
-        eventsType: state.catering.eventsTypes, 
+        eventsType: state.catering.eventsTypes,
         //סוגי תפריטים
         menuTypes: state.catering.menuTypes,
         //סוגי תפריטים לאירוע
@@ -61,12 +58,11 @@ export default function MenuEvent({ type }) {
 
     //שליפת המאכלים
     getAllFoodByMenuId(id)
-    .then((response) => {
-      setFood(response.data.filter(x=>x.Active.data[0]==true));
-      console.log(response.data)
-    })
-    .catch((err) => console.log(err));
-
+      .then((response) => {
+        setFood(response.data.filter((x) => x.Active.data[0] == true));
+        console.log(response.data);
+      })
+      .catch((err) => console.log(err));
   }, [event]);
 
   // useEffect(()=>{
@@ -75,7 +71,7 @@ export default function MenuEvent({ type }) {
   //       const element = food[i];
   //       if(editOrder.Products.find(x=>x.Id==element.Id)) {
   //         addFood(element)
-  //       }      
+  //       }
   //     }
   //   }
   // })
@@ -109,12 +105,29 @@ export default function MenuEvent({ type }) {
       let arr = [...menu];
       arr = arr.filter((x) => x.Id != item.Id);
       setMenu(arr);
-    //מורידה בכמות בתצוגה
+      //מורידה בכמות בתצוגה
       changeChosenAmount(-1, item.FoodTypeId);
     }
   };
 
+  const isFinish = () => {
+    for (let i = 0; i < menuEvent.length; i++) {
+      if(parseInt(menuEvent[i].Amount) > menuEvent[i].AmountChosen) {
+        return false;
+      }
+    }
+    return true;
+  };
+
   const sendOrder = () => {
+    if (!isFinish()) {
+      Swal.fire({
+        title: "לא סיימת להזמין",
+        icon: "warning",
+      });
+      return;
+    }
+
     console.log(menu);
     const groupedMenu = Object.entries(
       menu.reduce((acc, { Id, FoodTypeId, Active, Name, Price }) => {
@@ -137,12 +150,14 @@ export default function MenuEvent({ type }) {
 
   return (
     <>
-    {/* בזמן עריכה */}
-    {editOrder && <DisplayOrderProducts order={editOrder} food={food}/>}
+      {/* בזמן עריכה */}
+      {editOrder && <DisplayOrderProducts order={editOrder} food={food} />}
 
       <div className="row">
-        <div className="containers" style={{ width: "20%",border:" black 1px solid" }}>
-
+        <div
+          className="containers"
+          style={{ width: "20%", border: " black 1px solid" }}
+        >
           {/* כמות מוזמנים ותאריך */}
           <div>
             <p>
@@ -152,7 +167,6 @@ export default function MenuEvent({ type }) {
               <CalendarMonthIcon /> {new Date(date).toLocaleDateString()}
             </p>
           </div>
-
 
           <h5> מסלול קיטרניג מחיר לסועד </h5>
           {/* עוברת על סוגי המאכלים של התפריט שנבחר */}
@@ -172,22 +186,24 @@ export default function MenuEvent({ type }) {
           </Button>
         </div>
 
-
-
-
-       {/* רשימת קטגוריות */}
-        <div className="sideNavBar" style={{ width: "15%",border:" black 1px solid" }}>
+        {/* רשימת קטגוריות */}
+        <div
+          className="sideNavBar"
+          style={{ width: "15%", border: " black 1px solid" }}
+        >
           <SideNavBar
             menuEvent={menuEvent}
             setFoodTypeId={setFoodTypeId}
             sendOrder={sendOrder}
           />
         </div>
-        
-        <div   className="containers" style={{ width: "60%" ,border:" black 1px solid"}}>
+
+        <div
+          className="containers"
+          style={{ width: "60%", border: " black 1px solid" }}
+        >
           <FoodType
-         
-            menuId={id} 
+            menuId={id}
             foodTypeId={foodTypeId}
             menu={menu}
             food={food}

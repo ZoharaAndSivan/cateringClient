@@ -86,16 +86,8 @@ export default function MenuType() {
     </div> 
     </div>
     
-     
-
-
-
-
-    {/* <div style={{height:"50px"}}></div> */}
    
     <div  className="bigDivType">
-    {/* מנהל */}
-    {user?.UserType==1 && <Button variant="contained" onClick={addMenuEvent}> הוסף תפריט </Button>}
     
       <div className="row">
         {/* סוגי תפריטים */}
@@ -111,13 +103,26 @@ export default function MenuType() {
       </div>
     </div>
 
+    <br/>
+    <br/>
+    {/* מנהל */}
+    {user?.UserType==1 && <Button variant="contained" onClick={addMenuEvent}> הוסף תפריט </Button>}
+
+    <br/>
+    <br/>
+
+    {user?.UserType!=1 &&
+    <>
     <div>
         <h2 >מתלבטים? אנחנו נעזור לכם</h2>
-      </div>
-
+    </div>
 
       <br/>
+      
       <ContactUs/>
+      </>
+   }
+
     </>
   );
 }

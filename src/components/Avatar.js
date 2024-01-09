@@ -13,6 +13,7 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import DinnerDiningIcon from "@mui/icons-material/DinnerDining";
+import PhoneInTalkIcon from '@mui/icons-material/PhoneInTalk';
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -83,7 +84,7 @@ function ResponsiveAppBar() {
         to: "/ContactManager",
         name: "יצירת קשר",
         role: [1],
-        icon: <DinnerDiningIcon fontSize="small" />,
+        icon: <PhoneInTalkIcon fontSize="small" />,
       },
     ]);
   }, []);

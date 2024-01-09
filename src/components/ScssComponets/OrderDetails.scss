@@ -1,21 +1,28 @@
-#formOrder{
+.formOrder{
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
+    width: 50%;
+    margin: 25px auto;
+    padding: 30px;
 }
-#inputOrder{
-    display: inline-block;
+// #inputOrder{
+//     display: inline-block;
+//     margin:5px;
+// }
+.divFormInput{
+    display: inline-block; 
     margin:5px;
 }
-#labelOreder{
+.labelOreder{
     color:rgb(142, 110, 51);
     font-weight: 200;
     font-size:20px;
+    display:inline-block;
     
 }
-#h4Order{
+.h4Order{ 
     color:rgb(142, 110, 51);
-    font-weight: 200;
-    font-size:50px;
+    font-size: 33px;
 }
 .css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
     background-color: whitesmoke !important;

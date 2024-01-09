@@ -2,7 +2,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Button, TextField } from "@mui/material";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import {
   addMenuEventType,
@@ -13,6 +13,7 @@ import FoodTypeDetails from "./FoodTypeDetails";
 import FormInput from "../FormInput";
 import { shallowEqual, useSelector } from "react-redux";
 import { getAllFoodByMenuId } from "../../store/action/event";
+import Swal from "sweetalert2";
 const schema = yup
   .object({
     Name: yup.string().required("שדה זה חובה"),
@@ -35,6 +36,7 @@ const arr = [
   { lableName: "מחיר", name: "Price", type: "number" },
 ];
 const AddMenuEventType = () => {
+  const navigate = useNavigate();
   const { eventId, menuId, type } = useParams();
   const [foodsTypeArr, setFoodsTypeArr] = useState([]);
   const [foodsArr, setFoodsArr] = useState([]);
@@ -98,6 +100,9 @@ const AddMenuEventType = () => {
     addMenuEventType(obj)
       .then((res) => {
         console.log(res.data);
+        
+        Swal.fire({icon:"success", title:"נוסף בהצלחה!"});
+        navigate("/menuType/"+eventId)
       })
       .catch((err) => console.log(err));
   };

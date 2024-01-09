@@ -34,7 +34,7 @@ export const updateEventsType = (data)=>{
     return {
         type: types.UPDATE_EVENTS_TYPE,
         payload: data
-    }
+    } 
 }
 
 export const getAllFoodByMenuId = (id)=>{

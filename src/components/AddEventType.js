@@ -19,6 +19,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { AddCircleOutlined } from "@mui/icons-material";
 import { updateEventsType } from "../store/action/event";
 
+import "./ScssComponets/AddEventType.scss"
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -124,10 +126,14 @@ export default function AddEventType({id}) {
   return (
     <>
       {id?<Button onClick={handleOpen}>
-      <EditIcon style={{ cursor: "pointer" }}/>
+      <EditIcon style={{ cursor: "pointer" , color:"black" }}/>
       </Button>:
       <Button onClick={handleOpen}>
-        <AddCircleOutlineIcon style={{ cursor: "pointer" }} /> הוסף אירוע
+         <p className="p_addevent">הוסף אירוע</p>
+         <br/>
+         <br/>
+         <br/>
+        <AddCircleOutlineIcon style={{ cursor: "pointer", color:"black", height:"10px" }} />
       </Button>}
       <Modal
         open={open}
@@ -178,7 +184,7 @@ export default function AddEventType({id}) {
               <span style={{ color: "red" }}>{errors.Image?.message}</span>{" "}
               <br />
               <Switch
-                defaultChecked={event ? event.Active.data[0] : null}
+                defaultChecked={event ? event?.Active?.data[0] : null}
                 {...register("Active")}
                 inputProps={{ "aria-label": "controlled" }}
               />{" "}

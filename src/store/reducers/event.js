@@ -7,18 +7,18 @@ const initialState = {
   menusEvents: [],
   menuTypes: [],
 
-  foodTypes: [
-    { Id: 1, Name: "סלטים" },
-    { Id: 2, Name: "מנה ראשונה" },
-    { Id: 3, Name: "דגים" },
-    { Id: 4, Name: "בשרי" },
-  ],
-  food: [
-    { Id: 1, Name: "סלמון", Price: 5, IsActive: true, FoodTypeId: 3 },
-    { Id: 2, Name: "דג", Price: 0, IsActive: true, FoodTypeId: 3 },
-    { Id: 3, Name: "לחם", Price: 0, IsActive: true, FoodTypeId: 2 },   
-    { Id: 4, Name: "כרוב", Price: 0, IsActive: true, FoodTypeId: 1 },
-  ],
+  // foodTypes: [
+  //   { Id: 1, Name: "סלטים" },
+  //   { Id: 2, Name: "מנה ראשונה" },
+  //   { Id: 3, Name: "דגים" },
+  //   { Id: 4, Name: "בשרי" },
+  // ],
+  // food: [
+  //   { Id: 1, Name: "סלמון", Price: 5, IsActive: true, FoodTypeId: 3 },
+  //   { Id: 2, Name: "דג", Price: 0, IsActive: true, FoodTypeId: 3 },
+  //   { Id: 3, Name: "לחם", Price: 0, IsActive: true, FoodTypeId: 2 },   
+  //   { Id: 4, Name: "כרוב", Price: 0, IsActive: true, FoodTypeId: 1 },
+  // ],
   //אירוע נבחר  
   currentEvent: null,
 };

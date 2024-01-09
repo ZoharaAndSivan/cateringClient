@@ -19,10 +19,13 @@ import ContactUs from "./ContactUs";
 // import ContactManager from "./ContactManager";
 
  import EventType from "./eventType";
-// import AddEventType from "./AddEventType";
+ import AddEventType from "./AddEventType";
 
 
 export default function Home() {
+
+    //שליפת משתמשים
+  const currentUser = useSelector((state) => state.user.currentUser);
   const dispatch = useDispatch();
   //שולף מהרדיוסר את טבלת סוגי אירועים
   const eventsTypes = useSelector((state) => state.catering.eventsTypes); 
@@ -30,7 +33,7 @@ export default function Home() {
 
   useEffect(() => {
     setEventArr(eventsTypes);
-  }, [eventsTypes]);
+  }, [eventsTypes]); 
 
   const updateEvent = (eventType) => {
     updateEventType(eventType.Id, eventType)
@@ -113,14 +116,25 @@ export default function Home() {
       {/* <Recommendation/> */}
       <br/>
       <br/>
+
+      {/* מנהל-  הוספת אירוע */}
+
+
+      {currentUser?.UserType == 1 && (
+          
+             <div className="add">
+                 <AddEventType />
+            </div>
+         
+        )}
+     
+
+      <br/>
       <ContactUs/>
       <br/>
 
       
-      {/* מנהל-  הוספת אירוע */}
-      {/* <div>
-        <AddEventType />
-      </div> */}
+      
       
  
     </>

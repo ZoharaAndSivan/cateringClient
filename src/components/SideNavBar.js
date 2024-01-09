@@ -6,7 +6,7 @@ export default function SideNavBar({ menuEvent, setFoodTypeId }) {
       <div className="div-side-navBar">
         <nav className="nav-side-navBar">
           <ul>
-            {menuEvent.map((item) => (
+            {menuEvent.map((item) => ( 
               <li className="li-foodType" style={{cursor:"pointer"}}>
                 <div
                 // אידי של סוג המאכל שנלחץ
@@ -14,7 +14,7 @@ export default function SideNavBar({ menuEvent, setFoodTypeId }) {
                   // to={"/foodType/" + item.MenuId + "/"+item.FoodTypeId.Id}
                 >
                   {/* שם סוג מאכל */}
-                  {item.FoodTypeId.Name}
+                  <p className="foodType">{item.FoodTypeId.Name}</p>
                 </div> <br/>
               </li>
             ))}

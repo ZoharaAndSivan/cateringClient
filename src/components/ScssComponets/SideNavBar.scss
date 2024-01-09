@@ -1,13 +1,15 @@
 
-
-
-
 .nav-side-navBar li{
    // padding: 36px;;
-   padding: 9px;
-   margin-top: 70px;
+   //padding: 9px;
+   margin-top: 40px;
 }
 .li-foodType{
     font-weight: bold;
     font-size: 19px;
+}
+.foodType{
+    box-shadow: 0 10px 24px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    padding: 9px;
 }

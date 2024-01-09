@@ -34,19 +34,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 function createData(id, category, name, price, amount, total) {
   return { id, category, name, price, amount, total };
 }
@@ -165,7 +152,7 @@ export default function SummaryOrder() {
   };
   return (
 <>
-    <h2>סיכום הזמנה</h2>
+    <h2 className="h2SummryOrder">סיכום הזמנה</h2>
     <br/>
     <div style={{ margin: "24px auto", width: "70vw" }}  ref={contentRef}>
       <TableContainer component={Paper}>
@@ -180,6 +167,7 @@ export default function SummaryOrder() {
               <StyledTableCell align="right">סה"כ</StyledTableCell>
             </TableRow>
           </TableHead>
+
           <TableBody>
             {rows.length > 0 &&
               rows.map((row, index) => (
@@ -214,23 +202,21 @@ export default function SummaryOrder() {
                 {price.toLocaleString()} ₪
               </StyledTableCell>
             </StyledTableRow>
+
           </TableBody>
         </Table>
       </TableContainer> 
-      <br /> <br />
+      <br />
+      <br />
       <br />
      
-
-      
           <h3> סה"כ   : {price.toLocaleString()} ₪</h3> 
-          <Button variant="contained" onClick={handlePrint}>הדפסת הזמנה</Button>
-          <br/>
-          <br/>
-          <br/>
+
+          <div className="2Buttom">
+          <Button className="buttomSummry" variant="contained" onClick={handlePrint}>הדפסת הזמנה</Button>
           {!type && (
         <>
-          <Button
-          
+          <Button className="buttomSummry"  
             variant="contained"
             onClick={() =>
               navigate("/orderDetails", {
@@ -238,12 +224,12 @@ export default function SummaryOrder() {
               })
             }
           >
-
             {" "}
             מעבר לתשלום{" "}
           </Button>{" "}
         </>
       )}
+       </div>
     </div>
     </>
   );
