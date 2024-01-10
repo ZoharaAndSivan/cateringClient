@@ -52,6 +52,18 @@ const cateringReducer = (state = initialState, action) => {
         ...state,
         eventsTypes: action.payload,
       };
+    case types.ADD_MENU_EVENTS:
+      let arr = [...state.menusEvents, action.payload];
+      return {
+        ...state,
+        menusEvents: arr,
+      };
+    case types.ADD_MENU_TYPES:
+      let arr2 = [...state.menuTypes, action.payload];
+      return {
+        ...state,
+        menuTypes: arr2,
+      };
   }
   return state;
 };

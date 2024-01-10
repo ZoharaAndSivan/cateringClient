@@ -11,8 +11,8 @@ import {
 } from "../../service/event";
 import FoodTypeDetails from "./FoodTypeDetails";
 import FormInput from "../FormInput";
-import { shallowEqual, useSelector } from "react-redux";
-import { getAllFoodByMenuId } from "../../store/action/event";
+import { shallowEqual, useDispatch, useSelector } from "react-redux";
+import { addMenuEvents, addMenuTypes, getAllFoodByMenuId, saveEventsType, saveMenuEvents, saveMenuTypes } from "../../store/action/event";
 import Swal from "sweetalert2";
 const schema = yup
   .object({
@@ -37,6 +37,7 @@ const arr = [
 ];
 const AddMenuEventType = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { eventId, menuId, type } = useParams();
   const [foodsTypeArr, setFoodsTypeArr] = useState([]);
   const [foodsArr, setFoodsArr] = useState([]);
@@ -100,9 +101,10 @@ const AddMenuEventType = () => {
     addMenuEventType(obj)
       .then((res) => {
         console.log(res.data);
-        
+         dispatch(addMenuEvents(res.data.menuEventType));
+         dispatch(addMenuTypes(res.data.menuTypes));
         Swal.fire({icon:"success", title:"נוסף בהצלחה!"});
-        navigate("/menuType/"+eventId)
+        navigate("/menuType/"+eventId);
       })
       .catch((err) => console.log(err));
   };

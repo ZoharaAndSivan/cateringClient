@@ -37,6 +37,20 @@ export const updateEventsType = (data)=>{
     } 
 }
 
+export const addMenuTypes = (data)=>{
+    return {
+        type: types.ADD_MENU_TYPES,
+        payload: data
+    }
+}
+
+export const addMenuEvents = (data)=>{
+    return {
+        type: types.ADD_MENU_EVENTS,
+        payload: data
+    }
+}
+
 export const getAllFoodByMenuId = (id)=>{
     return axios.get(`http://localhost:8080/productToMenuRouter/getAllFoodByMenuId/${id}` );
 }
