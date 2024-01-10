@@ -40,11 +40,14 @@ export default function OrderUserSingle({ item, cancelOrder }) {
   }, []);
 
   useEffect(() => {
+    if(new Date(item.EventDate) > new Date()){
     const date1 = new Date();
     const date2 = new Date(item.EventDate);
     const diffTime = Math.abs(date1 - date2);
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
     setDays(diffDays);
+    console.log(item.EventDate, diffDays)
+  }
   }, []);
 
   useEffect(() => {
