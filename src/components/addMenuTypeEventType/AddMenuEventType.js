@@ -44,6 +44,7 @@ const AddMenuEventType = () => {
   const [menu, setMenu] = useState(null);
   const [productsToMenu, setProductsToMenu] = useState([]);
   const [menuType, setMenuType] = useState([]);
+  let x = [];
 
   const { menusEvents, user, menuTypes } = useSelector((state) => {
     return {
@@ -94,7 +95,7 @@ const AddMenuEventType = () => {
   }, []);
 
   const onSubmit = (data) => {
-    console.log(data);
+    console.log(menuType,y, "ppppppppppp");
     data.EventId = eventId;
     const obj = { menuEventType: data, productsToMenu, menuType };
     console.log(obj);
@@ -108,17 +109,21 @@ const AddMenuEventType = () => {
       })
       .catch((err) => console.log(err));
   };
-
-  const changeProducts = (e, product) => {
+let y=[];
+  const changeProducts = async (e, product) => {
     let arr;
     if (e.target.checked) {
       arr = [
         ...productsToMenu,
         { FoodId: product.Id, FoodTypeId: product.FoodTypeId },
       ];
+      y= [...y, { FoodId: product.Id, FoodTypeId: product.FoodTypeId },]
     } else {
       arr = productsToMenu.filter((x) => x.FoodId != product.Id);
     }
+    console.log("yyyyyy", y)
+    console.log(arr,e.target.checked);
+    setProductsToMenu(y);
     setFoodsArr(productsToMenu);
   };
 
@@ -126,23 +131,31 @@ const AddMenuEventType = () => {
     const { name, value } = e.target;
     const index =
       type == "edit"
-        ? menuType.findIndex((x) => x.FoodTypeId.Id == foodType.Id)
-        : menuType.findIndex((x) => x.FoodTypeId == foodType.Id);
+        ? x.findIndex((x) => x.FoodTypeId.Id == foodType.Id)
+        : x.findIndex((x) => x.FoodTypeId.Id == foodType.Id);
     if (index != -1) {
-      let object = menuType[index];
+      let object = x[index];
       object[name] = value;
-      let arr = [...menuType];
+      let arr = [...x];
       arr[index] = object;
       setMenuType(arr);
+      x=[...arr];
+      setMenuType([...arr])
+      console.log(arr,x)
       // menuType[index] = object;
     } else {
-      let obj = { FoodTypeId: foodType.Id, Amount: 0, ExtraPrice: 0 };
+      let obj = { FoodTypeId: {Id:foodType.Id, Name:foodType.Name}, Amount: 0, ExtraPrice: 0 };
       obj[name] = parseInt(value);
-      let arr = [...menuType, obj];
+      console.log(obj)
+      let arr = [...x, obj];
+      console.log(arr)
       setMenuType(arr);
+      x=[...arr];
+      setMenuType([...arr])
+      console.log(arr, menuType, x)
       // menuType = [...menuType, obj];
     }
-    console.log(menuType);
+    // console.log(arr, menuType, "llllllll");
   };
 
   return (

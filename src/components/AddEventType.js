@@ -184,7 +184,7 @@ export default function AddEventType({id}) {
               <span style={{ color: "red" }}>{errors.Image?.message}</span>{" "}
               <br />
               <Switch
-                defaultChecked={event ? event?.Active?.data[0] : null}
+                // defaultChecked={event ? event?.Active?.data[0] : null}
                 {...register("Active")}
                 inputProps={{ "aria-label": "controlled" }}
               />{" "}

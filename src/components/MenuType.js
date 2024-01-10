@@ -32,7 +32,7 @@ export default function MenuType() {
 
   useEffect(() => {
     //שולף את כל סוגי התפריטים של אירוע מסוים שנבחר
-    const arr = menusEvents.filter((x) => x.EventId == id && x.Active.data[0]==true);
+    const arr = menusEvents.filter((x) => x.EventId == id && x?.Active?.data[0]==true);
     setMenuTypes(arr);
     //האירוע שנבחר
     setEvent(eventsTypes.find(x=>x.Id==id));
@@ -93,7 +93,7 @@ export default function MenuType() {
         {/* סוגי תפריטים */}
         {menusTypes.length>0 && menusTypes.map((item) => (
           <>
-          <div key={item.id} className="containers">
+          <div key={item?.Id} className="containers">
             <MenuTypeSingle menu={item} deleteMenuType={deleteMenuType}/>
             
           </div>
