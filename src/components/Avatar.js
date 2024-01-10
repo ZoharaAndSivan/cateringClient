@@ -81,6 +81,12 @@ function ResponsiveAppBar() {
         icon: <BarChartIcon fontSize="small" />
       },
       {
+        to: "/allFoods",
+        name: "מאכלים",
+        role: [1],
+        icon: <BarChartIcon fontSize="small" />
+      },
+      {
         to: "/ContactManager",
         name: "יצירת קשר",
         role: [1],

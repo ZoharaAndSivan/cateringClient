@@ -149,7 +149,7 @@ function App() {
         
         
         
-        <Route path="allFoods" element={<AllFoods />} />
+        <Route path="/allFoods" element={<AllFoods />} />
         <Route path="contact" element={<ContactManager/>} />
 
         <Route path='ezorIshi' element={<Login/>}/>
