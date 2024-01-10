@@ -30,7 +30,6 @@ export default function FoodTypeDetails({ foodType, foods, change, type, changeM
     if(chosenFoods) {
       setItemsChosen(chosenFoods.filter((x) => x.FoodTypeId == foodType.Id));
     }
-console.log(menuType)
     const x = (
       <React.Fragment>
         <CardContent>
