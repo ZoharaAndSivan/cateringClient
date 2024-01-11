@@ -7,6 +7,13 @@ import "./ScssComponets/NavBar.scss";
 
 import "./ScssComponets/Avatar.scss";
 const NavBar = () => {
+
+
+   //שולף מהרדיוסר את טבלת סוגי אירועים
+   const eventsTypes = useSelector((state) => state.catering.eventsTypes); 
+   const [eventArr, setEventArr] = useState([]);
+
+
   const navigate = useNavigate();
   const [arr, setArr] = useState([]);
   let { user } = useSelector((state) => {
@@ -45,6 +52,20 @@ const NavBar = () => {
               if (item == user.UserType)
                 return (
                   <>
+                    {/* {item.name?.name=="אירועים" && (
+                    <div>
+                    <select>
+                    {eventArr.length > 0 &&
+                      eventArr.map((item, index) => {
+                      return (
+                         <option value={item.id}>item.Name</option>
+                         );
+                        })}  
+                    </select>
+                    </div>
+                    )} */}
+
+
                     <li key={ind} className="h-100 nav2">
                       <Link key={x.name} to={x.to} className="navBar-link">
                         {x.name} |

@@ -6,7 +6,7 @@
 .hr-reco{
   color: #7f7f29;
   width: 50%;
-  margin: 0px auto;
+  margin: 0px auto; 
 }
 
 .star{
@@ -43,4 +43,16 @@
 img{
   display:block;
   width:30%
+}
+
+
+.divOpinion
+{
+  width: 20%;
+  border: 1px solid black;
+  height: 120%;
+  padding: 20px;
+  margin: 0px 20px auto;
+  /* display: inline; */
+  display: inline-table;
 }

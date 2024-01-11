@@ -27,7 +27,7 @@ useEffect(()=>{},[food])
         // מאכלים לפי סוגים
         if (item.FoodTypeId == foodTypeId)
           return (
-            <div key={item.Id} className="containers">
+            <div key={item.Id} className="containersFoods">
 
               {/* תמונה */}
 
@@ -35,9 +35,9 @@ useEffect(()=>{},[food])
               {/* {/* {console.log(item.Image)}; */}
               {/* <img src={`../../images/eventImages/azkara.JPG`}/> */}
               {/* <img src="/images/salatim/xxx.jpg" /> */}
-              <img src={`/images/salatim/${item.Image}`} />
+              <img className="foodImage" src={`/images/salatim/${item.Image}`} />
               {/* <img src={`../../public/images/salatim/${item.Image}`}/>  */}
-
+<br/>
               <h5>
                 {/* מחיר בתוספת */}
                 {item.Price != 0 && <span>*</span>}

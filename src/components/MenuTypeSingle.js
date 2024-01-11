@@ -23,13 +23,15 @@ export default function MenuTypeSingle({ menu, deleteMenuType }) {
       <h3 className="menuName"> {menu.Name} </h3>
       <h4 className="menuPrice"> {menu.Price}  ש"ח </h4>
 
-
+      <p>לחמניות</p>
+      <hr/>
       {/* סוגי מאכלים וכמויות בחירה */}
       <div>
         {menuTypes.map((item) => {
           if (item.MenuId == menu.Id)
             return (
               <div>
+
                 {/* אם הכמות שאפשר לבחור היא 0 - זאת אומרת זה לא  קיים בתפריט */}
                 {item.Amount == 0 ? (
                   <div className="foodAndAmount">
@@ -56,7 +58,11 @@ export default function MenuTypeSingle({ menu, deleteMenuType }) {
             );
         })}
       </div>
-
+      
+      
+      <p>שתייה</p>
+      <hr/>
+      <p>חד"פ</p>
 
 
         {/* כפתור להזמנת תפריט */}

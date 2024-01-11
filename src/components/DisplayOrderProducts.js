@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+import "./ScssComponets/DisplayOrderProducts.scss";
 const DisplayOrderProducts = ({ order, food }) => {
   const [groupedMenu, setGroupedMenu] = useState([]);
 
@@ -35,21 +36,21 @@ const DisplayOrderProducts = ({ order, food }) => {
           <ul>
             <span className="ps-2">{item.options[0].TypeName} :</span>
             {item.options.map((product) => (
-              <li
-                // className="ms-3"
-                // style={{
-                //   color: food.find((x) =>
-                //     x.Id == product.Id) ? "brown" : "red"
+              <p
+                className="ms-3"
+                style={{
+                  color: food.find((x) =>
+                    x.Id == product.Id) ? "brown" : "red"
                   
-                // }}
+                }}
               >
                 {/* 💮 {product.Name}. */}
                  {product.Name}.
-              </li>
+              </p>
             ))}
           </ul>
         ))}
-        {/* <p> *.צבע חום- מאכלים שקיימים בתפריט הנ"ל.  צבע אדום - מאכלים שאינם קיימים בתפריט הנ"ל </p> */}
+        <p> *.צבע חום- מאכלים שקיימים בתפריט הנ"ל.  צבע אדום - מאכלים שאינם קיימים בתפריט הנ"ל </p>
     </div>
   );
 };

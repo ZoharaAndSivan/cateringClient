@@ -1,6 +1,11 @@
-//import "./ScssComponets/Recommendation.scss";
+import "./ScssComponets/Recommendation.scss";
 
 import StarBorderIcon from '@mui/icons-material/StarBorder';
+ 
+import { useEffect, useState } from 'react';
+//import { useEffect, useState } from "react";
+//שליפת חוות דעת 
+import { FuncOpinion } from "../service/User";
 
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
@@ -13,99 +18,22 @@ import VerifiedIcon from '@mui/icons-material/Verified';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 
 import { useSelector } from 'react-redux';
-import { FuncOpinion } from "../service/User";
 
 
-
-
-
-// import SingleOpinion from "./SingleOpinion";
-// import { getOpinionsByAttrctionId } from "../store/action/user";
-// import { useEffect, useState } from "react";
-// import { Fragment } from "react";
-
-// const Opinions = ({ attractionId }) => {
-//     const [opinionsArr, setOpioniosArr] = useState([]);
-//     useEffect(() => {
-//         getOpinionsByAttrctionId(attractionId)
-//             .then(x => setOpioniosArr(x.data))
-//             .catch(err => console.log(err))
-//     }, [attractionId]);
-
-//     return (<Fragment>
-//         <div className="opinions-list">
-//             {opinionsArr.length > 0 && opinionsArr.map(item => {
-//                 return <div key={item.Id} className="container-opinion">
-//                     <SingleOpinion opinion={item} />
-//                 </div>
-//             })}
-//         </div>
-//     </Fragment>);
-// }
-
-// export default Opinions;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-export default function recommendation() {
+export default function Recommendation() {
+  //שליפת משתמשים
+  const currentUser = useSelector((state) => state.user.currentUser);
   
+  const [allOpnion, setAllOpnion] = useState([]);
 
-// שליפת כל חוות הדעת
-//   const AllRecommendation=FuncOpinion().then(x=>{
-//     console.log(x.data);
-//  })
-//  .catch(err=>console.log(err));
-//   console.log(AllRecommendation);
 
+  useEffect(() => {
+    FuncOpinion()
+      .then((res) => {
+        setAllOpnion(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <> 
@@ -126,54 +54,34 @@ export default function recommendation() {
 
     <br/>
     <hr className="hr-reco"/>
+
+    <br/>
+    <br/>
+
+   {/*משתמש רשום */}
+   {currentUser?.UserType == 1 && (
+          <div>
+            <p>הוסף חוות דעת</p>
+          </div>
+        )}
+    {/* <br/>
+    <br/>
+    <br/> */}
     </div>
    
         
-        <div  className="div-one-reco" style={{height:"90px"}}>
-         היה לנו העונג לעבוד עם  Delishes לחתונה שלנו
-        <br/>
-        הצוות היה מקצועי ועשה  הכול
+     
       
-         להבטיח שכל אורח יהיה מרוצה.
-        <br/>
-        אנחנו ממליצים  על  Delishes לכל אירוע.
-        </div>
-
-        <div className="div-one-reco" style={{height:"90px"}}>
-        לא מזמן שכרנו את  Delishes לבר מצווה של הבן שלנו 
-        <br/>
-       
-        האורחים שלנו התרשמו, האוכל היה מדהים 
-        <br/> וקיבלנו מחמאות רבות על האוכל והשירות.
-        </div>
-
-        <div className="div-one-reco" style={{height:"90px"}}>
-         ערכנו לאחרונה את האירוסין שלנו 
-          ולא יכולנו להיות מרוצים יותר
-          <br/>
-          האורחים שלנו התלהבו מהאוכל
-           והשירות היה יוצא דופן.
-           <br/>
-           אנו ממליצים עליהם בחום.
-        </div>
-
-
-        <div>..........</div>
-
-      
-       {/* {AllRecommendation.length > 0 &&
-        AllRecommendation.map((item, index) => {
+        {allOpnion.length > 0 &&
+        allOpnion.map((item, index) => {
           return (
-            <div key={item.id} >
+            <div key={item.id} className="divOpinion" >
+
+            <p>{item.UserId.FirstName} {item.UserId.LastName}  </p>
              {item.OpinionWrite}
-             
             </div>
           );
-        })} */}
-
-
-
-
+        })}
 
        <div>
        {/* <bottom>< KeyboardDoubleArrowLeftIcon/></bottom> */}

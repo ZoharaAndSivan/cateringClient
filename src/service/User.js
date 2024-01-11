@@ -16,9 +16,14 @@ export const FuncDeleteContact = (id) => {
 }
 
 
-//שליפת כל חוות הדעת 
+//  שליפת כל חוות הדעת  המאושרות
 export const FuncOpinion=()=>{
-    return axios.get("http://localhost:8080/opinionRouter/getAllOpinion") 
+    return axios.get("http://localhost:8080/opinionRouter/getAllOpinionApproval") 
+}
+
+//הוספת חוות דעת
+export const AddOpinion=(id)=>{
+    return axios.post("http://localhost:8080/opinionRouter/addOpinion/"+id) 
 }
 
 
@@ -26,3 +31,5 @@ export const FuncOpinion=()=>{
 export const AddContact=(data)=>{
     return axios.post("http://localhost:8080/contactRouter/addContactUs",data)
 }
+
+
