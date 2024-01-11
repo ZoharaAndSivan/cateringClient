@@ -18,12 +18,15 @@ import VerifiedIcon from '@mui/icons-material/Verified';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 
 import { useSelector } from 'react-redux';
+import { Button, TextField } from "@mui/material";
+import Swal from "sweetalert2";
+import axios from "axios";
 
 
 export default function Recommendation() {
   //שליפת משתמשים
   const currentUser = useSelector((state) => state.user.currentUser);
-  
+  const [opinion, setOpinion] = useState("");
   const [allOpnion, setAllOpnion] = useState([]);
 
 
@@ -35,6 +38,19 @@ export default function Recommendation() {
       .catch((err) => console.log(err));
   }, []);
 
+
+  const addOpinion = () => {
+    if(opinion.length<=0){
+      Swal.fire({icon:"warning", title:"הכנס חוות דעת"});
+    }
+    axios.post(`http://localhost:8080/opinionRouter/addOpinion/${currentUser.Id}`, {OpinionWrite:opinion})
+    .then(x=>{
+      console.log(x.data);
+      setOpinion("");
+      Swal.fire({icon:"success", title:"חוות הדעת הוגשה בהצלחה!", text:"אנו מודים לך על נתינת דעתך."})
+    })
+    .catch(err => console.log(err))
+  }
   return (
     <> 
    
@@ -57,11 +73,14 @@ export default function Recommendation() {
 
     <br/>
     <br/>
-
+{console.log(currentUser)}
    {/*משתמש רשום */}
-   {currentUser?.UserType == 1 && (
+   {currentUser?.UserType == 3 && (
           <div>
             <p>הוסף חוות דעת</p>
+            <TextField variant="outlined" label="חוות דעת" onChange={(e)=>{setOpinion(e.target.value)}}/>
+            <br/><br/>
+            <Button onClick={addOpinion}>הוסף</Button>
           </div>
         )}
     {/* <br/>
