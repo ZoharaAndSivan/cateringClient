@@ -28,6 +28,7 @@ const DisplayOrderProducts = ({ order, food }) => {
     setGroupedMenu(arr);
   }, []);
   console.log(order, food);
+  console.log(groupedMenu)
   return (
     <div className="p-2 mt-4">
       <h3> התפריט הקודם שהוזמן: </h3>
@@ -40,7 +41,7 @@ const DisplayOrderProducts = ({ order, food }) => {
                 className="ms-3"
                 style={{
                   color: food.find((x) =>
-                    x.Id == product.Id) ? "brown" : "red"
+                    x.FoodId == product.Id) ? "brown" : "red"
                   
                 }}
               >
